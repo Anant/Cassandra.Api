@@ -1,0 +1,76 @@
+{
+    "is_archived": 1,
+    "is_starred": 0,
+    "user_name": "admin",
+    "user_email": "rahul@example.com",
+    "user_id": 1,
+    "tags": [
+        {
+            "id": 11,
+            "label": "database",
+            "slug": "database"
+        },
+        {
+            "id": 89,
+            "label": "cassandra",
+            "slug": "cassandra"
+        },
+        {
+            "id": 182,
+            "label": "mongo",
+            "slug": "mongo"
+        },
+        {
+            "id": 190,
+            "label": "sql",
+            "slug": "sql"
+        },
+        {
+            "id": 873,
+            "label": "mysql",
+            "slug": "mysql"
+        },
+        {
+            "id": 1076,
+            "label": "ide",
+            "slug": "ide"
+        },
+        {
+            "id": 1382,
+            "label": "mariadb",
+            "slug": "mariadb"
+        },
+        {
+            "id": 1602,
+            "label": "snowflake",
+            "slug": "snowflake"
+        }
+    ],
+    "is_public": false,
+    "id": 14833,
+    "uid": null,
+    "title": "DataGrip: The Cross-Platform IDE for Databases &amp; SQL by JetBrains",
+    "url": "https://www.jetbrains.com/datagrip/",
+    "content": "<section class=\"section _bg-medium\"><div class=\"wt-container\"><p>Why<br />DataGrip</p><h2 class=\"h2-section\">Enjoy working<br />with databases</h2><div class=\"wt-row wt-row_size_m wt-col-3 wt-col-lg-4 features-block\"><p>Meet DataGrip, our new database IDE that is tailored to suit the specific needs of professional SQL developers.</p></div></div></section><section class=\"section _bg-dark\"><div class=\"wt-container\"><div class=\"wt-row wt-row_size_m\"><div class=\"wt-col-3 wt-col-lg-4\"><div class=\"features-block _color-light\"><h4 class=\"features-block__title\">Intelligent query console</h4><p>Allows you to execute queries in different modes and provides a local history that keeps track of all your activity and protects you from losing your work.</p></div><div class=\"features-block _color-light\"><h4 class=\"features-block__title\">Efficient schema navigation</h4><p>Lets you jump to any table, view, or procedure by its name via the corresponding action, or directly from its usages in the SQL code.</p></div></div><div class=\"wt-col-8 wt-col-lg-7 wt-offset-left-1 screen-img _shadow _refactorings\"><img src=\"https://www.jetbrains.com/datagrip/img/screenshots/query-console.png\" alt=\"\" width=\"895\" referrerpolicy=\"no-referrer\" /></div></div><div class=\"wt-row wt-row_size_m\"><div class=\"wt-col-3 wt-col-lg-4 features-block _color-light\"><h4 class=\"features-block__title\">Explain plan</h4><p>Gives you an extended insight into how your queries work and into the database engine behavior, so you can make your queries more efficient.</p></div><div class=\"wt-col-5 wt-col-lg-4 wt-offset-left-3 wt-offset-left-lg-2 screen-img _shadow _reliable-refactorings\"><img src=\"https://www.jetbrains.com/datagrip/img/screenshots/mysql.png\" alt=\"\" width=\"700\" referrerpolicy=\"no-referrer\" /></div></div></div></section><section class=\"section _bg-medium _code-completion\"><div class=\"wt-container\"><div class=\"wt-row wt-row_size_m\"><div class=\"wt-col-5 wt-col-xlg-6 wt-col-lg-5 screen-img _smart-completion\"><img src=\"https://www.jetbrains.com/datagrip/img/screenshots/completion.png\" alt=\"\" referrerpolicy=\"no-referrer\" /></div><div class=\"wt-col-5 wt-col-lg-6 wt-offset-left-1 features-block\"><h4 class=\"features-block__title\">Smart code completion</h4><p>DataGrip provides context-sensitive code completion, helping you to write SQL code faster. Completion is aware of the tables structure, foreign keys, and even database objects created in code you're editing.</p></div></div><div class=\"wt-row wt-row_size_m\"><div class=\"wt-col-5 wt-col-xlg-6 wt-col-lg-5 screen-img _code-analysis\"><img src=\"https://www.jetbrains.com/datagrip/img/screenshots/code-analysis.png\" alt=\"\" referrerpolicy=\"no-referrer\" /></div><div class=\"wt-col-5 wt-col-lg-6 wt-offset-left-1 features-block\"><h4 class=\"features-block__title\">On-the-fly analysis and quick-fixes</h4><p>DataGrip detects probable bugs in your code and suggests the best options to fix them on the fly. It will immediately let you know about unresolved objects, using keywords as identifiers and always offers a way to fix the problems.</p></div></div><div class=\"wt-row wt-row_size_m\"><div class=\"wt-col-3 wt-col-lg-4 features-block _block-margin\"><h4 class=\"features-block__title\">Refactorings that work in SQL files and schemas</h4><p>DataGrip correctly resolves all references in your SQL code and helps you refactor them. When you rename a variable or an alias, it will update their usages throughout the entire file. The actual table names in the database are updated when you rename references to them from your queries. There is even a preview of usages of tables/views inside other views, stored procedures and functions.</p></div><div class=\"wt-col-8 wt-col-lg-7 wt-offset-left-1 screen-img _shadow\"><img src=\"https://www.jetbrains.com/datagrip/img/screenshots/sql-refactoring.png\" alt=\"\" width=\"800\" referrerpolicy=\"no-referrer\" /></div></div><div class=\"wt-row wt-row_size_m\"><div class=\"wt-col-3 wt-col-lg-4\"><div class=\"features-block\"><h4 class=\"features-block__title\">Version control integration</h4><p>We provide unified support for all major version control systems: Git, SVN, Mercurial and many others.</p></div><a class=\"button _secondary _size-2\" href=\"https://www.jetbrains.com/datagrip/features\">Discover all features</a></div><div class=\"wt-col-5 wt-col-lg-4 wt-offset-left-3 screen-img _shadow _reliable-refactorings\"><img src=\"https://www.jetbrains.com/datagrip/img/screenshots/version-control.png\" alt=\"\" width=\"700\" referrerpolicy=\"no-referrer\" /></div></div></div></section><section class=\"section _bg-medium customers\"><div class=\"wt-container wt-row wt-row_size_m wt-col-4 article-content\"><h2 class=\"h3-section customers__title\">Join Our Customers</h2><p class=\"sub-title customers__subtitle\">Companies all over the world use DataGrip. Join them and get the best development experience.</p></div></section><section class=\"section database\"><div class=\"wt-container wt-row wt-row_size_m\"><h6 class=\"margin-bottom-vertical-unit-half database__subtitle\">Is your favourite database missing?</h6><a class=\"button _secondary\" href=\"https://www.jetbrains.com/datagrip/new_dbms/\">Help us support it!</a><div class=\"wt-col-6 wt-col-lg-7 wt-offset-left-1\"><ul class=\"wt-row wt-row_size_m\"><li class=\"wt-col-4 database__list-item\">PostgreSQL</li>\n<li class=\"wt-col-4 database__list-item\"><a href=\"https://www.jetbrains.com/datagrip/features/mysql.html\">MySQL</a></li>\n<li class=\"wt-col-4 database__list-item\">Oracle Database</li>\n<li class=\"wt-col-4 database__list-item\">SQL Server</li>\n<li class=\"wt-col-4 database__list-item\">Azure</li>\n<li class=\"wt-col-4 database__list-item\">Amazon Redshift</li>\n<li class=\"wt-col-4 database__list-item\">SQLite</li>\n<li class=\"wt-col-4 database__list-item\">DB2</li>\n<li class=\"wt-col-4 database__list-item\">H2</li>\n<li class=\"wt-col-4 database__list-item\">Sybase</li>\n<li class=\"wt-col-4 database__list-item\">Exasol</li>\n<li class=\"wt-col-4 database__list-item\">Apache Derby</li>\n<li class=\"wt-col-4 database__list-item\">MariaDB</li>\n<li class=\"wt-col-4 database__list-item\">HyperSQL</li>\n<li class=\"wt-col-4 database__list-item\">ClickHouse</li>\n<li class=\"wt-col-4 database__list-item\">Cassandra</li>\n<li class=\"wt-col-4 database__list-item\">Vertica</li>\n<li class=\"wt-col-4 database__list-item\">Greenplum</li>\n<li class=\"wt-col-4 database__list-item\">Apache Hive</li>\n<li class=\"wt-col-4 database__list-item\">Snowflake</li>\n</ul></div></div></section>",
+    "created_at": "2020-04-03T15:20:10+0000",
+    "updated_at": "2020-04-03T15:20:58+0000",
+    "published_at": "2019-08-28T09:00:00+0000",
+    "published_by": [
+        ""
+    ],
+    "starred_at": null,
+    "annotations": [],
+    "mimetype": "text/html",
+    "language": "en",
+    "reading_time": 1,
+    "domain_name": "www.jetexample.com",
+    "preview_picture": "http://resources.example.com/storage/products/datagrip/img/meta/datagrip_1280x800.png",
+    "http_status": "200",
+    "headers": null,
+    "origin_url": null,
+    "_links": {
+        "self": {
+            "href": "/api/entries/14833"
+        }
+    }
+}
