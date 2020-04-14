@@ -2,6 +2,7 @@ from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 import json
 import requests
+from datetime import  datetime
 
 #Connect to Astra Cluster
 cloud_config= {
@@ -22,27 +23,29 @@ session.set_keyspace('killrvideo')
 session.execute(
     """
     CREATE TABLE IF NOT EXISTS killrvideo.leaves(
-        id int,
-        user_name text,
+        is_archived int, 
+        all list<text>, 
+        is_starred int, 
+        user_name text, 
+        user_email text, 
+        user_id int, 
+        tags list<text>, 
+        slugs list<text>, 
+        is_public boolean, 
+        id int, 
         title text,
-        url text,
-        is_archived int,
-        is_starred int,
-        content	 text,
-        create_at timestamp,
-        update_at timestamp,
-        mimetype text,
-        language text,
-        reading_time int,
-        domain_name text,
-        preview_picture text,
-        uid text,
-        http_status text,
-        published_at timestamp,
-        published_by text,
-        headers text,
-        starred_at timestamp,
-        origin_url text,
+        url text, 
+        content_text text, 
+        created_at timestamp, 
+        updated_at timestamp, 
+        mimetype text, 
+        language text, 
+        reading_time int, 
+        domain_name text, 
+        preview_picture text, 
+        http_status text, 
+        links list<text>, 
+        content text,
         PRIMARY KEY (id)
     )
     """
@@ -52,22 +55,67 @@ session.execute(
 params = (
     ('fl', '*'),
     ('q', '*'),
+    ('rows', '100000'),
 )
 
 response = requests.get('https://ss346483-us-east-1-aws.searchstax.com/solr/leaves_anant_stage/select', params=params)
 response_json = response.json()
-#print(type(response_json))
-#print(response_json.keys())
-#print((response_json['response']).keys())
 num_docs = response_json['response']['numFound']
-#print(num_docs)
 docs = response_json['response']['docs']
-#print(type(docs))
-#print((docs[0]).keys())
+
+
+print(str(len(docs))+'/'+str(num_docs))
+
 
 for i in range(len(docs)):
     tmp_doc = docs[i]
-    session.execute(
+    #Missing Fields Checks
+    try:
+        title_check = tmp_doc['title']
+    except KeyError:
+        continue
+
+    try:
+        lang_check = tmp_doc['language']
+    except KeyError:
+        tmp_doc['language'] = 'en'
+
+    try:
+        picture_check = tmp_doc['preview_picture']
+    except KeyError:
+        tmp_doc['preview_picture'] = 'https://dummyimage.com/170/000/ffffff&text='+(tmp_doc['title'].replace(' ','%20'))
+
+    try:
+        content_check = tmp_doc['content']
+    except KeyError:
+        tmp_doc['content'] = ''
+
+    try:
+        content_text_check = tmp_doc['content_text']
+    except KeyError:
+        tmp_doc['content_text'] = str(tmp_doc['content'])
+
+    try:
+        mimetype_check = tmp_doc['mimetype']
+    except KeyError:
+        tmp_doc['mimetype'] = ''
+
+    try:
+        http_status_check = tmp_doc['http_status']
+    except KeyError:
+        tmp_doc['http_status'] = ''
+    
+    try:
+        tags_check = tmp_doc['tags']
+    except KeyError:
+        tmp_doc['tags'] = []
+    
+    try:
+        slugs_check = tmp_doc['slugs']
+    except KeyError:
+        tmp_doc['slugs'] = []
+
+    insert_query = session.prepare(
         """
         INSERT INTO killrvideo.leaves 
         (is_archived, 
@@ -91,9 +139,32 @@ for i in range(len(docs)):
         domain_name, 
         preview_picture, 
         http_status, 
-        _links, 
+        links, 
         content)
-        VALUES (%s, %s, %s)
-        """,
-    ("John O'Reilly", 42, uuid.uuid1())
-)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""")
+    session.execute(insert_query, 
+        [
+            tmp_doc['is_archived'],
+            str(tmp_doc['all']),
+            tmp_doc['is_starred'],
+            str(tmp_doc['user_name']),
+            str(tmp_doc['user_email']),
+            str(tmp_doc['user_id']),
+            str(tmp_doc['tags']),
+            str(tmp_doc['slugs']),
+            str(tmp_doc['is_public']),
+            int(tmp_doc['id']),
+            str(tmp_doc['title']),
+            str(tmp_doc['url']),
+            str(tmp_doc['content_text']),
+            datetime.strptime(tmp_doc['created_at'],'%Y-%m-%dT%H:%M:%SZ'),
+            datetime.strptime(tmp_doc['updated_at'],'%Y-%m-%dT%H:%M:%SZ'),
+            str(tmp_doc['mimetype']),
+            str(tmp_doc['language']),
+            int(tmp_doc['reading_time']),
+            str(tmp_doc['domain_name']),
+            str(tmp_doc['preview_picture']),
+            str(tmp_doc['http_status']),
+            str(tmp_doc['_links']),
+            str(tmp_doc['content']),
+        ])
