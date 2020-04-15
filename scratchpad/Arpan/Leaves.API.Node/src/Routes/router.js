@@ -19,9 +19,9 @@ leavesRouter
   .get( async (req, res, next) => {
     try{
 
-      let query = 'SELECT * FROM killrvideo.users;';
+      let query = 'SELECT * FROM killrvideo.leaves;';
       client.execute(query, function(err, result){
-        console.log(result)
+        // console.log(result)
         return res.status(200).json(result.rows);
       });
       // below is according to the basic usage on driver docs
@@ -34,6 +34,8 @@ leavesRouter
 
   .post(jsonParser, async (req, res, next) => {
     try{
+
+      //will change this at a later time for read/write to leaves
       const {email, firstname, lastname} = req.body;
 
       newLeaf = {email, firstname, lastname};
@@ -74,13 +76,15 @@ leavesRouter
   .get( async (req, res, next) => {
     try{
       let id = req.params.id;
-      let query = 'SELECT * FROM killrvideo.users WHERE userid=?;';
+      // let number = Number(id);
+      let query = 'SELECT * FROM killrvideo.leaves WHERE id=?;';
       let params = [id];
-      client.execute(query, params, function(err, result){
+      client.execute(query, params, { prepare : true }, function(err, result){
         if(!!result){
           return res.status(200).json(result.rows[0]);
         }
         else{
+          console.log(err);
           return res.status(404).json({
             error: 'Not Found'
           });
@@ -131,11 +135,11 @@ leavesRouter
     try{
       let id = req.params.id;
       if(!!id){
-        let deleteQuery = 'DELETE FROM killrvideo.users WHERE userid=?;';
+        let deleteQuery = 'DELETE FROM killrvideo.leaves WHERE id=?;';
         let params = [id];
 
         await 
-        client.execute(deleteQuery, params, function(err){
+        client.execute(deleteQuery, params, { prepare : true }, function(err){
           if(!!err){
             return res.status(400).json({
               error: 'Error deleting data'
