@@ -1,3 +1,3 @@
 tasks:
   - init: echo "Replace me with a build script for the project."
-    command: echo pip3 install cassandra-driver
+    command: pip3 install cassandra-driver

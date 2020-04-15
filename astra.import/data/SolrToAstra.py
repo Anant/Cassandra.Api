@@ -6,10 +6,10 @@ from datetime import  datetime
 
 #Connect to Astra Cluster
 #Redo this after git project restructuring
-with open('/workspace/leaves.astra/DataMigration/UserCred.json') as f:
+with open('/workspace/leaves.astra/astra.credentials/UserCred.json') as f:
     cred = json.load(f)
 cloud_config= {
-        'secure_connect_bundle': '/workspace/leaves.astra/DataMigration/secure-connect-'+cred['keyspace']+'.zip'
+        'secure_connect_bundle': '/workspace/leaves.astra/astra.credentials/secure-connect-'+cred['cluster']+'.zip'
 }
 auth_provider = PlainTextAuthProvider(cred['username'], cred['password'])
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
@@ -23,7 +23,7 @@ else:
 
 #Create Table leaves if it does not exist
 session.set_keyspace('killrvideo')
-f = open('/workspace/leaves.astra/DataMigration/AstraTableDef')
+f = open('/workspace/leaves.astra/astra.import/schema/AstraTableDef')
 session.execute('CREATE TABLE IF NOT EXISTS '+str(f.read()))
 
 #Request data from solr
