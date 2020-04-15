@@ -5,10 +5,13 @@ import requests
 from datetime import  datetime
 
 #Connect to Astra Cluster
+#Redo this after git project restructuring
+with open('/workspace/leaves.astra/DataMigration/UserCred.json') as f:
+    cred = json.load(f)
 cloud_config= {
-        'secure_connect_bundle': '/workspace/leaves.astra/DataMigration/secure-connect-killrvideocluster.zip'
+        'secure_connect_bundle': '/workspace/leaves.astra/DataMigration/secure-connect-'+cred['keyspace']+'.zip'
 }
-auth_provider = PlainTextAuthProvider('KVUser', 'KVPassword')
+auth_provider = PlainTextAuthProvider(cred['username'], cred['password'])
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
 session = cluster.connect()
 
@@ -20,42 +23,14 @@ else:
 
 #Create Table leaves if it does not exist
 session.set_keyspace('killrvideo')
-session.execute(
-    """
-    CREATE TABLE IF NOT EXISTS killrvideo.leaves(
-        is_archived int, 
-        all list<text>, 
-        is_starred int, 
-        user_name text, 
-        user_email text, 
-        user_id int, 
-        tags list<text>, 
-        slugs list<text>, 
-        is_public boolean, 
-        id int, 
-        title text,
-        url text, 
-        content_text text, 
-        created_at timestamp, 
-        updated_at timestamp, 
-        mimetype text, 
-        language text, 
-        reading_time int, 
-        domain_name text, 
-        preview_picture text, 
-        http_status text, 
-        links list<text>, 
-        content text,
-        PRIMARY KEY (id)
-    )
-    """
-)
+f = open('/workspace/leaves.astra/DataMigration/AstraTableDef')
+session.execute('CREATE TABLE IF NOT EXISTS '+str(f.read()))
 
 #Request data from solr
 params = (
     ('fl', '*'),
     ('q', '*'),
-    ('rows', '100000'),
+    ('rows', '10'),
 )
 
 response = requests.get('https://ss346483-us-east-1-aws.searchstax.com/solr/leaves_anant_stage/select', params=params)
