@@ -36,9 +36,16 @@ leavesRouter
     try{
 
       //will change this at a later time for read/write to leaves
-      const {email, firstname, lastname} = req.body;
+      const {is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
+        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
+        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
+        http_status, headers, origin_url, _links } 
+        = req.body;
 
-      newLeaf = {email, firstname, lastname};
+      newLeaf = {is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
+        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
+        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
+        http_status, headers, origin_url, _links };
 
       for (const [key, value] of Object.entries(newLeaf))
         if (!value)
@@ -46,10 +53,13 @@ leavesRouter
             error: `Missing '${key}' in request body`
           });
 
-      let userid = uuidv4();
-      let created_date = Date.now();
-      let query = 'INSERT INTO killrvideo.users(userid, created_date, email, firstname, lastname) VALUES (?,?,?,?,?);'; 
-      let params = [userid, created_date, email, firstname, lastname]; 
+      let query = 'INSERT INTO killrvideo.leaves(is_archived, is_starred, user_name, user_email, user_id, tags, is_public, id, uid, title, url, content, created_at, updated_at, published_at, published_by, starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture, http_status, headers, origin_url, _links) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
+
+      let params = [is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
+        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
+        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
+        http_status, headers, origin_url, _links];
+
       client.execute(query, params, function(err, result){
         if(err){
         //   console.log(err);
@@ -98,10 +108,20 @@ leavesRouter
 
   .patch(jsonParser, async (req, res, next) => {
     try{
-      let id = req.params.id;
-      const {email, firstname, lastname} = req.body;
+      
+      //will update once we start implementing read/write stuff with leaves and figuring out what we allow in being updated
+      let leafId = req.params.leafId;
 
-      newLeaf = {email, firstname, lastname};
+      const {is_archived, is_starred, user_name, user_email, user_id, tags, is_public, 
+        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
+        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
+        http_status, headers, origin_url, _links } 
+        = req.body;
+
+      newLeaf = {is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
+        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
+        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
+        http_status, headers, origin_url, _links };
 
       for (const [key, value] of Object.entries(newLeaf))
         if (!value)
@@ -109,8 +129,15 @@ leavesRouter
             error: `Missing '${key}' in request body`
           });
 
-      let query = 'UPDATE killrvideo.users SET email=?, firstname=?, lastname=? WHERE userid=?;';
-      const params = [email, firstname, lastname, id];
+          //udpate query depending on what we allow for being updated
+      let query = 'UPDATE killrvideo.leaves SET email=?, firstname=?, lastname=? WHERE id=?;';
+
+      //change out params depending on what we allow for being updated
+      const params = [is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
+        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
+        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
+        http_status, headers, origin_url, _links, leafId];
+
       client.execute(query, params, function(err, result){
         if(err){
         //   console.log(err);
