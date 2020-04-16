@@ -15,6 +15,21 @@ Complete the following steps to start a new project (NEW-PROJECT-NAME):
 
 ## Scripts
 
+**Before starting application**
+
+* Set BUNDLE in .env equal to Astra Secure Connect Bundle .zip file name 
+
+* Set USER and PASS equal to Astra Credentials
+
+```
+NODE_ENV=development
+PORT=8000
+EXAMPLE="example-environmental-variable"
+BUNDLE=secure-connect-example.zip
+USER="Example"
+PASS="Example"
+```
+
 Start the application `npm start`
 
 Start nodemon for the application `npm run dev`
