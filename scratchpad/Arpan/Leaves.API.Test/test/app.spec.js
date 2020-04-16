@@ -148,8 +148,7 @@ describe('Endpoints', () => {
 
     // let query = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
     // let keys = Object.keys(testRecord)
-    // let params = [keys]; 
-    // client.execute(query, params);
+    // client.execute(query, keys);
 
     // making sure it links up to API correctly
     let query = 'select * from killrvideo.leaves'; 
@@ -564,18 +563,15 @@ describe('Endpoints', () => {
 
   // let firstInsert = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
   // let tr1Keys = Object.keys(testRecord1);
-  // let firstParams = [tr1Keys]; 
-  // client.execute(firstInsert, firstParams);
+  // client.execute(firstInsert, tr1Keys);
 
   // let secondInsert = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
   // let tr2Keys = Object.keys(testRecord2);
-  // let secondParams = [tr2Keys]; 
-  // client.execute(firstInsert, secondParams);
+  // client.execute(firstInsert, tr2Keys);
 
   // let thirdInsert = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
   // let tr3Keys = Object.keys(testRecord3);
-  // let thirdParams = [tr3Keys]; 
-  // client.execute(thirdInsert, thirdParams);
+  // client.execute(thirdInsert, tr3Keys);
 
   //   return supertest
   //     .get('/api/leaves')
@@ -713,18 +709,16 @@ describe('Endpoints', () => {
 
   //   let insertQuery = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
   //   let keys = Object.keys(testRecord)
-  //   let insertParams = [keys]; 
-  //   client.execute(query, params);
+  //   client.execute(query, keys);
 
   //   let deleteQuery = 'DELETE FROM keyspace.table WHERE id=?;';
-
   //   let deleteParams = [testRecord.id];
 
   //   client.execute(deleteQuery, deleteParams);
 
   //   return supertest
   //     .get(`/api/leaves/${id}`)
-  //     .expect(404);
+  //     .expect(204);
   // });
   
 });
