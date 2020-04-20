@@ -6,10 +6,10 @@ from datetime import  datetime
 
 #Connect to Astra Cluster
 #Redo this after git project restructuring
-with open('/workspace/leaves.astra/astra.credentials/UserCred.json') as f:
+with open('../../astra.credentials/UserCred.json') as f:
     cred = json.load(f)
 cloud_config= {
-        'secure_connect_bundle': '/workspace/leaves.astra/astra.credentials/secure-connect-'+cred['cluster']+'.zip'
+        'secure_connect_bundle': '../../astra.credentials/secure-connect-'+cred['cluster']+'.zip'
 }
 auth_provider = PlainTextAuthProvider(cred['username'], cred['password'])
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
@@ -23,14 +23,14 @@ else:
 
 #Create Table leaves if it does not exist
 session.set_keyspace('killrvideo')
-f = open('/workspace/leaves.astra/astra.import/schema/AstraTableDef')
+f = open('../../astra.import/schema/AstraTableDef')
 session.execute('CREATE TABLE IF NOT EXISTS '+str(f.read()))
 
 #Request data from solr
 params = (
     ('fl', '*'),
     ('q', '*'),
-    ('rows', '10'),
+    ('rows', '1000'),
 )
 
 response = requests.get('https://ss346483-us-east-1-aws.searchstax.com/solr/leaves_anant_stage/select', params=params)
@@ -129,17 +129,17 @@ for i in range(len(docs)):
             str(tmp_doc['slugs']),
             str(tmp_doc['is_public']),
             int(tmp_doc['id']),
-            str(tmp_doc['title']),
+            tmp_doc['title'].encode('utf-8'),
             str(tmp_doc['url']),
-            str(tmp_doc['content_text']),
+            tmp_doc['content_text'].encode('utf-8'),
             datetime.strptime(tmp_doc['created_at'],'%Y-%m-%dT%H:%M:%SZ'),
             datetime.strptime(tmp_doc['updated_at'],'%Y-%m-%dT%H:%M:%SZ'),
             str(tmp_doc['mimetype']),
             str(tmp_doc['language']),
             int(tmp_doc['reading_time']),
             str(tmp_doc['domain_name']),
-            str(tmp_doc['preview_picture']),
+            tmp_doc['preview_picture'].encode('utf-8'),
             str(tmp_doc['http_status']),
             str(tmp_doc['_links']),
-            str(tmp_doc['content']),
+            tmp_doc['content'].encode('utf-8'),
         ])
