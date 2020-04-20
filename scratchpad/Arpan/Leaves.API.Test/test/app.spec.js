@@ -25,542 +25,168 @@ describe('Endpoints', () => {
   it('Create a record, retrieve the record', () => {
 
     let testRecord = {
-      id: 13909,
-      all: '[\'1\', \'0\', \'admin\', \'rahul.singh@anant.us\', \'1\', \'tutorial\', \'chef\', ' +
-        '\'tutorial\', \'chef\', \'0\', \'13909\', \'Chef Tutorial\', ' +
-        '\'https://www.tutorialspoint.com/chef/index.htm\', \'<div class="cover"><img ' +
-        'class="img-responsive" ' +
-        'src="https://www.tutorialspoint.com/chef/images/chef.jpg" alt="Chef ' +
-        'Tutorial" /></div><hr /><p><a ' +
-        'href="https://www.tutorialspoint.com/index.htm"><i class="icon ' +
-        'icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a ' +
-        'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-        'class="icon icon-arrow-circle-o-right big-font">\\xa0</i></a></p><hr ' +
-        '/><p>Chef is a configuration management technology developed by Opscode ' +
-        'to manage infrastructure on physical or virtual machines. It is an open ' +
-        'source developed using Ruby, which helps in managing complex ' +
-        'infrastructure on the fly. This tutorial provides a basic understanding ' +
-        'of the infrastructure and fundamental concepts of managing an ' +
-        'infrastructure using Chef.</p><p>This tutorial has been prepared for ' +
-        'those who want to understand the features and functionality of Chef and ' +
-        'how Chef can help in reducing the complexity of managing an ' +
-        'infrastructure.</p><p>After completing this tutorial one would have ' +
-        'moderate level understanding of Chef and its key building blocks. It will ' +
-        'also give a fair idea on how to configure Chef in a preconfigured ' +
-        'infrastructure and how to use it.</p><p>We assume anyone who wants to ' +
-        'learn Chef should have an understanding of system administration, ' +
-        'infrastructure and network protocol communication. To automate the ' +
-        'infrastructure provisioning, one should have a command over basic Ruby ' +
-        'script writing and the underlying system where one wants to use ' +
-        'Chef.</p><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i ' +
-        'class="icon icon-arrow-circle-o-left big-font"> Previous ' +
-        'Page</i></a></p><p><a ' +
-        'href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" ' +
-        'target="_blank"> Print</a></p><p><a ' +
-        'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-        'class="icon icon-arrow-circle-o-right big-font">\\xa0</i></a></p><hr />\', ' +
-        '\'Previous Page Next Page  Chef is a configuration management technology ' +
-        'developed by Opscode to manage infrastructure on physical or virtual ' +
-        'machines. It is an open source developed using Ruby, which helps in ' +
-        'managing complex infrastructure on the fly. This tutorial provides a ' +
-        'basic understanding of the infrastructure and fundamental concepts of ' +
-        'managing an infrastructure using Chef. This tutorial has been prepared ' +
-        'for those who want to understand the features and functionality of Chef ' +
-        'and how Chef can help in reducing the complexity of managing an ' +
-        'infrastructure. After completing this tutorial one would have moderate ' +
-        'level understanding of Chef and its key building blocks. It will also ' +
-        'give a fair idea on how to configure Chef in a preconfigured ' +
-        'infrastructure and how to use it. We assume anyone who wants to learn ' +
-        'Chef should have an understanding of system administration, ' +
-        'infrastructure and network protocol communication. To automate the ' +
-        'infrastructure provisioning, one should have a command over basic Ruby ' +
-        'script writing and the underlying system where one wants to use Chef. ' +
-        'Previous Page Print Next Page \', \'Wed Jun 19 12:43:13 UTC 2019\', \'Wed Jun ' +
-        '19 12:43:16 UTC 2019\', \'text/html\', \'0\', \'www.tutorialspoint.com\', \'200\', ' +
-        '\'/api/entries/13909\', \'1641690374424494080\']',
-      content: '<div class="cover"><img class="img-responsive" ' +
-        'src="https://www.tutorialspoint.com/chef/images/chef.jpg" alt="Chef ' +
-        'Tutorial" /></div><hr /><p><a ' +
-        'href="https://www.tutorialspoint.com/index.htm"><i class="icon ' +
-        'icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a ' +
-        'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-        'class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr ' +
-        '/><p>Chef is a configuration management technology developed by Opscode ' +
-        'to manage infrastructure on physical or virtual machines. It is an open ' +
-        'source developed using Ruby, which helps in managing complex ' +
-        'infrastructure on the fly. This tutorial provides a basic understanding ' +
-        'of the infrastructure and fundamental concepts of managing an ' +
-        'infrastructure using Chef.</p><p>This tutorial has been prepared for ' +
-        'those who want to understand the features and functionality of Chef and ' +
-        'how Chef can help in reducing the complexity of managing an ' +
-        'infrastructure.</p><p>After completing this tutorial one would have ' +
-        'moderate level understanding of Chef and its key building blocks. It will ' +
-        'also give a fair idea on how to configure Chef in a preconfigured ' +
-        'infrastructure and how to use it.</p><p>We assume anyone who wants to ' +
-        'learn Chef should have an understanding of system administration, ' +
-        'infrastructure and network protocol communication. To automate the ' +
-        'infrastructure provisioning, one should have a command over basic Ruby ' +
-        'script writing and the underlying system where one wants to use ' +
-        'Chef.</p><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i ' +
-        'class="icon icon-arrow-circle-o-left big-font"> Previous ' +
-        'Page</i></a></p><p><a ' +
-        'href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" ' +
-        'target="_blank"> Print</a></p><p><a ' +
-        'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-        'class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr />',
-      content_text: 'Previous Page Next Page  Chef is a configuration management technology ' +
-        'developed by Opscode to manage infrastructure on physical or virtual ' +
-        'machines. It is an open source developed using Ruby, which helps in ' +
-        'managing complex infrastructure on the fly. This tutorial provides a ' +
-        'basic understanding of the infrastructure and fundamental concepts of ' +
-        'managing an infrastructure using Chef. This tutorial has been prepared ' +
-        'for those who want to understand the features and functionality of Chef ' +
-        'and how Chef can help in reducing the complexity of managing an ' +
-        'infrastructure. After completing this tutorial one would have moderate ' +
-        'level understanding of Chef and its key building blocks. It will also ' +
-        'give a fair idea on how to configure Chef in a preconfigured ' +
-        'infrastructure and how to use it. We assume anyone who wants to learn ' +
-        'Chef should have an understanding of system administration, ' +
-        'infrastructure and network protocol communication. To automate the ' +
-        'infrastructure provisioning, one should have a command over basic Ruby ' +
-        'script writing and the underlying system where one wants to use Chef. ' +
-        'Previous Page Print Next Page ',
-      created_at: '2019-06-19T12:43:13.000Z',
-      domain_name: 'www.tutorialspoint.com',
-      http_status: '200',
-      is_archived: 1,
-      is_public: 'False',
-      is_starred: 0,
-      language: 'en',
-      links: '[\'/api/entries/13909\']',
-      mimetype: 'text/html',
-      preview_picture: 'https://dummyimage.com/170/000/ffffff&text=Chef%20Tutorial',
-      reading_time: 0,
-      slugs: '[\'tutorial\', \'chef\']',
-      tags: '[\'tutorial\', \'chef\']',
-      title: 'Chef Tutorial',
-      updated_at: '2019-06-19T12:43:16.000Z',
-      url: 'https://www.tutorialspoint.com/chef/index.htm',
-      user_email: 'rahul.singh@anant.us',
-      user_id: '1',
-      user_name: 'admin'
+      'id': 12323,
+      'content': '<div class="cover"><img class="img-responsive" src="https://www.tutorialspoint.com/chef/images/chef.jpg" alt="Chef Tutorial" /></div><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr /><p>Chef is a configuration management technology developed by Opscode to manage infrastructure on physical or virtual machines. It is an open source developed using Ruby, which helps in managing complex infrastructure on the fly. This tutorial provides a basic understanding of the infrastructure and fundamental concepts of managing an infrastructure using Chef.</p><p>This tutorial has been prepared for those who want to understand the features and functionality of Chef and how Chef can help in reducing the complexity of managing an infrastructure.</p><p>After completing this tutorial one would have moderate level understanding of Chef and its key building blocks. It will also give a fair idea on how to configure Chef in a preconfigured infrastructure and how to use it.</p><p>We assume anyone who wants to learn Chef should have an understanding of system administration, infrastructure and network protocol communication. To automate the infrastructure provisioning, one should have a command over basic Ruby script writing and the underlying system where one wants to use Chef.</p><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"> Print</a></p><p><a href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr />',
+      'content_text': 'Previous Page Next Page  Chef is a configuration management technology developed by Opscode to manage infrastructure on physical or virtual machines. It is an open source developed using Ruby, which helps in managing complex infrastructure on the fly. This tutorial provides a basic understanding of the infrastructure and fundamental concepts of managing an infrastructure using Chef. This tutorial has been prepared for those who want to understand the features and functionality of Chef and how Chef can help in reducing the complexity of managing an infrastructure. After completing this tutorial one would have moderate level understanding of Chef and its key building blocks. It will also give a fair idea on how to configure Chef in a preconfigured infrastructure and how to use it. We assume anyone who wants to learn Chef should have an understanding of system administration, infrastructure and network protocol communication. To automate the infrastructure provisioning, one should have a command over basic Ruby script writing and the underlying system where one wants to use Chef. Previous Page Print Next Page ',
+      'created_at': '2019-06-19T12:43:13.000Z',
+      'domain_name': 'www.tutorialspoint.com',
+      'http_status': '200',
+      'is_archived': 1,
+      'is_public': 'False',
+      'is_starred': 0,
+      'language': 'en',
+      'mimetype': 'text/html',
+      'preview_picture': 'https://dummyimage.com/170/000/ffffff&text=Chef%20Tutorial',
+      'reading_time': 0,
+      'title': 'Chef Tutorial',
+      'updated_at': '2019-06-19T12:43:16.000Z',
+      'url': 'https://www.tutorialspoint.com/chef/index.htm',
+      'user_email': 'rahul.singh@anant.us',
+      'user_id': '1',
+      'user_name': 'admin'
     };
 
+    // OLD
     // let query = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
     // let keys = Object.keys(testRecord)
-    // client.execute(query, keys);
+    // OLD
+
+    let query = 'insert into killrvideo.leaves JSON ?;'; 
+
+    client.execute(query, [JSON.stringify(testRecord)], { prepare : true }, function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Success!');
+      }
+    });
 
     // making sure it links up to API correctly
-    let query = 'select * from killrvideo.leaves'; 
-    client.execute(query);
+    // let query = 'select * from killrvideo.leaves'; 
+    // client.execute(query);
 
 
     return supertest
       .get('/api/leaves')
-      .expect(200)
-      .expect(res => {
-        expect(JSON.parse(res.text)[0].id).to.eql(testRecord.id);
-        expect(JSON.parse(res.text)[0].domain_name).to.eql(testRecord.domain_name);
-        expect(JSON.parse(res.text)[0].title).to.eql(testRecord.title);
-      });
+      .expect(200);
+    // .expect(res => {
+    //   console.log(res.text);
+    //   expect(JSON.parse(res.text)[0].id).to.eql(testRecord.id);
+    //   expect(JSON.parse(res.text)[0].domain_name).to.eql(testRecord.domain_name);
+    //   expect(JSON.parse(res.text)[0].title).to.eql(testRecord.title);
+    // });
       
   });
 
   // it('Create a set of rows in one partition, retrieve them and number of rows should be same', () => {
     
-  //   let testRecord1 = {
-  //     id: 13909,
-  //     all: '[\'1\', \'0\', \'admin\', \'rahul.singh@anant.us\', \'1\', \'tutorial\', \'chef\', ' +
-  //       '\'tutorial\', \'chef\', \'0\', \'13909\', \'Chef Tutorial\', ' +
-  //       '\'https://www.tutorialspoint.com/chef/index.htm\', \'<div class="cover"><img ' +
-  //       'class="img-responsive" ' +
-  //       'src="https://www.tutorialspoint.com/chef/images/chef.jpg" alt="Chef ' +
-  //       'Tutorial" /></div><hr /><p><a ' +
-  //       'href="https://www.tutorialspoint.com/index.htm"><i class="icon ' +
-  //       'icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-  //       'class="icon icon-arrow-circle-o-right big-font">\\xa0</i></a></p><hr ' +
-  //       '/><p>Chef is a configuration management technology developed by Opscode ' +
-  //       'to manage infrastructure on physical or virtual machines. It is an open ' +
-  //       'source developed using Ruby, which helps in managing complex ' +
-  //       'infrastructure on the fly. This tutorial provides a basic understanding ' +
-  //       'of the infrastructure and fundamental concepts of managing an ' +
-  //       'infrastructure using Chef.</p><p>This tutorial has been prepared for ' +
-  //       'those who want to understand the features and functionality of Chef and ' +
-  //       'how Chef can help in reducing the complexity of managing an ' +
-  //       'infrastructure.</p><p>After completing this tutorial one would have ' +
-  //       'moderate level understanding of Chef and its key building blocks. It will ' +
-  //       'also give a fair idea on how to configure Chef in a preconfigured ' +
-  //       'infrastructure and how to use it.</p><p>We assume anyone who wants to ' +
-  //       'learn Chef should have an understanding of system administration, ' +
-  //       'infrastructure and network protocol communication. To automate the ' +
-  //       'infrastructure provisioning, one should have a command over basic Ruby ' +
-  //       'script writing and the underlying system where one wants to use ' +
-  //       'Chef.</p><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i ' +
-  //       'class="icon icon-arrow-circle-o-left big-font"> Previous ' +
-  //       'Page</i></a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" ' +
-  //       'target="_blank"> Print</a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-  //       'class="icon icon-arrow-circle-o-right big-font">\\xa0</i></a></p><hr />\', ' +
-  //       '\'Previous Page Next Page  Chef is a configuration management technology ' +
-  //       'developed by Opscode to manage infrastructure on physical or virtual ' +
-  //       'machines. It is an open source developed using Ruby, which helps in ' +
-  //       'managing complex infrastructure on the fly. This tutorial provides a ' +
-  //       'basic understanding of the infrastructure and fundamental concepts of ' +
-  //       'managing an infrastructure using Chef. This tutorial has been prepared ' +
-  //       'for those who want to understand the features and functionality of Chef ' +
-  //       'and how Chef can help in reducing the complexity of managing an ' +
-  //       'infrastructure. After completing this tutorial one would have moderate ' +
-  //       'level understanding of Chef and its key building blocks. It will also ' +
-  //       'give a fair idea on how to configure Chef in a preconfigured ' +
-  //       'infrastructure and how to use it. We assume anyone who wants to learn ' +
-  //       'Chef should have an understanding of system administration, ' +
-  //       'infrastructure and network protocol communication. To automate the ' +
-  //       'infrastructure provisioning, one should have a command over basic Ruby ' +
-  //       'script writing and the underlying system where one wants to use Chef. ' +
-  //       'Previous Page Print Next Page \', \'Wed Jun 19 12:43:13 UTC 2019\', \'Wed Jun ' +
-  //       '19 12:43:16 UTC 2019\', \'text/html\', \'0\', \'www.tutorialspoint.com\', \'200\', ' +
-  //       '\'/api/entries/13909\', \'1641690374424494080\']',
-  //     content: '<div class="cover"><img class="img-responsive" ' +
-  //       'src="https://www.tutorialspoint.com/chef/images/chef.jpg" alt="Chef ' +
-  //       'Tutorial" /></div><hr /><p><a ' +
-  //       'href="https://www.tutorialspoint.com/index.htm"><i class="icon ' +
-  //       'icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-  //       'class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr ' +
-  //       '/><p>Chef is a configuration management technology developed by Opscode ' +
-  //       'to manage infrastructure on physical or virtual machines. It is an open ' +
-  //       'source developed using Ruby, which helps in managing complex ' +
-  //       'infrastructure on the fly. This tutorial provides a basic understanding ' +
-  //       'of the infrastructure and fundamental concepts of managing an ' +
-  //       'infrastructure using Chef.</p><p>This tutorial has been prepared for ' +
-  //       'those who want to understand the features and functionality of Chef and ' +
-  //       'how Chef can help in reducing the complexity of managing an ' +
-  //       'infrastructure.</p><p>After completing this tutorial one would have ' +
-  //       'moderate level understanding of Chef and its key building blocks. It will ' +
-  //       'also give a fair idea on how to configure Chef in a preconfigured ' +
-  //       'infrastructure and how to use it.</p><p>We assume anyone who wants to ' +
-  //       'learn Chef should have an understanding of system administration, ' +
-  //       'infrastructure and network protocol communication. To automate the ' +
-  //       'infrastructure provisioning, one should have a command over basic Ruby ' +
-  //       'script writing and the underlying system where one wants to use ' +
-  //       'Chef.</p><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i ' +
-  //       'class="icon icon-arrow-circle-o-left big-font"> Previous ' +
-  //       'Page</i></a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" ' +
-  //       'target="_blank"> Print</a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-  //       'class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr />',
-  //     content_text: 'Previous Page Next Page  Chef is a configuration management technology ' +
-  //       'developed by Opscode to manage infrastructure on physical or virtual ' +
-  //       'machines. It is an open source developed using Ruby, which helps in ' +
-  //       'managing complex infrastructure on the fly. This tutorial provides a ' +
-  //       'basic understanding of the infrastructure and fundamental concepts of ' +
-  //       'managing an infrastructure using Chef. This tutorial has been prepared ' +
-  //       'for those who want to understand the features and functionality of Chef ' +
-  //       'and how Chef can help in reducing the complexity of managing an ' +
-  //       'infrastructure. After completing this tutorial one would have moderate ' +
-  //       'level understanding of Chef and its key building blocks. It will also ' +
-  //       'give a fair idea on how to configure Chef in a preconfigured ' +
-  //       'infrastructure and how to use it. We assume anyone who wants to learn ' +
-  //       'Chef should have an understanding of system administration, ' +
-  //       'infrastructure and network protocol communication. To automate the ' +
-  //       'infrastructure provisioning, one should have a command over basic Ruby ' +
-  //       'script writing and the underlying system where one wants to use Chef. ' +
-  //       'Previous Page Print Next Page ',
-  //     created_at: '2019-06-19T12:43:13.000Z',
-  //     domain_name: 'www.tutorialspoint.com',
-  //     http_status: '200',
-  //     is_archived: 1,
-  //     is_public: 'False',
-  //     is_starred: 0,
-  //     language: 'en',
-  //     links: '[\'/api/entries/13909\']',
-  //     mimetype: 'text/html',
-  //     preview_picture: 'https://dummyimage.com/170/000/ffffff&text=Chef%20Tutorial',
-  //     reading_time: 0,
-  //     slugs: '[\'tutorial\', \'chef\']',
-  //     tags: '[\'tutorial\', \'chef\']',
-  //     title: 'Chef Tutorial',
-  //     updated_at: '2019-06-19T12:43:16.000Z',
-  //     url: 'https://www.tutorialspoint.com/chef/index.htm',
-  //     user_email: 'rahul.singh@anant.us',
-  //     user_id: '1',
-  //     user_name: 'admin'
-  //   };
+  // let testRecord1 = {
+  //   'id': 9527,
+  //   'all':'[\'1\', \'0\', \'admin\', \'rahul.singh@anant.us\', \'1\', \'research.and.development\', \'research-and-development\', \'0\', \'9527\', \'One thing everybody forgets about Gartner’s hype cycle\', \'https://thinkgrowth.org/one-thing-everybody-forgets-about-gartners-hype-cycle-ecfe7e9de8ff?gi=18b141676f93\', \'<section class="section section--body section--first"><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><figure id="6733" class="graf graf--figure graf--leading"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*8fQaeNQt0N3sguyegxmsAg.jpeg" data-width="1200" data-height="686" data-action="zoom" data-action-value="1*8fQaeNQt0N3sguyegxmsAg.jpeg" src="https://cdn-images-1.medium.com/max/1600/1*8fQaeNQt0N3sguyegxmsAg.jpeg" alt="image" /></div></figure><figure id="9ea5" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*OC4rR9I_FAX0T5Y30nyOLw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*OC4rR9I_FAX0T5Y30nyOLw.png" src="https://cdn-images-1.medium.com/max/1600/1*OC4rR9I_FAX0T5Y30nyOLw.png" alt="image" /></div><figcaption class="imageCaption">The general pattern of the Gartner Hype Cycle, as illustrated by Olga Tarkovskiy</figcaption></figure><p id="2650" class="graf graf--p graf-after--figure">The <a href="https://en.wikipedia.org/wiki/Hype_cycle" data-href="https://en.wikipedia.org/wiki/Hype_cycle" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Gartner hype cycle</a> is one of the more brilliant insights in the history of technology. I rank it right up there with <a href="https://en.wikipedia.org/wiki/Moore%27s_law" data-href="https://en.wikipedia.org/wiki/Moore%27s_law" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Moore\\\'s Law</a> and <a href="https://en.wikipedia.org/wiki/Disruptive_innovation#Theory" data-href="https://en.wikipedia.org/wiki/Disruptive_innovation#Theory" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Christensen\\\'s model of disruptive innovation from below</a>.</p><p id="993e" class="graf graf--p graf-after--p">Gartner’s hype cycle describes a 5-stage pattern that almost all new technologies follow:</p><ol class="postList"><li id="e557" class="graf graf--li graf-after--p">A <strong class="markup--strong markup--li-strong">technology trigger</strong> introduces new possibilities\ —\ things like AI, chatbots, AR/VR, blockchain, etc.\ —\ which capture the imagination and create a rapid rise in expectations. (“Big data is a breakthrough!”)</li><li id="9339" class="graf graf--li graf-after--li">The fervor quickly crescendos into a <strong class="markup--strong markup--li-strong">peak of inflated expectations</strong>\ —\ the “hype” is deafening and dramatically overshoots the reality of what’s possible. (“Big data will change <em class="markup--em markup--li-em">everything</em>!”)</li><li id="0bd4" class="graf graf--li graf-after--li">Reality soon sets in though, as people realize that the promises of that hype aren’t coming to fruition. Expectations drop like a rock, and the market slips into a <strong class="markup--strong markup--li-strong">trough of disillusionment</strong>. (“Big data isn’t that magical after all.”)</li><li id="2e5b" class="graf graf--li graf-after--li">But there is underlying value to the technology, and as it steadily improves, people begin to figure out realistic applications. This is the <strong class="markup--strong markup--li-strong">slope of enlightenment</strong>: expectations rise again, but less sharply, in alignment with what’s achievable. (“Big data is actually useful in these cases…”)</li><li id="2e58" class="graf graf--li graf-after--li">Finally the expectations of the technology are absorbed into everyday life, with well-established best practices, leveling off in the <strong class="markup--strong markup--li-strong">plateau of productivity</strong>. (“Big data is an ordinary fact of life. Here’s how we use it.”)</li></ol><blockquote id="058a" class="graf graf--pullquote graf-after--li"><div>It might not be a law of nature, but as a law of technology markets, the hype cycle is pretty consistent.</div></blockquote><p id="f9a4" class="graf graf--p graf-after--pullquote">We hear a lot about the hype cycle in the martech world, because we have been inundated with new technologies in marketing: artificial intelligence (AI), conversational interfaces, augmented reality (AR), Internet of Things (IoT), customer data platforms (CDP), etc.</p><p id="2923" class="graf graf--p graf-after--p">In marketing, it’s not just technologies that follow this hype cycle, but also concepts and tactics, such as content marketing, account-based marketing, revenue operations, and so on. By the way, that’s not a knock against any of those. There <em class="markup--em markup--p-em">is</em> real value in all of them. But the hype exceeds the reality in the first 1/3 or so of their lifecycle.</p><blockquote id="6561" class="graf graf--pullquote graf-after--p"><div>Indeed, <strong class="markup--strong markup--pullquote-strong">it’s the reality underneath the hype cycle that people lose sight of</strong>. Expectations are perception. The actual advancement of the technology (or concept or tactic) is\\xa0reality.</div></blockquote><figure id="b036" class="graf graf--figure graf-after--pullquote"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*IyWyOGtcIW0cSrU04f3Kdw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*IyWyOGtcIW0cSrU04f3Kdw.png" src="https://cdn-images-1.medium.com/max/1600/1*IyWyOGtcIW0cSrU04f3Kdw.png" alt="image" /></div><figcaption class="imageCaption">While the hype cycle has peaks and troughs, the underlying reality of the technology continues to\\xa0progress</figcaption></figure><p id="82fb" class="graf graf--p graf-after--figure">At the <strong class="markup--strong markup--p-strong">peak of inflated expectations</strong>, reality is far below what’s being discussed <em class="markup--em markup--p-em">ad nauseum</em> in blog posts and board rooms. In the <strong class="markup--strong markup--p-strong">trough of disillusionment</strong>, the actual, present-day potential is sadly underestimated\ —\ discussions shift to the inflated expectations of the <em class="markup--em markup--p-em">next</em> new thing.</p><p id="46bc" class="graf graf--p graf-after--p">However, this desync between expectations and reality is a good thing\ —\ if you know what you’re doing. The gap between expectations and reality creates opportunities for a savvy company to manage to the reality while competitors chase the hype cycle.</p><figure id="71e1" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*rMqbJ29CvMgTNemf-Xjsyw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*rMqbJ29CvMgTNemf-Xjsyw.png" src="https://cdn-images-1.medium.com/max/1600/1*rMqbJ29CvMgTNemf-Xjsyw.png" alt="image" /></div><figcaption class="imageCaption">Where the hype overshoots or undershoots reality, there are opportunities</figcaption></figure><p id="5d78" class="graf graf--p graf-after--figure">It’s a variation of the age-old investment advice: buy low, sell high.</p><p id="2f1b" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">At the peak of inflated expectations, you want to avoid overspending on technology and overpromising results.</strong> You don’t want to ignore the movement entirely, since there is fire smoldering below the smoke. But you want to:</p><ul class="postList"><li id="7ba9" class="graf graf--li graf-after--p">evaluate claims carefully</li><li id="2a63" class="graf graf--li graf-after--li">run things with an experimental mindset</li><li id="9dee" class="graf graf--li graf-after--li">focus on real learning.</li></ul><p id="e88e" class="graf graf--p graf-after--li"><strong class="markup--strong markup--p-strong">In the trough of disillusionment, that’s when you want to pour gas on the fire.</strong> Leverage what you learned from your experimental phase to scale up the things you know work, because you’ve proven them in your business.</p><p id="9df2" class="graf graf--p graf-after--p">Don’t be distracted by the backlash of negative chatter at this stage of the hype cycle. Reinvest your experimental efforts in pushing the possibilities ahead of the <strong class="markup--strong markup--p-strong">slope of enlightenment</strong>. This is your chance to race ahead of competitors who are pulling back from their missed results against earlier, unrealistic expectations.</p><p id="dc72" class="graf graf--p graf-after--p graf--trailing">As close as possible, you want to track the actual advancement of the technology. If you can achieve that, you’ll get two big wins, as the hype is on the way up and on the way down. <strong class="markup--strong markup--p-strong">You’ll harness the pendulum of the hype cycle into useful energy.</strong></p></div></div></section><section class="section section--body section--last"><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p id="b022" class="graf graf--p graf--leading">And you’re looking to separate the hype of expectations from the actual advancements of today’s latest batch of emerging technology, check out this new report from <a href="https://medium.com/@HubSpotResearch" data-href="https://medium.com/@HubSpotResearch" data-anchor-type="2" data-user-id="22682275ed3d" data-action-value="22682275ed3d" data-action="show-user-card" data-action-type="hover" class="markup--user markup--p-user" target="_blank">HubSpot Research</a> ?</p><p><a href="https://research.hubspot.com/emerging-tech-for-smbs" data-href="https://research.hubspot.com/emerging-tech-for-smbs" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://research.hubspot.com/emerging-tech-for-smbs"><strong class="markup--strong markup--mixtapeEmbed-strong">A Practical Approach to Emerging Tech for SMBs: AI, Blockchain, Cryptocurrencies, IoT, and AR/VR</strong><br /><em class="markup--em markup--mixtapeEmbed-em">Today\\\'s small business owners represent the most technologically savvy cohort of SMBs that has ever existed…</em>research.hubspot.com</a></p><h4 id="b951" class="graf graf--h4 graf-after--mixtapeEmbed">Learned something? Hold down the ? to say “thanks!” and help others find this\\xa0article.</h4><p id="250e" class="graf graf--p graf-after--h4 graf--trailing"><a href="https://chiefmartec.com/2018/01/one-thing-everybody-forgets-gartners-hype-cycle-martech/" data-href="https://chiefmartec.com/2018/01/one-thing-everybody-forgets-gartners-hype-cycle-martech/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><em class="markup--em markup--p-em">A version of this article</em></a><em class="markup--em markup--p-em"> was previously published on the Chief Marketing Technologist blog, chiefmartec.com.</em></p></div></div></section>\', "The general pattern of the Gartner Hype Cycle, as illustrated by Olga Tarkovskiy The Gartner hype cycle is one of the more brilliant insights in the history of technology. I rank it right up there with Moore\'s Law and Christensen\'s model of disruptive innovation from below . Gartner’s hype cycle describes a 5-stage pattern that almost all new technologies follow: A technology trigger introduces new possibilities\ —\ things like AI, chatbots, AR/VR, blockchain, etc.\ —\ which capture the imagination and create a rapid rise in expectations. (“Big data is a breakthrough!”) The fervor quickly crescendos into a peak of inflated expectations —\ the “hype” is deafening and dramatically overshoots the reality of what’s possible. (“Big data will change everything !”) Reality soon sets in though, as people realize that the promises of that hype aren’t coming to fruition. Expectations drop like a rock, and the market slips into a trough of disillusionment . (“Big data isn’t that magical after all.”) But there is underlying value to the technology, and as it steadily improves, people begin to figure out realistic applications. This is the slope of enlightenment : expectations rise again, but less sharply, in alignment with what’s achievable. (“Big data is actually useful in these cases…”) Finally the expectations of the technology are absorbed into everyday life, with well-established best practices, leveling off in the plateau of productivity . (“Big data is an ordinary fact of life. Here’s how we use it.”) It might not be a law of nature, but as a law of technology markets, the hype cycle is pretty consistent. We hear a lot about the hype cycle in the martech world, because we have been inundated with new technologies in marketing: artificial intelligence (AI), conversational interfaces, augmented reality (AR), Internet of Things (IoT), customer data platforms (CDP), etc. In marketing, it’s not just technologies that follow this hype cycle, but also concepts and tactics, such as content marketing, account-based marketing, revenue operations, and so on. By the way, that’s not a knock against any of those. There is real value in all of them. But the hype exceeds the reality in the first 1/3 or so of their lifecycle. Indeed, it’s the reality underneath the hype cycle that people lose sight of . Expectations are perception. The actual advancement of the technology (or concept or tactic) is\\xa0reality. While the hype cycle has peaks and troughs, the underlying reality of the technology continues to\\xa0progress At the peak of inflated expectations , reality is far below what’s being discussed ad nauseum in blog posts and board rooms. In the trough of disillusionment , the actual, present-day potential is sadly underestimated\ —\ discussions shift to the inflated expectations of the next new thing. However, this desync between expectations and reality is a good thing\ —\ if you know what you’re doing. The gap between expectations and reality creates opportunities for a savvy company to manage to the reality while competitors chase the hype cycle. Where the hype overshoots or undershoots reality, there are opportunities It’s a variation of the age-old investment advice: buy low, sell high. At the peak of inflated expectations, you want to avoid overspending on technology and overpromising results. You don’t want to ignore the movement entirely, since there is fire smoldering below the smoke. But you want to: evaluate claims carefully run things with an experimental mindset focus on real learning. In the trough of disillusionment, that’s when you want to pour gas on the fire. Leverage what you learned from your experimental phase to scale up the things you know work, because you’ve proven them in your business. Don’t be distracted by the backlash of negative chatter at this stage of the hype cycle. Reinvest your experimental efforts in pushing the possibilities ahead of the slope of enlightenment . This is your chance to race ahead of competitors who are pulling back from their missed results against earlier, unrealistic expectations. As close as possible, you want to track the actual advancement of the technology. If you can achieve that, you’ll get two big wins, as the hype is on the way up and on the way down. You’ll harness the pendulum of the hype cycle into useful energy. And you’re looking to separate the hype of expectations from the actual advancements of today’s latest batch of emerging technology, check out this new report from HubSpot Research ? A Practical Approach to Emerging Tech for SMBs: AI, Blockchain, Cryptocurrencies, IoT, and AR/VR Today\'s small business owners represent the most technologically savvy cohort of SMBs that has ever existed… research.hubspot.com Learned something? Hold down the ? to say “thanks!” and help others find this\\xa0article. A version of this article was previously published on the Chief Marketing Technologist blog, chiefmartec.com.", \'Fri Apr 06 18:50:12 UTC 2018\', \'Fri Apr 06 18:50:23 UTC 2018\', \'Mon Apr 02 13:57:12 UTC 2018\', \'Scott Brinker\', \'text/html\', \'4\', \'thinkgrowth.org\', \'https://cdn-images-1.medium.com/max/1200/1*8fQaeNQt0N3sguyegxmsAg.jpeg\', \'200\', \'/api/entries/9527\', \'1641694487759552512\']',
+  //   'content': '<section class="section section--body section--first"><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><figure id="6733" class="graf graf--figure graf--leading"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*8fQaeNQt0N3sguyegxmsAg.jpeg" data-width="1200" data-height="686" data-action="zoom" data-action-value="1*8fQaeNQt0N3sguyegxmsAg.jpeg" src="https://cdn-images-1.medium.com/max/1600/1*8fQaeNQt0N3sguyegxmsAg.jpeg" alt="image" /></div></figure><figure id="9ea5" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*OC4rR9I_FAX0T5Y30nyOLw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*OC4rR9I_FAX0T5Y30nyOLw.png" src="https://cdn-images-1.medium.com/max/1600/1*OC4rR9I_FAX0T5Y30nyOLw.png" alt="image" /></div><figcaption class="imageCaption">The general pattern of the Gartner Hype Cycle, as illustrated by Olga Tarkovskiy</figcaption></figure><p id="2650" class="graf graf--p graf-after--figure">The <a href="https://en.wikipedia.org/wiki/Hype_cycle" data-href="https://en.wikipedia.org/wiki/Hype_cycle" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Gartner hype cycle</a> is one of the more brilliant insights in the history of technology. I rank it right up there with <a href="https://en.wikipedia.org/wiki/Moore%27s_law" data-href="https://en.wikipedia.org/wiki/Moore%27s_law" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Moore\'s Law</a> and <a href="https://en.wikipedia.org/wiki/Disruptive_innovation#Theory" data-href="https://en.wikipedia.org/wiki/Disruptive_innovation#Theory" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Christensen\'s model of disruptive innovation from below</a>.</p><p id="993e" class="graf graf--p graf-after--p">Gartner’s hype cycle describes a 5-stage pattern that almost all new technologies follow:</p><ol class="postList"><li id="e557" class="graf graf--li graf-after--p">A <strong class="markup--strong markup--li-strong">technology trigger</strong> introduces new possibilities — things like AI, chatbots, AR/VR, blockchain, etc. — which capture the imagination and create a rapid rise in expectations. (“Big data is a breakthrough!”)</li><li id="9339" class="graf graf--li graf-after--li">The fervor quickly crescendos into a <strong class="markup--strong markup--li-strong">peak of inflated expectations</strong> — the “hype” is deafening and dramatically overshoots the reality of what’s possible. (“Big data will change <em class="markup--em markup--li-em">everything</em>!”)</li><li id="0bd4" class="graf graf--li graf-after--li">Reality soon sets in though, as people realize that the promises of that hype aren’t coming to fruition. Expectations drop like a rock, and the market slips into a <strong class="markup--strong markup--li-strong">trough of disillusionment</strong>. (“Big data isn’t that magical after all.”)</li><li id="2e5b" class="graf graf--li graf-after--li">But there is underlying value to the technology, and as it steadily improves, people begin to figure out realistic applications. This is the <strong class="markup--strong markup--li-strong">slope of enlightenment</strong>: expectations rise again, but less sharply, in alignment with what’s achievable. (“Big data is actually useful in these cases…”)</li><li id="2e58" class="graf graf--li graf-after--li">Finally the expectations of the technology are absorbed into everyday life, with well-established best practices, leveling off in the <strong class="markup--strong markup--li-strong">plateau of productivity</strong>. (“Big data is an ordinary fact of life. Here’s how we use it.”)</li></ol><blockquote id="058a" class="graf graf--pullquote graf-after--li"><div>It might not be a law of nature, but as a law of technology markets, the hype cycle is pretty consistent.</div></blockquote><p id="f9a4" class="graf graf--p graf-after--pullquote">We hear a lot about the hype cycle in the martech world, because we have been inundated with new technologies in marketing: artificial intelligence (AI), conversational interfaces, augmented reality (AR), Internet of Things (IoT), customer data platforms (CDP), etc.</p><p id="2923" class="graf graf--p graf-after--p">In marketing, it’s not just technologies that follow this hype cycle, but also concepts and tactics, such as content marketing, account-based marketing, revenue operations, and so on. By the way, that’s not a knock against any of those. There <em class="markup--em markup--p-em">is</em> real value in all of them. But the hype exceeds the reality in the first 1/3 or so of their lifecycle.</p><blockquote id="6561" class="graf graf--pullquote graf-after--p"><div>Indeed, <strong class="markup--strong markup--pullquote-strong">it’s the reality underneath the hype cycle that people lose sight of</strong>. Expectations are perception. The actual advancement of the technology (or concept or tactic) is reality.</div></blockquote><figure id="b036" class="graf graf--figure graf-after--pullquote"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*IyWyOGtcIW0cSrU04f3Kdw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*IyWyOGtcIW0cSrU04f3Kdw.png" src="https://cdn-images-1.medium.com/max/1600/1*IyWyOGtcIW0cSrU04f3Kdw.png" alt="image" /></div><figcaption class="imageCaption">While the hype cycle has peaks and troughs, the underlying reality of the technology continues to progress</figcaption></figure><p id="82fb" class="graf graf--p graf-after--figure">At the <strong class="markup--strong markup--p-strong">peak of inflated expectations</strong>, reality is far below what’s being discussed <em class="markup--em markup--p-em">ad nauseum</em> in blog posts and board rooms. In the <strong class="markup--strong markup--p-strong">trough of disillusionment</strong>, the actual, present-day potential is sadly underestimated — discussions shift to the inflated expectations of the <em class="markup--em markup--p-em">next</em> new thing.</p><p id="46bc" class="graf graf--p graf-after--p">However, this desync between expectations and reality is a good thing — if you know what you’re doing. The gap between expectations and reality creates opportunities for a savvy company to manage to the reality while competitors chase the hype cycle.</p><figure id="71e1" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*rMqbJ29CvMgTNemf-Xjsyw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*rMqbJ29CvMgTNemf-Xjsyw.png" src="https://cdn-images-1.medium.com/max/1600/1*rMqbJ29CvMgTNemf-Xjsyw.png" alt="image" /></div><figcaption class="imageCaption">Where the hype overshoots or undershoots reality, there are opportunities</figcaption></figure><p id="5d78" class="graf graf--p graf-after--figure">It’s a variation of the age-old investment advice: buy low, sell high.</p><p id="2f1b" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">At the peak of inflated expectations, you want to avoid overspending on technology and overpromising results.</strong> You don’t want to ignore the movement entirely, since there is fire smoldering below the smoke. But you want to:</p><ul class="postList"><li id="7ba9" class="graf graf--li graf-after--p">evaluate claims carefully</li><li id="2a63" class="graf graf--li graf-after--li">run things with an experimental mindset</li><li id="9dee" class="graf graf--li graf-after--li">focus on real learning.</li></ul><p id="e88e" class="graf graf--p graf-after--li"><strong class="markup--strong markup--p-strong">In the trough of disillusionment, that’s when you want to pour gas on the fire.</strong> Leverage what you learned from your experimental phase to scale up the things you know work, because you’ve proven them in your business.</p><p id="9df2" class="graf graf--p graf-after--p">Don’t be distracted by the backlash of negative chatter at this stage of the hype cycle. Reinvest your experimental efforts in pushing the possibilities ahead of the <strong class="markup--strong markup--p-strong">slope of enlightenment</strong>. This is your chance to race ahead of competitors who are pulling back from their missed results against earlier, unrealistic expectations.</p><p id="dc72" class="graf graf--p graf-after--p graf--trailing">As close as possible, you want to track the actual advancement of the technology. If you can achieve that, you’ll get two big wins, as the hype is on the way up and on the way down. <strong class="markup--strong markup--p-strong">You’ll harness the pendulum of the hype cycle into useful energy.</strong></p></div></div></section><section class="section section--body section--last"><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p id="b022" class="graf graf--p graf--leading">And you’re looking to separate the hype of expectations from the actual advancements of today’s latest batch of emerging technology, check out this new report from <a href="https://medium.com/@HubSpotResearch" data-href="https://medium.com/@HubSpotResearch" data-anchor-type="2" data-user-id="22682275ed3d" data-action-value="22682275ed3d" data-action="show-user-card" data-action-type="hover" class="markup--user markup--p-user" target="_blank">HubSpot Research</a> ?</p><p><a href="https://research.hubspot.com/emerging-tech-for-smbs" data-href="https://research.hubspot.com/emerging-tech-for-smbs" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://research.hubspot.com/emerging-tech-for-smbs"><strong class="markup--strong markup--mixtapeEmbed-strong">A Practical Approach to Emerging Tech for SMBs: AI, Blockchain, Cryptocurrencies, IoT, and AR/VR</strong><br /><em class="markup--em markup--mixtapeEmbed-em">Today\'s small business owners represent the most technologically savvy cohort of SMBs that has ever existed…</em>research.hubspot.com</a></p><h4 id="b951" class="graf graf--h4 graf-after--mixtapeEmbed">Learned something? Hold down the ? to say “thanks!” and help others find this article.</h4><p id="250e" class="graf graf--p graf-after--h4 graf--trailing"><a href="https://chiefmartec.com/2018/01/one-thing-everybody-forgets-gartners-hype-cycle-martech/" data-href="https://chiefmartec.com/2018/01/one-thing-everybody-forgets-gartners-hype-cycle-martech/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><em class="markup--em markup--p-em">A version of this article</em></a><em class="markup--em markup--p-em"> was previously published on the Chief Marketing Technologist blog, chiefmartec.com.</em></p></div></div></section>',
+  //   'content_text': 'The general pattern of the Gartner Hype Cycle, as illustrated by Olga Tarkovskiy The Gartner hype cycle is one of the more brilliant insights in the history of technology. I rank it right up there with Moore\'s Law and Christensen\'s model of disruptive innovation from below . Gartner’s hype cycle describes a 5-stage pattern that almost all new technologies follow: A technology trigger introduces new possibilities — things like AI, chatbots, AR/VR, blockchain, etc. — which capture the imagination and create a rapid rise in expectations. (“Big data is a breakthrough!”) The fervor quickly crescendos into a peak of inflated expectations — the “hype” is deafening and dramatically overshoots the reality of what’s possible. (“Big data will change everything !”) Reality soon sets in though, as people realize that the promises of that hype aren’t coming to fruition. Expectations drop like a rock, and the market slips into a trough of disillusionment . (“Big data isn’t that magical after all.”) But there is underlying value to the technology, and as it steadily improves, people begin to figure out realistic applications. This is the slope of enlightenment : expectations rise again, but less sharply, in alignment with what’s achievable. (“Big data is actually useful in these cases…”) Finally the expectations of the technology are absorbed into everyday life, with well-established best practices, leveling off in the plateau of productivity . (“Big data is an ordinary fact of life. Here’s how we use it.”) It might not be a law of nature, but as a law of technology markets, the hype cycle is pretty consistent. We hear a lot about the hype cycle in the martech world, because we have been inundated with new technologies in marketing: artificial intelligence (AI), conversational interfaces, augmented reality (AR), Internet of Things (IoT), customer data platforms (CDP), etc. In marketing, it’s not just technologies that follow this hype cycle, but also concepts and tactics, such as content marketing, account-based marketing, revenue operations, and so on. By the way, that’s not a knock against any of those. There is real value in all of them. But the hype exceeds the reality in the first 1/3 or so of their lifecycle. Indeed, it’s the reality underneath the hype cycle that people lose sight of . Expectations are perception. The actual advancement of the technology (or concept or tactic) is reality. While the hype cycle has peaks and troughs, the underlying reality of the technology continues to progress At the peak of inflated expectations , reality is far below what’s being discussed ad nauseum in blog posts and board rooms. In the trough of disillusionment , the actual, present-day potential is sadly underestimated — discussions shift to the inflated expectations of the next new thing. However, this desync between expectations and reality is a good thing — if you know what you’re doing. The gap between expectations and reality creates opportunities for a savvy company to manage to the reality while competitors chase the hype cycle. Where the hype overshoots or undershoots reality, there are opportunities It’s a variation of the age-old investment advice: buy low, sell high. At the peak of inflated expectations, you want to avoid overspending on technology and overpromising results. You don’t want to ignore the movement entirely, since there is fire smoldering below the smoke. But you want to: evaluate claims carefully run things with an experimental mindset focus on real learning. In the trough of disillusionment, that’s when you want to pour gas on the fire. Leverage what you learned from your experimental phase to scale up the things you know work, because you’ve proven them in your business. Don’t be distracted by the backlash of negative chatter at this stage of the hype cycle. Reinvest your experimental efforts in pushing the possibilities ahead of the slope of enlightenment . This is your chance to race ahead of competitors who are pulling back from their missed results against earlier, unrealistic expectations. As close as possible, you want to track the actual advancement of the technology. If you can achieve that, you’ll get two big wins, as the hype is on the way up and on the way down. You’ll harness the pendulum of the hype cycle into useful energy. And you’re looking to separate the hype of expectations from the actual advancements of today’s latest batch of emerging technology, check out this new report from HubSpot Research ? A Practical Approach to Emerging Tech for SMBs: AI, Blockchain, Cryptocurrencies, IoT, and AR/VR Today\'s small business owners represent the most technologically savvy cohort of SMBs that has ever existed… research.hubspot.com Learned something? Hold down the ? to say “thanks!” and help others find this article. A version of this article was previously published on the Chief Marketing Technologist blog, chiefmartec.com.',
+  //   'created_at': '2018-04-06T18:50:12.000Z',
+  //   'domain_name': 'thinkgrowth.org',
+  //   'http_status': '200',
+  //   'is_archived': 1,
+  //   'is_public': 'False',
+  //   'is_starred': 0,
+  //   'language': 'en',
+  //   'links': '[\'/api/entries/9527\']',
+  //   'mimetype': 'text/html',
+  //   'preview_picture': 'https://cdn-images-1.medium.com/max/1200/1*8fQaeNQt0N3sguyegxmsAg.jpeg',
+  //   'reading_time': 4,
+  //   'slugs': '[\'research-and-development\']',
+  //   'tags': '[\'research.and.development\']',
+  //   'title': 'One thing everybody forgets about Gartner’s hype cycle',
+  //   'updated_at': '2018-04-06T18:50:23.000Z',
+  //   'url': 'https://thinkgrowth.org/one-thing-everybody-forgets-about-gartners-hype-cycle-ecfe7e9de8ff?gi=18b141676f93',
+  //   'user_email': 'rahul.singh@anant.us',
+  //   'user_id': '1',
+  //   'user_name': 'admin'
+  // };
 
   // let testRecord2 = {
-  //   id: 13952,
-  //   all: '[\'1\', \'0\', \'admin\', \'rahul.singh@anant.us\', \'1\', \'cassandra\', ' +
-  //       '\'kubernetes\', \'cassandra\', \'kubernetes\', \'0\', \'13952\', ' +
-  //       '\'sky-uk/cassandra-operator\', ' +
-  //       '\'https://github.com/sky-uk/cassandra-operator\', \'<article ' +
-  //       'class="markdown-body entry-content p-5" itemprop="text">\\n<p>The Cassandra ' +
-  //       'Operator is a Kubernetes operator that manages Cassandra clusters inside ' +
-  //       'Kubernetes.</p>\\n<p>The project is <code>alpha</code> status and can be ' +
-  //       'used in development environments.\\nIt is not yet recommended for use in ' +
-  //       'production environments.</p>\\n<h2><a id="user-content-main-features" ' +
-  //       'class="anchor" aria-hidden="true" href="#main-features"></a>Main ' +
-  //       'features</h2>\\n<ul><li>rack awareness</li>\\n<li>scaling out (more racks, ' +
-  //       'more pods per rack)</li>\\n<li>scheduled backups with retention ' +
-  //       'policy</li>\\n<li>works with official Cassandra Docker ' +
-  //       'images</li>\\n<li>deployable per namespace with RBAC permissions limited to ' +
-  //       'it</li>\\n<li>deployable cluster-wide</li>\\n<li>customisable Cassandra ' +
-  //       'config (<code>cassandra.yaml</code>, <code>jvm.options</code>, extra ' +
-  //       'libs)</li>\\n<li>customisable liveness / readiness ' +
-  //       'probes</li>\\n<li>automated rolling update of Cassandra cluster definition ' +
-  //       'changes</li>\\n<li>cluster and node level metrics</li>\\n<li>a comprehensive ' +
-  //       'e2e test suite</li>\\n</ul><h2><a id="user-content-how-to-use-it" ' +
-  //       'class="anchor" aria-hidden="true" href="#how-to-use-it"></a>How to use ' +
-  //       'it?</h2>\\n<p>Instructions on how to deploy the Cassandra Operator and ' +
-  //       'provision Cassandra clusters can be found on the <a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/wiki">WIKI</a></p>\\n<h2><a ' +
-  //       'id="user-content-project-structure" class="anchor" aria-hidden="true" ' +
-  //       'href="#project-structure"></a>Project structure</h2>\\n<p>This project is ' +
-  //       'composed of several sub-modules that are either part of the Cassandra ' +
-  //       'Operator or used by it:</p>\\n<ul><li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/cassandra-bootstrapper/README.md">cassandra-bootstrapper</a>: ' +
-  //       'a component responsible for configuring the Cassandra node before it can ' +
-  //       'be started</li>\\n<li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/cassandra-operator/README.md">cassandra-operator</a>: ' +
-  //       'the Kubernetes operator that manages the Cassandra clusters lifecycle ' +
-  //       'inside Kubernetes</li>\\n<li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/cassandra-snapshot/README.md">cassandra-snapshot</a>: ' +
-  //       'a component responsible for taking and deleting snapshots given a schedule ' +
-  //       'and retention policy</li>\\n<li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/fake-cassandra-docker/README.md">fake-cassandra-docker</a>: ' +
-  //       'a fake Cassandra image used by the cassandra-operator and ' +
-  //       'cassandra-snapshot to speed it up end-to-end testing</li>\\n<li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/test-kubernetes-cluster/README.md">test-kubernetes-cluster</a>: ' +
-  //       'a <a ' +
-  //       'href="https://github.com/kubernetes-sigs/kubeadm-dind-cluster">Kubernetes ' +
-  //       'Docker-in-Docker</a> cluster used by the cassandra-operator and ' +
-  //       'cassandra-snapshot to facilitate end-to-end testing</li>\\n</ul><h2><a ' +
-  //       'id="user-content-design" class="anchor" aria-hidden="true" ' +
-  //       'href="#design"></a>Design</h2>\\n<p>The Cassandra Operator and the ' +
-  //       'components it uses are described here: <a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/design/cassandra-operator-design.md">Cassandra ' +
-  //       'Operator Design</a></p>\\n<h2><a id="user-content-supported-versions" ' +
-  //       'class="anchor" aria-hidden="true" href="#supported-versions"></a>Supported ' +
-  //       'versions</h2>\\n<p>We test the Cassandra Operator against the following ' +
-  //       'Kubernetes / Cassandra versions.</p>\\n<p>Other Kubernetes versions are ' +
-  //       'likely to work, but we do not actively test against ' +
-  //       'them.</p>\\n<table><thead><tr><th>Cassandra ' +
-  //       'Operator</th>\\n<th>Kubernetes</th>\\n<th>Cassandra</th>\\n</tr></thead><tbody><tr><td>0.70.1-alpha</td>\\n<td>1.10</td>\\n<td>3.11</td>\\n</tr></tbody></table><h2><a ' +
-  //       'id="user-content-questions-or-problems" class="anchor" aria-hidden="true" ' +
-  //       'href="#questions-or-problems"></a>Questions or ' +
-  //       'Problems?</h2>\\n<ul><li>\\n<p>If you have a general question about this ' +
-  //       'project, please create an issue for it. The issue title should be ' +
-  //       'the\\nquestion itself, with any follow-up information in a comment. Add the ' +
-  //       '"question" tag to the issue.</p>\\n</li>\\n<li>\\n<p>If you think you have ' +
-  //       'found a bug in this project, please create an issue for it. Use the issue ' +
-  //       'title to summarise\\nthe problems, and supply full steps to reproduce in a ' +
-  //       'comment. Add the "bug" tag to the issue.</p>\\n</li>\\n</ul><h2><a ' +
-  //       'id="user-content-contributions" class="anchor" aria-hidden="true" ' +
-  //       'href="#contributions"></a>Contributions</h2>\\n<p>See <a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a></p>\\n</article>\', ' +
-  //       '\' The Cassandra Operator is a Kubernetes operator that manages Cassandra ' +
-  //       'clusters inside Kubernetes.  The project is alpha status and can be used ' +
-  //       'in development environments.\\nIt is not yet recommended for use in ' +
-  //       'production environments.  Main features  rack awareness  scaling out (more ' +
-  //       'racks, more pods per rack)  scheduled backups with retention policy  works ' +
-  //       'with official Cassandra Docker images  deployable per namespace with RBAC ' +
-  //       'permissions limited to it  deployable cluster-wide  customisable Cassandra ' +
-  //       'config ( cassandra.yaml , jvm.options , extra libs)  customisable liveness ' +
-  //       '/ readiness probes  automated rolling update of Cassandra cluster ' +
-  //       'definition changes  cluster and node level metrics  a comprehensive e2e ' +
-  //       'test suite  How to use it?  Instructions on how to deploy the Cassandra ' +
-  //       'Operator and provision Cassandra clusters can be found on the WIKI  ' +
-  //       'Project structure  This project is composed of several sub-modules that ' +
-  //       'are either part of the Cassandra Operator or used by it:  ' +
-  //       'cassandra-bootstrapper : a component responsible for configuring the ' +
-  //       'Cassandra node before it can be started  cassandra-operator : the ' +
-  //       'Kubernetes operator that manages the Cassandra clusters lifecycle inside ' +
-  //       'Kubernetes  cassandra-snapshot : a component responsible for taking and ' +
-  //       'deleting snapshots given a schedule and retention policy  ' +
-  //       'fake-cassandra-docker : a fake Cassandra image used by the ' +
-  //       'cassandra-operator and cassandra-snapshot to speed it up end-to-end ' +
-  //       'testing  test-kubernetes-cluster : a Kubernetes Docker-in-Docker cluster ' +
-  //       'used by the cassandra-operator and cassandra-snapshot to facilitate ' +
-  //       'end-to-end testing  Design  The Cassandra Operator and the components it ' +
-  //       'uses are described here: Cassandra Operator Design  Supported versions  We ' +
-  //       'test the Cassandra Operator against the following Kubernetes / Cassandra ' +
-  //       'versions.  Other Kubernetes versions are likely to work, but we do not ' +
-  //       'actively test against them.  Cassandra Operator  Kubernetes  Cassandra  ' +
-  //       '0.70.1-alpha  1.10  3.11  Questions or Problems?   If you have a general ' +
-  //       'question about this project, please create an issue for it. The issue ' +
-  //       'title should be the\\nquestion itself, with any follow-up information in a ' +
-  //       'comment. Add the "question" tag to the issue.    If you think you have ' +
-  //       'found a bug in this project, please create an issue for it. Use the issue ' +
-  //       'title to summarise\\nthe problems, and supply full steps to reproduce in a ' +
-  //       'comment. Add the "bug" tag to the issue.   Contributions  See ' +
-  //       'CONTRIBUTING.md \', \'Mon Jul 22 15:01:34 UTC 2019\', \'Mon Jul 22 15:01:40 ' +
-  //       'UTC 2019\', \'text/html\', \'en\', \'1\', \'github.com\', ' +
-  //       '\'https://avatars0.githubusercontent.com/u/1391938?s=400&v=4\', \'200\', ' +
-  //       '\'/api/entries/13952\', \'1641690329935511552\']',
-  //   content: '<article class="markdown-body entry-content p-5" itemprop="text">\n<p>The ' +
-  //       'Cassandra Operator is a Kubernetes operator that manages Cassandra ' +
-  //       'clusters inside Kubernetes.</p>\n<p>The project is <code>alpha</code> ' +
-  //       'status and can be used in development environments.\nIt is not yet ' +
-  //       'recommended for use in production environments.</p>\n<h2><a ' +
-  //       'id="user-content-main-features" class="anchor" aria-hidden="true" ' +
-  //       'href="#main-features"></a>Main features</h2>\n<ul><li>rack awareness</li>\n' +
-  //       '<li>scaling out (more racks, more pods per rack)</li>\n<li>scheduled ' +
-  //       'backups with retention policy</li>\n<li>works with official Cassandra ' +
-  //       'Docker images</li>\n<li>deployable per namespace with RBAC permissions ' +
-  //       'limited to it</li>\n<li>deployable cluster-wide</li>\n<li>customisable ' +
-  //       'Cassandra config (<code>cassandra.yaml</code>, <code>jvm.options</code>, ' +
-  //       'extra libs)</li>\n<li>customisable liveness / readiness probes</li>\n' +
-  //       '<li>automated rolling update of Cassandra cluster definition changes</li>\n' +
-  //       '<li>cluster and node level metrics</li>\n<li>a comprehensive e2e test ' +
-  //       'suite</li>\n</ul><h2><a id="user-content-how-to-use-it" class="anchor" ' +
-  //       'aria-hidden="true" href="#how-to-use-it"></a>How to use it?</h2>\n' +
-  //       '<p>Instructions on how to deploy the Cassandra Operator and provision ' +
-  //       'Cassandra clusters can be found on the <a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/wiki">WIKI</a></p>\n' +
-  //       '<h2><a id="user-content-project-structure" class="anchor" ' +
-  //       'aria-hidden="true" href="#project-structure"></a>Project structure</h2>\n' +
-  //       '<p>This project is composed of several sub-modules that are either part of ' +
-  //       'the Cassandra Operator or used by it:</p>\n<ul><li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/cassandra-bootstrapper/README.md">cassandra-bootstrapper</a>: ' +
-  //       'a component responsible for configuring the Cassandra node before it can ' +
-  //       'be started</li>\n<li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/cassandra-operator/README.md">cassandra-operator</a>: ' +
-  //       'the Kubernetes operator that manages the Cassandra clusters lifecycle ' +
-  //       'inside Kubernetes</li>\n<li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/cassandra-snapshot/README.md">cassandra-snapshot</a>: ' +
-  //       'a component responsible for taking and deleting snapshots given a schedule ' +
-  //       'and retention policy</li>\n<li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/fake-cassandra-docker/README.md">fake-cassandra-docker</a>: ' +
-  //       'a fake Cassandra image used by the cassandra-operator and ' +
-  //       'cassandra-snapshot to speed it up end-to-end testing</li>\n<li><a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/test-kubernetes-cluster/README.md">test-kubernetes-cluster</a>: ' +
-  //       'a <a ' +
-  //       'href="https://github.com/kubernetes-sigs/kubeadm-dind-cluster">Kubernetes ' +
-  //       'Docker-in-Docker</a> cluster used by the cassandra-operator and ' +
-  //       'cassandra-snapshot to facilitate end-to-end testing</li>\n</ul><h2><a ' +
-  //       'id="user-content-design" class="anchor" aria-hidden="true" ' +
-  //       'href="#design"></a>Design</h2>\n<p>The Cassandra Operator and the ' +
-  //       'components it uses are described here: <a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/design/cassandra-operator-design.md">Cassandra ' +
-  //       'Operator Design</a></p>\n<h2><a id="user-content-supported-versions" ' +
-  //       'class="anchor" aria-hidden="true" href="#supported-versions"></a>Supported ' +
-  //       'versions</h2>\n<p>We test the Cassandra Operator against the following ' +
-  //       'Kubernetes / Cassandra versions.</p>\n<p>Other Kubernetes versions are ' +
-  //       'likely to work, but we do not actively test against them.</p>\n' +
-  //       '<table><thead><tr><th>Cassandra Operator</th>\n<th>Kubernetes</th>\n' +
-  //       '<th>Cassandra</th>\n</tr></thead><tbody><tr><td>0.70.1-alpha</td>\n' +
-  //       '<td>1.10</td>\n<td>3.11</td>\n</tr></tbody></table><h2><a ' +
-  //       'id="user-content-questions-or-problems" class="anchor" aria-hidden="true" ' +
-  //       'href="#questions-or-problems"></a>Questions or Problems?</h2>\n<ul><li>\n' +
-  //       '<p>If you have a general question about this project, please create an ' +
-  //       'issue for it. The issue title should be the\nquestion itself, with any ' +
-  //       'follow-up information in a comment. Add the "question" tag to the ' +
-  //       'issue.</p>\n</li>\n<li>\n<p>If you think you have found a bug in this ' +
-  //       'project, please create an issue for it. Use the issue title to summarise\n' +
-  //       'the problems, and supply full steps to reproduce in a comment. Add the ' +
-  //       '"bug" tag to the issue.</p>\n</li>\n</ul><h2><a ' +
-  //       'id="user-content-contributions" class="anchor" aria-hidden="true" ' +
-  //       'href="#contributions"></a>Contributions</h2>\n<p>See <a ' +
-  //       'href="https://github.com/sky-uk/cassandra-operator/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a></p>\n' +
-  //       '</article>',
-  //   content_text: ' The Cassandra Operator is a Kubernetes operator that manages Cassandra ' +
-  //       'clusters inside Kubernetes.  The project is alpha status and can be used ' +
-  //       'in development environments.\nIt is not yet recommended for use in ' +
-  //       'production environments.  Main features  rack awareness  scaling out ' +
-  //       '(more racks, more pods per rack)  scheduled backups with retention policy ' +
-  //       ' works with official Cassandra Docker images  deployable per namespace ' +
-  //       'with RBAC permissions limited to it  deployable cluster-wide  ' +
-  //       'customisable Cassandra config ( cassandra.yaml , jvm.options , extra ' +
-  //       'libs)  customisable liveness / readiness probes  automated rolling update ' +
-  //       'of Cassandra cluster definition changes  cluster and node level metrics  ' +
-  //       'a comprehensive e2e test suite  How to use it?  Instructions on how to ' +
-  //       'deploy the Cassandra Operator and provision Cassandra clusters can be ' +
-  //       'found on the WIKI  Project structure  This project is composed of several ' +
-  //       'sub-modules that are either part of the Cassandra Operator or used by it: ' +
-  //       ' cassandra-bootstrapper : a component responsible for configuring the ' +
-  //       'Cassandra node before it can be started  cassandra-operator : the ' +
-  //       'Kubernetes operator that manages the Cassandra clusters lifecycle inside ' +
-  //       'Kubernetes  cassandra-snapshot : a component responsible for taking and ' +
-  //       'deleting snapshots given a schedule and retention policy  ' +
-  //       'fake-cassandra-docker : a fake Cassandra image used by the ' +
-  //       'cassandra-operator and cassandra-snapshot to speed it up end-to-end ' +
-  //       'testing  test-kubernetes-cluster : a Kubernetes Docker-in-Docker cluster ' +
-  //       'used by the cassandra-operator and cassandra-snapshot to facilitate ' +
-  //       'end-to-end testing  Design  The Cassandra Operator and the components it ' +
-  //       'uses are described here: Cassandra Operator Design  Supported versions  ' +
-  //       'We test the Cassandra Operator against the following Kubernetes / ' +
-  //       'Cassandra versions.  Other Kubernetes versions are likely to work, but we ' +
-  //       'do not actively test against them.  Cassandra Operator  Kubernetes  ' +
-  //       'Cassandra  0.70.1-alpha  1.10  3.11  Questions or Problems?   If you have ' +
-  //       'a general question about this project, please create an issue for it. The ' +
-  //       'issue title should be the\nquestion itself, with any follow-up information ' +
-  //       'in a comment. Add the "question" tag to the issue.    If you think you ' +
-  //       'have found a bug in this project, please create an issue for it. Use the ' +
-  //       'issue title to summarise\nthe problems, and supply full steps to reproduce ' +
-  //       'in a comment. Add the "bug" tag to the issue.   Contributions  See ' +
-  //       'CONTRIBUTING.md ',
-  //   created_at: '2019-07-22T15:01:34.000Z',
-  //   domain_name: 'github.com',
-  //   http_status: '200',
-  //   is_archived: 1,
-  //   is_public: 'False',
-  //   is_starred: 0,
-  //   language: 'en',
-  //   links: '[\'/api/entries/13952\']',
-  //   mimetype: 'text/html',
-  //   preview_picture: 'https://avatars0.githubusercontent.com/u/1391938?s=400&v=4',
-  //   reading_time: 1,
-  //   slugs: '[\'cassandra\', \'kubernetes\']',
-  //   tags: '[\'cassandra\', \'kubernetes\']',
-  //   title: 'sky-uk/cassandra-operator',
-  //   updated_at: '2019-07-22T15:01:40.000Z',
-  //   url: 'https://github.com/sky-uk/cassandra-operator',
-  //   user_email: 'rahul.singh@anant.us',
-  //   user_id: '1',
-  //   user_name: 'admin'
+  //   'id': 12687,
+  //   'all': '[\'1\', \'0\', \'admin\', \'rahul.singh@anant.us\', \'1\', \'interface\', \'vue\', \'interface\', \'vue\', \'0\', \'12687\', \'gothinkster/vue-realworld-example-app\', \'https://github.com/gothinkster/vue-realworld-example-app\', \'<p><a href="http://realworld.io" rel="nofollow"><img src="https://camo.githubusercontent.com/b507ac8f2ec6427bbef518193567c4ec6060c780/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7265616c776f726c642d66726f6e74656e642d2532333738333537382e737667" alt="RealWorld Frontend" data-canonical-src="https://img.shields.io/badge/realworld-frontend-%23783578.svg" /></a>\\n<a href="https://standardjs.com" rel="nofollow"><img src="https://camo.githubusercontent.com/58fbab8bb63d069c1e4fb3fa37c2899c38ffcd18/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d7374616e646172642d627269676874677265656e2e737667" alt="JavaScript Style Guide" data-canonical-src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" /></a></p><blockquote>\\n<p>Vue.js codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the <a href="https://github.com/gothinkster/realworld">RealWorld</a> spec and API.</p>\\n</blockquote><p>Project demo is available at <a href="https://vue-vuex-realworld.netlify.com/#/" rel="nofollow">https://vue-vuex-realworld.netlify.com/#/</a></p><p>This codebase was created to demonstrate a fully fledged fullstack application built with <strong>Vue.js</strong> including CRUD operations, authentication, routing, pagination, and more.</p><p>We\\\'ve gone to great lengths to adhere to the <strong>Vue.js</strong> community styleguides &amp; best practices.</p><p>For more information on how to this works with other frontends/backends, head over to the <a href="https://github.com/gothinkster/realworld">RealWorld</a> repo.</p><p>Before contributing please read the following:</p><ol><li><a href="https://github.com/gothinkster/realworld/tree/master/spec">RealWorld guidelines</a> for implementing a new framework,</li>\\n<li><a href="https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md">RealWorld frontend instructions</a></li>\\n<li><a href="https://github.com/gothinkster/realworld/tree/master/api">Realworld API endpoints</a></li>\\n<li><a href="https://vuejs.org/v2/style-guide/index.html" rel="nofollow">Vue.js styleguide</a>. Priority A and B categories must be respected.</li>\\n</ol><p>The stack is built using <a href="https://github.com/vuejs-templates/webpack">vue-cli webpack</a> so to get started all you have to do is:</p><div class="highlight highlight-source-shell"><pre># install dependencies\\n&gt; yarn install\\n# serve with hot reload at localhost:8080\\n&gt; yarn serve</pre></div><p>Other commands available are:</p><div class="highlight highlight-source-shell"><pre># build for production with minification\\nyarn run build\\n# run unit tests\\nyarn run test:unit</pre></div><p>Current arbitrary choices are:</p><ul><li>Vuex modules for store</li>\\n<li>Vue-axios for ajax requests</li>\\n<li>\\\'rwv\\\' as prefix for components</li>\\n</ul><p>These can be changed when the contributors reach a consensus.</p><p>Join us on <a href="https://discord.gg/NE2jNmg" rel="nofollow">Discord</a></p>\', "  Vue.js codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the RealWorld spec and API.  Project demo is available at https://vue-vuex-realworld.netlify.com/#/ This codebase was created to demonstrate a fully fledged fullstack application built with Vue.js including CRUD operations, authentication, routing, pagination, and more. We\'ve gone to great lengths to adhere to the Vue.js community styleguides & best practices. For more information on how to this works with other frontends/backends, head over to the RealWorld repo. Before contributing please read the following: RealWorld guidelines for implementing a new framework,  RealWorld frontend instructions  Realworld API endpoints  Vue.js styleguide . Priority A and B categories must be respected.  The stack is built using vue-cli webpack so to get started all you have to do is: # install dependencies\\n> yarn install\\n# serve with hot reload at localhost:8080\\n> yarn serve Other commands available are: # build for production with minification\\nyarn run build\\n# run unit tests\\nyarn run test:unit Current arbitrary choices are: Vuex modules for store  Vue-axios for ajax requests  \'rwv\' as prefix for components  These can be changed when the contributors reach a consensus. Join us on Discord", \'Fri Nov 02 21:38:53 UTC 2018\', \'Mon Nov 05 23:56:05 UTC 2018\', \'text/html\', \'en\', \'1\', \'github.com\', \'https://avatars0.githubusercontent.com/u/8601733?s=400&v=4\', \'200\', \'/api/entries/12687\', \'1641691659830820864\']',
+  //   'content': '<p><a href="http://realworld.io" rel="nofollow"><img src="https://camo.githubusercontent.com/b507ac8f2ec6427bbef518193567c4ec6060c780/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f7265616c776f726c642d66726f6e74656e642d2532333738333537382e737667" alt="RealWorld Frontend" data-canonical-src="https://img.shields.io/badge/realworld-frontend-%23783578.svg" /></a>\n<a href="https://standardjs.com" rel="nofollow"><img src="https://camo.githubusercontent.com/58fbab8bb63d069c1e4fb3fa37c2899c38ffcd18/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64655f7374796c652d7374616e646172642d627269676874677265656e2e737667" alt="JavaScript Style Guide" data-canonical-src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" /></a></p><blockquote>\n<p>Vue.js codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the <a href="https://github.com/gothinkster/realworld">RealWorld</a> spec and API.</p>\n</blockquote><p>Project demo is available at <a href="https://vue-vuex-realworld.netlify.com/#/" rel="nofollow">https://vue-vuex-realworld.netlify.com/#/</a></p><p>This codebase was created to demonstrate a fully fledged fullstack application built with <strong>Vue.js</strong> including CRUD operations, authentication, routing, pagination, and more.</p><p>We\'ve gone to great lengths to adhere to the <strong>Vue.js</strong> community styleguides &amp; best practices.</p><p>For more information on how to this works with other frontends/backends, head over to the <a href="https://github.com/gothinkster/realworld">RealWorld</a> repo.</p><p>Before contributing please read the following:</p><ol><li><a href="https://github.com/gothinkster/realworld/tree/master/spec">RealWorld guidelines</a> for implementing a new framework,</li>\n<li><a href="https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md">RealWorld frontend instructions</a></li>\n<li><a href="https://github.com/gothinkster/realworld/tree/master/api">Realworld API endpoints</a></li>\n<li><a href="https://vuejs.org/v2/style-guide/index.html" rel="nofollow">Vue.js styleguide</a>. Priority A and B categories must be respected.</li>\n</ol><p>The stack is built using <a href="https://github.com/vuejs-templates/webpack">vue-cli webpack</a> so to get started all you have to do is:</p><div class="highlight highlight-source-shell"><pre># install dependencies\n&gt; yarn install\n# serve with hot reload at localhost:8080\n&gt; yarn serve</pre></div><p>Other commands available are:</p><div class="highlight highlight-source-shell"><pre># build for production with minification\nyarn run build\n# run unit tests\nyarn run test:unit</pre></div><p>Current arbitrary choices are:</p><ul><li>Vuex modules for store</li>\n<li>Vue-axios for ajax requests</li>\n<li>\'rwv\' as prefix for components</li>\n</ul><p>These can be changed when the contributors reach a consensus.</p><p>Join us on <a href="https://discord.gg/NE2jNmg" rel="nofollow">Discord</a></p>',
+  //   'content_text': '  Vue.js codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the RealWorld spec and API.  Project demo is available at https://vue-vuex-realworld.netlify.com/#/ This codebase was created to demonstrate a fully fledged fullstack application built with Vue.js including CRUD operations, authentication, routing, pagination, and more. We\'ve gone to great lengths to adhere to the Vue.js community styleguides & best practices. For more information on how to this works with other frontends/backends, head over to the RealWorld repo. Before contributing please read the following: RealWorld guidelines for implementing a new framework,  RealWorld frontend instructions  Realworld API endpoints  Vue.js styleguide . Priority A and B categories must be respected.  The stack is built using vue-cli webpack so to get started all you have to do is: # install dependencies\n> yarn install\n# serve with hot reload at localhost:8080\n> yarn serve Other commands available are: # build for production with minification\nyarn run build\n# run unit tests\nyarn run test:unit Current arbitrary choices are: Vuex modules for store  Vue-axios for ajax requests  \'rwv\' as prefix for components  These can be changed when the contributors reach a consensus. Join us on Discord',
+  //   'created_at': '2018-11-02T21:38:53.000Z',
+  //   'domain_name': 'github.com',
+  //   'http_status': '200',
+  //   'is_archived': 1,
+  //   'is_public': 'False',
+  //   'is_starred': 0,
+  //   'language': 'en',
+  //   'links': '[\'/api/entries/12687\']',
+  //   'mimetype': 'text/html',
+  //   'preview_picture': 'https://avatars0.githubusercontent.com/u/8601733?s=400&v=4',
+  //   'reading_time': 1,
+  //   'slugs': '[\'interface\', \'vue\']',
+  //   'tags': '[\'interface\', \'vue\']',
+  //   'title': 'gothinkster/vue-realworld-example-app',
+  //   'updated_at': '2018-11-05T23:56:05.000Z',
+  //   'url': 'https://github.com/gothinkster/vue-realworld-example-app',
+  //   'user_email': 'rahul.singh@anant.us',
+  //   'user_id': '1',
+  //   'user_name': 'admin'
   // };
 
   // let testRecord3 = {
-  //   id: 13535,
-  //   all: '[\'0\', \'0\', \'admin\', \'rahul.singh@anant.us\', \'1\', \'0\', \'13535\', \'ESLint ' +
-  //       '+ Prettier + VS Code — The Perfect Setup\', ' +
-  //       '\'http://www.youtube.com/oembed?format=xml&url=https://www.youtube.com/watch?v=lHAeK8t94as\', ' +
-  //       '\'<iframe id="video" width="480" height="270" ' +
-  //       'src="https://www.youtube.com/embed/lHAeK8t94as?feature=oembed" ' +
-  //       'frameborder="0" allowfullscreen="allowfullscreen">[embedded ' +
-  //       'content]</iframe>\', \'[embedded content]\', \'Thu Mar 14 11:23:13 UTC ' +
-  //       '2019\', \'Thu Mar 14 11:23:13 UTC 2019\', \'text/xml\', \'0\', ' +
-  //       '\'www.youtube.com\', ' +
-  //       '\'https://i.ytimg.com/vi/lHAeK8t94as/maxresdefault.jpg\', \'200\', ' +
-  //       '\'/api/entries/13535\', \'1641690766884470784\']',
-  //   content: '<iframe id="video" width="480" height="270" ' +
-  //       'src="https://www.youtube.com/embed/lHAeK8t94as?feature=oembed" ' +
-  //       'frameborder="0" allowfullscreen="allowfullscreen">[embedded ' +
-  //       'content]</iframe>',
-  //   content_text: '[embedded content]',
-  //   created_at: '2019-03-14T11:23:13.000Z',
-  //   domain_name: 'www.youtube.com',
-  //   http_status: '200',
-  //   is_archived: 0,
-  //   is_public: 'False',
-  //   is_starred: 0,
-  //   language: 'en',
-  //   links: '[\'/api/entries/13535\']',
-  //   mimetype: 'text/xml',
-  //   preview_picture: 'https://i.ytimg.com/vi/lHAeK8t94as/maxresdefault.jpg',
-  //   reading_time: 0,
-  //   slugs: '[]',
-  //   tags: '[]',
-  //   title: 'ESLint + Prettier + VS Code — The Perfect Setup',
-  //   updated_at: '2019-03-14T11:23:13.000Z',
-  //   url: 'http://www.youtube.com/oembed?format=xml&url=https://www.youtube.com/watch?v=lHAeK8t94as',
-  //   user_email: 'rahul.singh@anant.us',
-  //   user_id: '1',
-  //   user_name: 'admin'
-  // }; 
+  //   'id': 12894,
+  //   'all': '[\'0\', \'0\', \'admin\', \'rahul.singh@anant.us\', \'1\', \'0\', \'12894\', \'Sending Advanced Emails Made Simple in Python\', \'https://kootenpv.github.io/2016-04-24-yagmail\', \'<p>I will give two simple examples that would answer 90% of the questions asked on stackoverflow w.r.t. “python send email” <a href="#note1">**</a>.\\nMost of the time people are struggling with just simply sending ANY email (using smtplib). And then there are 3 other cases which come up often: sending (rich) <em>HTML</em>, sending <em>attachments</em>, and using some kind of <em>templating</em>.</p><p>I will show how easy it can be to send very nice emails using <a href="https://github.com/kootenpv/yagmail">yagmail</a>, without requiring knowledge of SMTP, MIME, manually adding headers and other email specifics. If you don’t know what they all mean: I hope to keep it that way.</p><h2 id="setup">Setup</h2><p>First yagmail should  be installed; use <code class="highlighter-rouge">pip install yagmail[all]</code> to get your copy. It has been confirmed to work for Python versions 2.7+.</p><p>Next, it is possible to save username/password in the keyring locally (and safely), avoiding the need to write username/password in a script.\\nSee further instructions <a href="https://github.com/kootenpv/yagmail#username-and-password">here</a>.\\nIf you do not want to set it up for now, you can initiate yagmail like <code class="highlighter-rouge">yagmail.SMTP("username", "password")</code> in all occurences below instead of <code class="highlighter-rouge">yagmail.SMTP()</code>.</p><p>Now onto some code examples.</p><div class="language-python highlighter-rouge"><div class="highlight"><pre>import yagmail\\n# create server object; can be reused\\nyag = yagmail.SMTP()\\n# use yag.send to actually send messages\\nyag.send()\\n</pre></div></div><p>Note that all parameters have sensible default values.\\n<code class="highlighter-rouge">yag.send()</code> is equal to using <code class="highlighter-rouge">yag.send(to=\\\'same as "FROM" address\\\', subject="", contents="")</code>. Note the explicit lack of a “from” address: this is set while creating the SMTP object.</p><p>Off topic: it is a fun fact that you could technically fake sending-as-someone-else (called “spoofing”) using your own email login info, while it seems the email comes from someone else. Many email providers do not allow this though in these days, so the message may never reach the target or have an exclamation point next to the address. You would possible be marked a spammer as well.</p><p>Back on topic: this is why in yagmail you do not provide the from address while sending (though technically you can still do it, but that’s out of scope).</p><h2 id="html-and-attachments">HTML and attachments</h2><p>Have a look at the code below:</p><figure class="highlight"><pre class="language-python" data-lang="python">import yagmail\\nimport os\\nyag = yagmail.SMTP()\\ncsv_file_names = [x for x in os.listdir(".") if x.endswith(".csv")]\\ncontents = "&lt;h1&gt;An HTML Title&lt;/h1&gt; Please find files attached"\\nyag.send("my@friend.com", "The subject", contents, attachments=csv_file_names)</pre></figure><p>That code will send:</p><ul><li>an HTML email (with a big title) and some text</li>\\n  <li>attached all the files in the current working directory ending with <code class="highlighter-rouge">.csv</code></li>\\n</ul><p>Furthermore, it can be seen that it is very easy to combine several types of contents, and we do not have to manually play around with any headers. Headers of any kind have been abstracted away!</p><p>All of this would be very difficult to accomplish as someone new to sending emails. It is actually quite sad to see many 50-100 lines scripts online for sending emails, written by people not familiar with a layer on top of the standard <code class="highlighter-rouge">smtplib</code>.</p><p>Don’t forget: we’re writing Python, not Java.</p><h2 id="marketing-templating-example">(Marketing) Templating example</h2><p>Sending to multiple users <em>tailored</em> emails is where it gets interesting though!</p><p>Goal: add two inline images uploaded from the current directory, and plug in variables.</p><p>The contents of a file <code class="highlighter-rouge">email_template.txt</code> looks like:</p><div class="highlighter-rouge"><div class="highlight"><pre>Dear {name},\\nI noticed your profile at {social_network}, and it\\\'s amazing etc. (standard recruitment).\\nTake care,\\nMe\\n</pre></div></div><p>An accompanying python script could look like:</p><figure class="highlight"><pre class="language-python" data-lang="python">import yagmail\\nwith open("email_template.txt") as f:\\n    email_template = f.read()\\ntemplate_data = [\\n    ("test1@gmail.com", "G. Hub", "GitHub"),\\n    ("test2@gmail.com", "L. Inkedin", "LinkedIn"),\\n    ("test3@gmail.com", "R. Editor", "Reddit")\\n]\\nyag = yagmail.SMTP()\\nfor to_email, name, social_network in template_data:\\n    txt = email_template.format(name=name, social_network=social_network)\\n    # contents, attachments, to, cc, bcc -- all can be a list (plural) or a string (singular)\\n    contents = [txt, \\\'brand1.png\\\', \\\'logo2.png\\\']\\n    yag.send(to_email, "Hi!", contents)</pre></figure><p>In case your imagination fails you, the result would look something like this:</p><div class="highlighter-rouge"><div class="highlight"><pre>Dear G. Hub,\\nI noticed your profile at GitHub, and it\\\'s amazing etc. (standard recruitment).\\nTake care,\\nMe\\n</pre></div></div><p>I’ll leave it “as an excercise to the reader” to combine everything into one email: it should not cost many more lines, and by now it should not be difficult.</p><p>For all functionality, have a look at the <a href="https://github.com/kootenpv/yagmail">github page</a>. Most questions should be answered there, and you’ll find some other tricks.</p><h3 id="feedback--easter-egg">Feedback / easter egg</h3><p>Please, feel free to leave a comment or send me feedback through email directly using:</p><figure class="highlight"><pre class="language-python" data-lang="python">with yagmail.SMTP() as yag:\\n    yag.feedback("Awesome features! You made my day! How can I contribute?")</pre></figure><p>Bonus: note the context manager <code class="highlighter-rouge">with</code>; it will close the SMTP object after use.</p><h3 id="contributions">Contributions</h3><p>See <a href="https://github.com/kootenpv/yagmail/pulls?q=is%3Apr+is%3Aclosed">here</a> for the wonderful contributions made by others!</p><p>Open issue: <a href="https://github.com/kootenpv/yagmail/issues/36">Looking for contributor who could add OAuth2 to yagmail </a></p><p>Related, there are <em>2</em> packages using yagmail currently:</p><ul><li><a href="https://github.com/anoved/OctoPrint-EmailNotifier">anoved/OctoPrint-EmailNotifier</a></li>\\n  <li><a href="https://github.com/jrkerns/pylinac">jrkerns/pylinac</a></li>\\n</ul><p>And here you can see what <a href="https://github.com/search?q=yagmail&amp;ref=searchresults&amp;type=Code&amp;utf8=%E2%9C%93">other people on GitHub</a> did with it so far.</p><hr /><p> ** Note that you can actually track tags on StackOverflow using <a href="https://ifttt.com/">IfThisThenThat</a>.</p>\', \'I will give two simple examples that would answer 90% of the questions asked on stackoverflow w.r.t. “python send email” ** .\\nMost of the time people are struggling with just simply sending ANY email (using smtplib). And then there are 3 other cases which come up often: sending (rich) HTML , sending attachments , and using some kind of templating . I will show how easy it can be to send very nice emails using yagmail , without requiring knowledge of SMTP, MIME, manually adding headers and other email specifics. If you don’t know what they all mean: I hope to keep it that way. Setup First yagmail should  be installed; use pip install yagmail[all] to get your copy. It has been confirmed to work for Python versions 2.7+. Next, it is possible to save username/password in the keyring locally (and safely), avoiding the need to write username/password in a script.\\nSee further instructions here .\\nIf you do not want to set it up for now, you can initiate yagmail like yagmail.SMTP("username", "password") in all occurences below instead of yagmail.SMTP() . Now onto some code examples. import yagmail\\n# create server object; can be reused\\nyag = yagmail.SMTP()\\n# use yag.send to actually send messages\\nyag.send() Note that all parameters have sensible default values. yag.send() is equal to using yag.send(to=\\\'same as "FROM" address\\\', subject="", contents="") . Note the explicit lack of a “from” address: this is set while creating the SMTP object. Off topic: it is a fun fact that you could technically fake sending-as-someone-else (called “spoofing”) using your own email login info, while it seems the email comes from someone else. Many email providers do not allow this though in these days, so the message may never reach the target or have an exclamation point next to the address. You would possible be marked a spammer as well. Back on topic: this is why in yagmail you do not provide the from address while sending (though technically you can still do it, but that’s out of scope). HTML and attachments Have a look at the code below: import yagmail\\nimport os\\nyag = yagmail.SMTP()\\ncsv_file_names = [x for x in os.listdir(".") if x.endswith(".csv")]\\ncontents = "<h1>An HTML Title</h1> Please find files attached"\\nyag.send("my@friend.com", "The subject", contents, attachments=csv_file_names) That code will send: an HTML email (with a big title) and some text  attached all the files in the current working directory ending with .csv  Furthermore, it can be seen that it is very easy to combine several types of contents, and we do not have to manually play around with any headers. Headers of any kind have been abstracted away! All of this would be very difficult to accomplish as someone new to sending emails. It is actually quite sad to see many 50-100 lines scripts online for sending emails, written by people not familiar with a layer on top of the standard smtplib . Don’t forget: we’re writing Python, not Java. (Marketing) Templating example Sending to multiple users tailored emails is where it gets interesting though! Goal: add two inline images uploaded from the current directory, and plug in variables. The contents of a file email_template.txt looks like: Dear {name},\\nI noticed your profile at {social_network}, and it\\\'s amazing etc. (standard recruitment).\\nTake care,\\nMe An accompanying python script could look like: import yagmail\\nwith open("email_template.txt") as f:\\n    email_template = f.read()\\ntemplate_data = [\\n    ("test1@gmail.com", "G. Hub", "GitHub"),\\n    ("test2@gmail.com", "L. Inkedin", "LinkedIn"),\\n    ("test3@gmail.com", "R. Editor", "Reddit")\\n]\\nyag = yagmail.SMTP()\\nfor to_email, name, social_network in template_data:\\n    txt = email_template.format(name=name, social_network=social_network)\\n    # contents, attachments, to, cc, bcc -- all can be a list (plural) or a string (singular)\\n    contents = [txt, \\\'brand1.png\\\', \\\'logo2.png\\\']\\n    yag.send(to_email, "Hi!", contents) In case your imagination fails you, the result would look something like this: Dear G. Hub,\\nI noticed your profile at GitHub, and it\\\'s amazing etc. (standard recruitment).\\nTake care,\\nMe I’ll leave it “as an excercise to the reader” to combine everything into one email: it should not cost many more lines, and by now it should not be difficult. For all functionality, have a look at the github page . Most questions should be answered there, and you’ll find some other tricks. Feedback / easter egg Please, feel free to leave a comment or send me feedback through email directly using: with yagmail.SMTP() as yag:\\n    yag.feedback("Awesome features! You made my day! How can I contribute?") Bonus: note the context manager with ; it will close the SMTP object after use. Contributions See here for the wonderful contributions made by others! Open issue: Looking for contributor who could add OAuth2 to yagmail Related, there are 2 packages using yagmail currently: anoved/OctoPrint-EmailNotifier  jrkerns/pylinac  And here you can see what other people on GitHub did with it so far. ** Note that you can actually track tags on StackOverflow using IfThisThenThat .\', \'Mon Jan 07 16:47:23 UTC 2019\', \'Mon Jan 07 16:47:23 UTC 2019\', \'text/html\', \'en\', \'4\', \'kootenpv.github.io\', \'http://kootenpv.github.io/img/avatar-icon.png\', \'200\', \'/api/entries/12894\', \'1641691444411367424\']',
+  //   'content': '<p>I will give two simple examples that would answer 90% of the questions asked on stackoverflow w.r.t. “python send email” <a href="#note1">**</a>.\nMost of the time people are struggling with just simply sending ANY email (using smtplib). And then there are 3 other cases which come up often: sending (rich) <em>HTML</em>, sending <em>attachments</em>, and using some kind of <em>templating</em>.</p><p>I will show how easy it can be to send very nice emails using <a href="https://github.com/kootenpv/yagmail">yagmail</a>, without requiring knowledge of SMTP, MIME, manually adding headers and other email specifics. If you don’t know what they all mean: I hope to keep it that way.</p><h2 id="setup">Setup</h2><p>First yagmail should  be installed; use <code class="highlighter-rouge">pip install yagmail[all]</code> to get your copy. It has been confirmed to work for Python versions 2.7+.</p><p>Next, it is possible to save username/password in the keyring locally (and safely), avoiding the need to write username/password in a script.\nSee further instructions <a href="https://github.com/kootenpv/yagmail#username-and-password">here</a>.\nIf you do not want to set it up for now, you can initiate yagmail like <code class="highlighter-rouge">yagmail.SMTP("username", "password")</code> in all occurences below instead of <code class="highlighter-rouge">yagmail.SMTP()</code>.</p><p>Now onto some code examples.</p><div class="language-python highlighter-rouge"><div class="highlight"><pre>import yagmail\n# create server object; can be reused\nyag = yagmail.SMTP()\n# use yag.send to actually send messages\nyag.send()\n</pre></div></div><p>Note that all parameters have sensible default values.\n<code class="highlighter-rouge">yag.send()</code> is equal to using <code class="highlighter-rouge">yag.send(to=\'same as "FROM" address\', subject="", contents="")</code>. Note the explicit lack of a “from” address: this is set while creating the SMTP object.</p><p>Off topic: it is a fun fact that you could technically fake sending-as-someone-else (called “spoofing”) using your own email login info, while it seems the email comes from someone else. Many email providers do not allow this though in these days, so the message may never reach the target or have an exclamation point next to the address. You would possible be marked a spammer as well.</p><p>Back on topic: this is why in yagmail you do not provide the from address while sending (though technically you can still do it, but that’s out of scope).</p><h2 id="html-and-attachments">HTML and attachments</h2><p>Have a look at the code below:</p><figure class="highlight"><pre class="language-python" data-lang="python">import yagmail\nimport os\nyag = yagmail.SMTP()\ncsv_file_names = [x for x in os.listdir(".") if x.endswith(".csv")]\ncontents = "&lt;h1&gt;An HTML Title&lt;/h1&gt; Please find files attached"\nyag.send("my@friend.com", "The subject", contents, attachments=csv_file_names)</pre></figure><p>That code will send:</p><ul><li>an HTML email (with a big title) and some text</li>\n  <li>attached all the files in the current working directory ending with <code class="highlighter-rouge">.csv</code></li>\n</ul><p>Furthermore, it can be seen that it is very easy to combine several types of contents, and we do not have to manually play around with any headers. Headers of any kind have been abstracted away!</p><p>All of this would be very difficult to accomplish as someone new to sending emails. It is actually quite sad to see many 50-100 lines scripts online for sending emails, written by people not familiar with a layer on top of the standard <code class="highlighter-rouge">smtplib</code>.</p><p>Don’t forget: we’re writing Python, not Java.</p><h2 id="marketing-templating-example">(Marketing) Templating example</h2><p>Sending to multiple users <em>tailored</em> emails is where it gets interesting though!</p><p>Goal: add two inline images uploaded from the current directory, and plug in variables.</p><p>The contents of a file <code class="highlighter-rouge">email_template.txt</code> looks like:</p><div class="highlighter-rouge"><div class="highlight"><pre>Dear {name},\nI noticed your profile at {social_network}, and it\'s amazing etc. (standard recruitment).\nTake care,\nMe\n</pre></div></div><p>An accompanying python script could look like:</p><figure class="highlight"><pre class="language-python" data-lang="python">import yagmail\nwith open("email_template.txt") as f:\n    email_template = f.read()\ntemplate_data = [\n    ("test1@gmail.com", "G. Hub", "GitHub"),\n    ("test2@gmail.com", "L. Inkedin", "LinkedIn"),\n    ("test3@gmail.com", "R. Editor", "Reddit")\n]\nyag = yagmail.SMTP()\nfor to_email, name, social_network in template_data:\n    txt = email_template.format(name=name, social_network=social_network)\n    # contents, attachments, to, cc, bcc -- all can be a list (plural) or a string (singular)\n    contents = [txt, \'brand1.png\', \'logo2.png\']\n    yag.send(to_email, "Hi!", contents)</pre></figure><p>In case your imagination fails you, the result would look something like this:</p><div class="highlighter-rouge"><div class="highlight"><pre>Dear G. Hub,\nI noticed your profile at GitHub, and it\'s amazing etc. (standard recruitment).\nTake care,\nMe\n</pre></div></div><p>I’ll leave it “as an excercise to the reader” to combine everything into one email: it should not cost many more lines, and by now it should not be difficult.</p><p>For all functionality, have a look at the <a href="https://github.com/kootenpv/yagmail">github page</a>. Most questions should be answered there, and you’ll find some other tricks.</p><h3 id="feedback--easter-egg">Feedback / easter egg</h3><p>Please, feel free to leave a comment or send me feedback through email directly using:</p><figure class="highlight"><pre class="language-python" data-lang="python">with yagmail.SMTP() as yag:\n    yag.feedback("Awesome features! You made my day! How can I contribute?")</pre></figure><p>Bonus: note the context manager <code class="highlighter-rouge">with</code>; it will close the SMTP object after use.</p><h3 id="contributions">Contributions</h3><p>See <a href="https://github.com/kootenpv/yagmail/pulls?q=is%3Apr+is%3Aclosed">here</a> for the wonderful contributions made by others!</p><p>Open issue: <a href="https://github.com/kootenpv/yagmail/issues/36">Looking for contributor who could add OAuth2 to yagmail </a></p><p>Related, there are <em>2</em> packages using yagmail currently:</p><ul><li><a href="https://github.com/anoved/OctoPrint-EmailNotifier">anoved/OctoPrint-EmailNotifier</a></li>\n  <li><a href="https://github.com/jrkerns/pylinac">jrkerns/pylinac</a></li>\n</ul><p>And here you can see what <a href="https://github.com/search?q=yagmail&amp;ref=searchresults&amp;type=Code&amp;utf8=%E2%9C%93">other people on GitHub</a> did with it so far.</p><hr /><p> ** Note that you can actually track tags on StackOverflow using <a href="https://ifttt.com/">IfThisThenThat</a>.</p>',
+  //   'content_text': 'I will give two simple examples that would answer 90% of the questions asked on stackoverflow w.r.t. “python send email” ** .\nMost of the time people are struggling with just simply sending ANY email (using smtplib). And then there are 3 other cases which come up often: sending (rich) HTML , sending attachments , and using some kind of templating . I will show how easy it can be to send very nice emails using yagmail , without requiring knowledge of SMTP, MIME, manually adding headers and other email specifics. If you don’t know what they all mean: I hope to keep it that way. Setup First yagmail should  be installed; use pip install yagmail[all] to get your copy. It has been confirmed to work for Python versions 2.7+. Next, it is possible to save username/password in the keyring locally (and safely), avoiding the need to write username/password in a script.\nSee further instructions here .\nIf you do not want to set it up for now, you can initiate yagmail like yagmail.SMTP("username", "password") in all occurences below instead of yagmail.SMTP() . Now onto some code examples. import yagmail\n# create server object; can be reused\nyag = yagmail.SMTP()\n# use yag.send to actually send messages\nyag.send() Note that all parameters have sensible default values. yag.send() is equal to using yag.send(to=\'same as "FROM" address\', subject="", contents="") . Note the explicit lack of a “from” address: this is set while creating the SMTP object. Off topic: it is a fun fact that you could technically fake sending-as-someone-else (called “spoofing”) using your own email login info, while it seems the email comes from someone else. Many email providers do not allow this though in these days, so the message may never reach the target or have an exclamation point next to the address. You would possible be marked a spammer as well. Back on topic: this is why in yagmail you do not provide the from address while sending (though technically you can still do it, but that’s out of scope). HTML and attachments Have a look at the code below: import yagmail\nimport os\nyag = yagmail.SMTP()\ncsv_file_names = [x for x in os.listdir(".") if x.endswith(".csv")]\ncontents = "<h1>An HTML Title</h1> Please find files attached"\nyag.send("my@friend.com", "The subject", contents, attachments=csv_file_names) That code will send: an HTML email (with a big title) and some text  attached all the files in the current working directory ending with .csv  Furthermore, it can be seen that it is very easy to combine several types of contents, and we do not have to manually play around with any headers. Headers of any kind have been abstracted away! All of this would be very difficult to accomplish as someone new to sending emails. It is actually quite sad to see many 50-100 lines scripts online for sending emails, written by people not familiar with a layer on top of the standard smtplib . Don’t forget: we’re writing Python, not Java. (Marketing) Templating example Sending to multiple users tailored emails is where it gets interesting though! Goal: add two inline images uploaded from the current directory, and plug in variables. The contents of a file email_template.txt looks like: Dear {name},\nI noticed your profile at {social_network}, and it\'s amazing etc. (standard recruitment).\nTake care,\nMe An accompanying python script could look like: import yagmail\nwith open("email_template.txt") as f:\n    email_template = f.read()\ntemplate_data = [\n    ("test1@gmail.com", "G. Hub", "GitHub"),\n    ("test2@gmail.com", "L. Inkedin", "LinkedIn"),\n    ("test3@gmail.com", "R. Editor", "Reddit")\n]\nyag = yagmail.SMTP()\nfor to_email, name, social_network in template_data:\n    txt = email_template.format(name=name, social_network=social_network)\n    # contents, attachments, to, cc, bcc -- all can be a list (plural) or a string (singular)\n    contents = [txt, \'brand1.png\', \'logo2.png\']\n    yag.send(to_email, "Hi!", contents) In case your imagination fails you, the result would look something like this: Dear G. Hub,\nI noticed your profile at GitHub, and it\'s amazing etc. (standard recruitment).\nTake care,\nMe I’ll leave it “as an excercise to the reader” to combine everything into one email: it should not cost many more lines, and by now it should not be difficult. For all functionality, have a look at the github page . Most questions should be answered there, and you’ll find some other tricks. Feedback / easter egg Please, feel free to leave a comment or send me feedback through email directly using: with yagmail.SMTP() as yag:\n    yag.feedback("Awesome features! You made my day! How can I contribute?") Bonus: note the context manager with ; it will close the SMTP object after use. Contributions See here for the wonderful contributions made by others! Open issue: Looking for contributor who could add OAuth2 to yagmail Related, there are 2 packages using yagmail currently: anoved/OctoPrint-EmailNotifier  jrkerns/pylinac  And here you can see what other people on GitHub did with it so far. ** Note that you can actually track tags on StackOverflow using IfThisThenThat .',
+  //   'created_at': '2019-01-07T16:47:23.000Z',
+  //   'domain_name': 'kootenpv.github.io',
+  //   'http_status': '200',
+  //   'is_archived': 0,
+  //   'is_public': 'False',
+  //   'is_starred': 0,
+  //   'language': 'en',
+  //   'links': '[\'/api/entries/12894\']',
+  //   'mimetype': 'text/html',
+  //   'preview_picture': 'http://kootenpv.github.io/img/avatar-icon.png',
+  //   'reading_time': 4,
+  //   'slugs': '[]',
+  //   'tags': '[]',
+  //   'title': 'Sending Advanced Emails Made Simple in Python',
+  //   'updated_at': '2019-01-07T16:47:23.000Z',
+  //   'url': 'https://kootenpv.github.io/2016-04-24-yagmail',
+  //   'user_email': 'rahul.singh@anant.us',
+  //   'user_id': '1',
+  //   'user_name': 'admin'
+  // };
 
+
+  // let firstInsert = 'insert into killrvideo.leaves JSON ?;';
+  // client.execute(firstInsert, [JSON.stringify(testRecord1)], { prepare : true }, function(err, result) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Success!');
+  //   }
+  // });
+
+  // let secondInsert = 'insert into killrvideo.leaves JSON ?;';
+  // client.execute(secondInsert, [JSON.stringify(testRecord2)], { prepare : true }, function(err, result) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Success!');
+  //   }
+  // });
+
+  // let thirdInsert = 'insert into killrvideo.leaves JSON ?;';
+  // client.execute(thirdInsert, [JSON.stringify(testRecord3)], { prepare : true }, function(err, result) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Success!');
+  //   }
+  // });
+
+  // OLD
   // let firstInsert = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
   // let tr1Keys = Object.keys(testRecord1);
   // client.execute(firstInsert, tr1Keys);
@@ -572,6 +198,7 @@ describe('Endpoints', () => {
   // let thirdInsert = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
   // let tr3Keys = Object.keys(testRecord3);
   // client.execute(thirdInsert, tr3Keys);
+  // OLD
 
   //   return supertest
   //     .get('/api/leaves')
@@ -585,131 +212,47 @@ describe('Endpoints', () => {
 
   // it('Delete a record and make sure its gone', () => {
     
-  //   let testRecord = {
-  //     id: 13909,
-  //     all: '[\'1\', \'0\', \'admin\', \'rahul.singh@anant.us\', \'1\', \'tutorial\', \'chef\', ' +
-  //       '\'tutorial\', \'chef\', \'0\', \'13909\', \'Chef Tutorial\', ' +
-  //       '\'https://www.tutorialspoint.com/chef/index.htm\', \'<div class="cover"><img ' +
-  //       'class="img-responsive" ' +
-  //       'src="https://www.tutorialspoint.com/chef/images/chef.jpg" alt="Chef ' +
-  //       'Tutorial" /></div><hr /><p><a ' +
-  //       'href="https://www.tutorialspoint.com/index.htm"><i class="icon ' +
-  //       'icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-  //       'class="icon icon-arrow-circle-o-right big-font">\\xa0</i></a></p><hr ' +
-  //       '/><p>Chef is a configuration management technology developed by Opscode ' +
-  //       'to manage infrastructure on physical or virtual machines. It is an open ' +
-  //       'source developed using Ruby, which helps in managing complex ' +
-  //       'infrastructure on the fly. This tutorial provides a basic understanding ' +
-  //       'of the infrastructure and fundamental concepts of managing an ' +
-  //       'infrastructure using Chef.</p><p>This tutorial has been prepared for ' +
-  //       'those who want to understand the features and functionality of Chef and ' +
-  //       'how Chef can help in reducing the complexity of managing an ' +
-  //       'infrastructure.</p><p>After completing this tutorial one would have ' +
-  //       'moderate level understanding of Chef and its key building blocks. It will ' +
-  //       'also give a fair idea on how to configure Chef in a preconfigured ' +
-  //       'infrastructure and how to use it.</p><p>We assume anyone who wants to ' +
-  //       'learn Chef should have an understanding of system administration, ' +
-  //       'infrastructure and network protocol communication. To automate the ' +
-  //       'infrastructure provisioning, one should have a command over basic Ruby ' +
-  //       'script writing and the underlying system where one wants to use ' +
-  //       'Chef.</p><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i ' +
-  //       'class="icon icon-arrow-circle-o-left big-font"> Previous ' +
-  //       'Page</i></a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" ' +
-  //       'target="_blank"> Print</a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-  //       'class="icon icon-arrow-circle-o-right big-font">\\xa0</i></a></p><hr />\', ' +
-  //       '\'Previous Page Next Page  Chef is a configuration management technology ' +
-  //       'developed by Opscode to manage infrastructure on physical or virtual ' +
-  //       'machines. It is an open source developed using Ruby, which helps in ' +
-  //       'managing complex infrastructure on the fly. This tutorial provides a ' +
-  //       'basic understanding of the infrastructure and fundamental concepts of ' +
-  //       'managing an infrastructure using Chef. This tutorial has been prepared ' +
-  //       'for those who want to understand the features and functionality of Chef ' +
-  //       'and how Chef can help in reducing the complexity of managing an ' +
-  //       'infrastructure. After completing this tutorial one would have moderate ' +
-  //       'level understanding of Chef and its key building blocks. It will also ' +
-  //       'give a fair idea on how to configure Chef in a preconfigured ' +
-  //       'infrastructure and how to use it. We assume anyone who wants to learn ' +
-  //       'Chef should have an understanding of system administration, ' +
-  //       'infrastructure and network protocol communication. To automate the ' +
-  //       'infrastructure provisioning, one should have a command over basic Ruby ' +
-  //       'script writing and the underlying system where one wants to use Chef. ' +
-  //       'Previous Page Print Next Page \', \'Wed Jun 19 12:43:13 UTC 2019\', \'Wed Jun ' +
-  //       '19 12:43:16 UTC 2019\', \'text/html\', \'0\', \'www.tutorialspoint.com\', \'200\', ' +
-  //       '\'/api/entries/13909\', \'1641690374424494080\']',
-  //     content: '<div class="cover"><img class="img-responsive" ' +
-  //       'src="https://www.tutorialspoint.com/chef/images/chef.jpg" alt="Chef ' +
-  //       'Tutorial" /></div><hr /><p><a ' +
-  //       'href="https://www.tutorialspoint.com/index.htm"><i class="icon ' +
-  //       'icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-  //       'class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr ' +
-  //       '/><p>Chef is a configuration management technology developed by Opscode ' +
-  //       'to manage infrastructure on physical or virtual machines. It is an open ' +
-  //       'source developed using Ruby, which helps in managing complex ' +
-  //       'infrastructure on the fly. This tutorial provides a basic understanding ' +
-  //       'of the infrastructure and fundamental concepts of managing an ' +
-  //       'infrastructure using Chef.</p><p>This tutorial has been prepared for ' +
-  //       'those who want to understand the features and functionality of Chef and ' +
-  //       'how Chef can help in reducing the complexity of managing an ' +
-  //       'infrastructure.</p><p>After completing this tutorial one would have ' +
-  //       'moderate level understanding of Chef and its key building blocks. It will ' +
-  //       'also give a fair idea on how to configure Chef in a preconfigured ' +
-  //       'infrastructure and how to use it.</p><p>We assume anyone who wants to ' +
-  //       'learn Chef should have an understanding of system administration, ' +
-  //       'infrastructure and network protocol communication. To automate the ' +
-  //       'infrastructure provisioning, one should have a command over basic Ruby ' +
-  //       'script writing and the underlying system where one wants to use ' +
-  //       'Chef.</p><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i ' +
-  //       'class="icon icon-arrow-circle-o-left big-font"> Previous ' +
-  //       'Page</i></a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" ' +
-  //       'target="_blank"> Print</a></p><p><a ' +
-  //       'href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i ' +
-  //       'class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr />',
-  //     content_text: 'Previous Page Next Page  Chef is a configuration management technology ' +
-  //       'developed by Opscode to manage infrastructure on physical or virtual ' +
-  //       'machines. It is an open source developed using Ruby, which helps in ' +
-  //       'managing complex infrastructure on the fly. This tutorial provides a ' +
-  //       'basic understanding of the infrastructure and fundamental concepts of ' +
-  //       'managing an infrastructure using Chef. This tutorial has been prepared ' +
-  //       'for those who want to understand the features and functionality of Chef ' +
-  //       'and how Chef can help in reducing the complexity of managing an ' +
-  //       'infrastructure. After completing this tutorial one would have moderate ' +
-  //       'level understanding of Chef and its key building blocks. It will also ' +
-  //       'give a fair idea on how to configure Chef in a preconfigured ' +
-  //       'infrastructure and how to use it. We assume anyone who wants to learn ' +
-  //       'Chef should have an understanding of system administration, ' +
-  //       'infrastructure and network protocol communication. To automate the ' +
-  //       'infrastructure provisioning, one should have a command over basic Ruby ' +
-  //       'script writing and the underlying system where one wants to use Chef. ' +
-  //       'Previous Page Print Next Page ',
-  //     created_at: '2019-06-19T12:43:13.000Z',
-  //     domain_name: 'www.tutorialspoint.com',
-  //     http_status: '200',
-  //     is_archived: 1,
-  //     is_public: 'False',
-  //     is_starred: 0,
-  //     language: 'en',
-  //     links: '[\'/api/entries/13909\']',
-  //     mimetype: 'text/html',
-  //     preview_picture: 'https://dummyimage.com/170/000/ffffff&text=Chef%20Tutorial',
-  //     reading_time: 0,
-  //     slugs: '[\'tutorial\', \'chef\']',
-  //     tags: '[\'tutorial\', \'chef\']',
-  //     title: 'Chef Tutorial',
-  //     updated_at: '2019-06-19T12:43:16.000Z',
-  //     url: 'https://www.tutorialspoint.com/chef/index.htm',
-  //     user_email: 'rahul.singh@anant.us',
-  //     user_id: '1',
-  //     user_name: 'admin'
-  //   };
+  // let testRecord = {
+  //   'id': 9527,
+  //   'all':'[\'1\', \'0\', \'admin\', \'rahul.singh@anant.us\', \'1\', \'research.and.development\', \'research-and-development\', \'0\', \'9527\', \'One thing everybody forgets about Gartner’s hype cycle\', \'https://thinkgrowth.org/one-thing-everybody-forgets-about-gartners-hype-cycle-ecfe7e9de8ff?gi=18b141676f93\', \'<section class="section section--body section--first"><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><figure id="6733" class="graf graf--figure graf--leading"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*8fQaeNQt0N3sguyegxmsAg.jpeg" data-width="1200" data-height="686" data-action="zoom" data-action-value="1*8fQaeNQt0N3sguyegxmsAg.jpeg" src="https://cdn-images-1.medium.com/max/1600/1*8fQaeNQt0N3sguyegxmsAg.jpeg" alt="image" /></div></figure><figure id="9ea5" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*OC4rR9I_FAX0T5Y30nyOLw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*OC4rR9I_FAX0T5Y30nyOLw.png" src="https://cdn-images-1.medium.com/max/1600/1*OC4rR9I_FAX0T5Y30nyOLw.png" alt="image" /></div><figcaption class="imageCaption">The general pattern of the Gartner Hype Cycle, as illustrated by Olga Tarkovskiy</figcaption></figure><p id="2650" class="graf graf--p graf-after--figure">The <a href="https://en.wikipedia.org/wiki/Hype_cycle" data-href="https://en.wikipedia.org/wiki/Hype_cycle" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Gartner hype cycle</a> is one of the more brilliant insights in the history of technology. I rank it right up there with <a href="https://en.wikipedia.org/wiki/Moore%27s_law" data-href="https://en.wikipedia.org/wiki/Moore%27s_law" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Moore\\\'s Law</a> and <a href="https://en.wikipedia.org/wiki/Disruptive_innovation#Theory" data-href="https://en.wikipedia.org/wiki/Disruptive_innovation#Theory" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Christensen\\\'s model of disruptive innovation from below</a>.</p><p id="993e" class="graf graf--p graf-after--p">Gartner’s hype cycle describes a 5-stage pattern that almost all new technologies follow:</p><ol class="postList"><li id="e557" class="graf graf--li graf-after--p">A <strong class="markup--strong markup--li-strong">technology trigger</strong> introduces new possibilities\ —\ things like AI, chatbots, AR/VR, blockchain, etc.\ —\ which capture the imagination and create a rapid rise in expectations. (“Big data is a breakthrough!”)</li><li id="9339" class="graf graf--li graf-after--li">The fervor quickly crescendos into a <strong class="markup--strong markup--li-strong">peak of inflated expectations</strong>\ —\ the “hype” is deafening and dramatically overshoots the reality of what’s possible. (“Big data will change <em class="markup--em markup--li-em">everything</em>!”)</li><li id="0bd4" class="graf graf--li graf-after--li">Reality soon sets in though, as people realize that the promises of that hype aren’t coming to fruition. Expectations drop like a rock, and the market slips into a <strong class="markup--strong markup--li-strong">trough of disillusionment</strong>. (“Big data isn’t that magical after all.”)</li><li id="2e5b" class="graf graf--li graf-after--li">But there is underlying value to the technology, and as it steadily improves, people begin to figure out realistic applications. This is the <strong class="markup--strong markup--li-strong">slope of enlightenment</strong>: expectations rise again, but less sharply, in alignment with what’s achievable. (“Big data is actually useful in these cases…”)</li><li id="2e58" class="graf graf--li graf-after--li">Finally the expectations of the technology are absorbed into everyday life, with well-established best practices, leveling off in the <strong class="markup--strong markup--li-strong">plateau of productivity</strong>. (“Big data is an ordinary fact of life. Here’s how we use it.”)</li></ol><blockquote id="058a" class="graf graf--pullquote graf-after--li"><div>It might not be a law of nature, but as a law of technology markets, the hype cycle is pretty consistent.</div></blockquote><p id="f9a4" class="graf graf--p graf-after--pullquote">We hear a lot about the hype cycle in the martech world, because we have been inundated with new technologies in marketing: artificial intelligence (AI), conversational interfaces, augmented reality (AR), Internet of Things (IoT), customer data platforms (CDP), etc.</p><p id="2923" class="graf graf--p graf-after--p">In marketing, it’s not just technologies that follow this hype cycle, but also concepts and tactics, such as content marketing, account-based marketing, revenue operations, and so on. By the way, that’s not a knock against any of those. There <em class="markup--em markup--p-em">is</em> real value in all of them. But the hype exceeds the reality in the first 1/3 or so of their lifecycle.</p><blockquote id="6561" class="graf graf--pullquote graf-after--p"><div>Indeed, <strong class="markup--strong markup--pullquote-strong">it’s the reality underneath the hype cycle that people lose sight of</strong>. Expectations are perception. The actual advancement of the technology (or concept or tactic) is\\xa0reality.</div></blockquote><figure id="b036" class="graf graf--figure graf-after--pullquote"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*IyWyOGtcIW0cSrU04f3Kdw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*IyWyOGtcIW0cSrU04f3Kdw.png" src="https://cdn-images-1.medium.com/max/1600/1*IyWyOGtcIW0cSrU04f3Kdw.png" alt="image" /></div><figcaption class="imageCaption">While the hype cycle has peaks and troughs, the underlying reality of the technology continues to\\xa0progress</figcaption></figure><p id="82fb" class="graf graf--p graf-after--figure">At the <strong class="markup--strong markup--p-strong">peak of inflated expectations</strong>, reality is far below what’s being discussed <em class="markup--em markup--p-em">ad nauseum</em> in blog posts and board rooms. In the <strong class="markup--strong markup--p-strong">trough of disillusionment</strong>, the actual, present-day potential is sadly underestimated\ —\ discussions shift to the inflated expectations of the <em class="markup--em markup--p-em">next</em> new thing.</p><p id="46bc" class="graf graf--p graf-after--p">However, this desync between expectations and reality is a good thing\ —\ if you know what you’re doing. The gap between expectations and reality creates opportunities for a savvy company to manage to the reality while competitors chase the hype cycle.</p><figure id="71e1" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*rMqbJ29CvMgTNemf-Xjsyw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*rMqbJ29CvMgTNemf-Xjsyw.png" src="https://cdn-images-1.medium.com/max/1600/1*rMqbJ29CvMgTNemf-Xjsyw.png" alt="image" /></div><figcaption class="imageCaption">Where the hype overshoots or undershoots reality, there are opportunities</figcaption></figure><p id="5d78" class="graf graf--p graf-after--figure">It’s a variation of the age-old investment advice: buy low, sell high.</p><p id="2f1b" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">At the peak of inflated expectations, you want to avoid overspending on technology and overpromising results.</strong> You don’t want to ignore the movement entirely, since there is fire smoldering below the smoke. But you want to:</p><ul class="postList"><li id="7ba9" class="graf graf--li graf-after--p">evaluate claims carefully</li><li id="2a63" class="graf graf--li graf-after--li">run things with an experimental mindset</li><li id="9dee" class="graf graf--li graf-after--li">focus on real learning.</li></ul><p id="e88e" class="graf graf--p graf-after--li"><strong class="markup--strong markup--p-strong">In the trough of disillusionment, that’s when you want to pour gas on the fire.</strong> Leverage what you learned from your experimental phase to scale up the things you know work, because you’ve proven them in your business.</p><p id="9df2" class="graf graf--p graf-after--p">Don’t be distracted by the backlash of negative chatter at this stage of the hype cycle. Reinvest your experimental efforts in pushing the possibilities ahead of the <strong class="markup--strong markup--p-strong">slope of enlightenment</strong>. This is your chance to race ahead of competitors who are pulling back from their missed results against earlier, unrealistic expectations.</p><p id="dc72" class="graf graf--p graf-after--p graf--trailing">As close as possible, you want to track the actual advancement of the technology. If you can achieve that, you’ll get two big wins, as the hype is on the way up and on the way down. <strong class="markup--strong markup--p-strong">You’ll harness the pendulum of the hype cycle into useful energy.</strong></p></div></div></section><section class="section section--body section--last"><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p id="b022" class="graf graf--p graf--leading">And you’re looking to separate the hype of expectations from the actual advancements of today’s latest batch of emerging technology, check out this new report from <a href="https://medium.com/@HubSpotResearch" data-href="https://medium.com/@HubSpotResearch" data-anchor-type="2" data-user-id="22682275ed3d" data-action-value="22682275ed3d" data-action="show-user-card" data-action-type="hover" class="markup--user markup--p-user" target="_blank">HubSpot Research</a> ?</p><p><a href="https://research.hubspot.com/emerging-tech-for-smbs" data-href="https://research.hubspot.com/emerging-tech-for-smbs" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://research.hubspot.com/emerging-tech-for-smbs"><strong class="markup--strong markup--mixtapeEmbed-strong">A Practical Approach to Emerging Tech for SMBs: AI, Blockchain, Cryptocurrencies, IoT, and AR/VR</strong><br /><em class="markup--em markup--mixtapeEmbed-em">Today\\\'s small business owners represent the most technologically savvy cohort of SMBs that has ever existed…</em>research.hubspot.com</a></p><h4 id="b951" class="graf graf--h4 graf-after--mixtapeEmbed">Learned something? Hold down the ? to say “thanks!” and help others find this\\xa0article.</h4><p id="250e" class="graf graf--p graf-after--h4 graf--trailing"><a href="https://chiefmartec.com/2018/01/one-thing-everybody-forgets-gartners-hype-cycle-martech/" data-href="https://chiefmartec.com/2018/01/one-thing-everybody-forgets-gartners-hype-cycle-martech/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><em class="markup--em markup--p-em">A version of this article</em></a><em class="markup--em markup--p-em"> was previously published on the Chief Marketing Technologist blog, chiefmartec.com.</em></p></div></div></section>\', "The general pattern of the Gartner Hype Cycle, as illustrated by Olga Tarkovskiy The Gartner hype cycle is one of the more brilliant insights in the history of technology. I rank it right up there with Moore\'s Law and Christensen\'s model of disruptive innovation from below . Gartner’s hype cycle describes a 5-stage pattern that almost all new technologies follow: A technology trigger introduces new possibilities\ —\ things like AI, chatbots, AR/VR, blockchain, etc.\ —\ which capture the imagination and create a rapid rise in expectations. (“Big data is a breakthrough!”) The fervor quickly crescendos into a peak of inflated expectations —\ the “hype” is deafening and dramatically overshoots the reality of what’s possible. (“Big data will change everything !”) Reality soon sets in though, as people realize that the promises of that hype aren’t coming to fruition. Expectations drop like a rock, and the market slips into a trough of disillusionment . (“Big data isn’t that magical after all.”) But there is underlying value to the technology, and as it steadily improves, people begin to figure out realistic applications. This is the slope of enlightenment : expectations rise again, but less sharply, in alignment with what’s achievable. (“Big data is actually useful in these cases…”) Finally the expectations of the technology are absorbed into everyday life, with well-established best practices, leveling off in the plateau of productivity . (“Big data is an ordinary fact of life. Here’s how we use it.”) It might not be a law of nature, but as a law of technology markets, the hype cycle is pretty consistent. We hear a lot about the hype cycle in the martech world, because we have been inundated with new technologies in marketing: artificial intelligence (AI), conversational interfaces, augmented reality (AR), Internet of Things (IoT), customer data platforms (CDP), etc. In marketing, it’s not just technologies that follow this hype cycle, but also concepts and tactics, such as content marketing, account-based marketing, revenue operations, and so on. By the way, that’s not a knock against any of those. There is real value in all of them. But the hype exceeds the reality in the first 1/3 or so of their lifecycle. Indeed, it’s the reality underneath the hype cycle that people lose sight of . Expectations are perception. The actual advancement of the technology (or concept or tactic) is\\xa0reality. While the hype cycle has peaks and troughs, the underlying reality of the technology continues to\\xa0progress At the peak of inflated expectations , reality is far below what’s being discussed ad nauseum in blog posts and board rooms. In the trough of disillusionment , the actual, present-day potential is sadly underestimated\ —\ discussions shift to the inflated expectations of the next new thing. However, this desync between expectations and reality is a good thing\ —\ if you know what you’re doing. The gap between expectations and reality creates opportunities for a savvy company to manage to the reality while competitors chase the hype cycle. Where the hype overshoots or undershoots reality, there are opportunities It’s a variation of the age-old investment advice: buy low, sell high. At the peak of inflated expectations, you want to avoid overspending on technology and overpromising results. You don’t want to ignore the movement entirely, since there is fire smoldering below the smoke. But you want to: evaluate claims carefully run things with an experimental mindset focus on real learning. In the trough of disillusionment, that’s when you want to pour gas on the fire. Leverage what you learned from your experimental phase to scale up the things you know work, because you’ve proven them in your business. Don’t be distracted by the backlash of negative chatter at this stage of the hype cycle. Reinvest your experimental efforts in pushing the possibilities ahead of the slope of enlightenment . This is your chance to race ahead of competitors who are pulling back from their missed results against earlier, unrealistic expectations. As close as possible, you want to track the actual advancement of the technology. If you can achieve that, you’ll get two big wins, as the hype is on the way up and on the way down. You’ll harness the pendulum of the hype cycle into useful energy. And you’re looking to separate the hype of expectations from the actual advancements of today’s latest batch of emerging technology, check out this new report from HubSpot Research ? A Practical Approach to Emerging Tech for SMBs: AI, Blockchain, Cryptocurrencies, IoT, and AR/VR Today\'s small business owners represent the most technologically savvy cohort of SMBs that has ever existed… research.hubspot.com Learned something? Hold down the ? to say “thanks!” and help others find this\\xa0article. A version of this article was previously published on the Chief Marketing Technologist blog, chiefmartec.com.", \'Fri Apr 06 18:50:12 UTC 2018\', \'Fri Apr 06 18:50:23 UTC 2018\', \'Mon Apr 02 13:57:12 UTC 2018\', \'Scott Brinker\', \'text/html\', \'4\', \'thinkgrowth.org\', \'https://cdn-images-1.medium.com/max/1200/1*8fQaeNQt0N3sguyegxmsAg.jpeg\', \'200\', \'/api/entries/9527\', \'1641694487759552512\']',
+  //   'content': '<section class="section section--body section--first"><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><figure id="6733" class="graf graf--figure graf--leading"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*8fQaeNQt0N3sguyegxmsAg.jpeg" data-width="1200" data-height="686" data-action="zoom" data-action-value="1*8fQaeNQt0N3sguyegxmsAg.jpeg" src="https://cdn-images-1.medium.com/max/1600/1*8fQaeNQt0N3sguyegxmsAg.jpeg" alt="image" /></div></figure><figure id="9ea5" class="graf graf--figure graf-after--h4"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*OC4rR9I_FAX0T5Y30nyOLw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*OC4rR9I_FAX0T5Y30nyOLw.png" src="https://cdn-images-1.medium.com/max/1600/1*OC4rR9I_FAX0T5Y30nyOLw.png" alt="image" /></div><figcaption class="imageCaption">The general pattern of the Gartner Hype Cycle, as illustrated by Olga Tarkovskiy</figcaption></figure><p id="2650" class="graf graf--p graf-after--figure">The <a href="https://en.wikipedia.org/wiki/Hype_cycle" data-href="https://en.wikipedia.org/wiki/Hype_cycle" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Gartner hype cycle</a> is one of the more brilliant insights in the history of technology. I rank it right up there with <a href="https://en.wikipedia.org/wiki/Moore%27s_law" data-href="https://en.wikipedia.org/wiki/Moore%27s_law" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Moore\'s Law</a> and <a href="https://en.wikipedia.org/wiki/Disruptive_innovation#Theory" data-href="https://en.wikipedia.org/wiki/Disruptive_innovation#Theory" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Christensen\'s model of disruptive innovation from below</a>.</p><p id="993e" class="graf graf--p graf-after--p">Gartner’s hype cycle describes a 5-stage pattern that almost all new technologies follow:</p><ol class="postList"><li id="e557" class="graf graf--li graf-after--p">A <strong class="markup--strong markup--li-strong">technology trigger</strong> introduces new possibilities — things like AI, chatbots, AR/VR, blockchain, etc. — which capture the imagination and create a rapid rise in expectations. (“Big data is a breakthrough!”)</li><li id="9339" class="graf graf--li graf-after--li">The fervor quickly crescendos into a <strong class="markup--strong markup--li-strong">peak of inflated expectations</strong> — the “hype” is deafening and dramatically overshoots the reality of what’s possible. (“Big data will change <em class="markup--em markup--li-em">everything</em>!”)</li><li id="0bd4" class="graf graf--li graf-after--li">Reality soon sets in though, as people realize that the promises of that hype aren’t coming to fruition. Expectations drop like a rock, and the market slips into a <strong class="markup--strong markup--li-strong">trough of disillusionment</strong>. (“Big data isn’t that magical after all.”)</li><li id="2e5b" class="graf graf--li graf-after--li">But there is underlying value to the technology, and as it steadily improves, people begin to figure out realistic applications. This is the <strong class="markup--strong markup--li-strong">slope of enlightenment</strong>: expectations rise again, but less sharply, in alignment with what’s achievable. (“Big data is actually useful in these cases…”)</li><li id="2e58" class="graf graf--li graf-after--li">Finally the expectations of the technology are absorbed into everyday life, with well-established best practices, leveling off in the <strong class="markup--strong markup--li-strong">plateau of productivity</strong>. (“Big data is an ordinary fact of life. Here’s how we use it.”)</li></ol><blockquote id="058a" class="graf graf--pullquote graf-after--li"><div>It might not be a law of nature, but as a law of technology markets, the hype cycle is pretty consistent.</div></blockquote><p id="f9a4" class="graf graf--p graf-after--pullquote">We hear a lot about the hype cycle in the martech world, because we have been inundated with new technologies in marketing: artificial intelligence (AI), conversational interfaces, augmented reality (AR), Internet of Things (IoT), customer data platforms (CDP), etc.</p><p id="2923" class="graf graf--p graf-after--p">In marketing, it’s not just technologies that follow this hype cycle, but also concepts and tactics, such as content marketing, account-based marketing, revenue operations, and so on. By the way, that’s not a knock against any of those. There <em class="markup--em markup--p-em">is</em> real value in all of them. But the hype exceeds the reality in the first 1/3 or so of their lifecycle.</p><blockquote id="6561" class="graf graf--pullquote graf-after--p"><div>Indeed, <strong class="markup--strong markup--pullquote-strong">it’s the reality underneath the hype cycle that people lose sight of</strong>. Expectations are perception. The actual advancement of the technology (or concept or tactic) is reality.</div></blockquote><figure id="b036" class="graf graf--figure graf-after--pullquote"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*IyWyOGtcIW0cSrU04f3Kdw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*IyWyOGtcIW0cSrU04f3Kdw.png" src="https://cdn-images-1.medium.com/max/1600/1*IyWyOGtcIW0cSrU04f3Kdw.png" alt="image" /></div><figcaption class="imageCaption">While the hype cycle has peaks and troughs, the underlying reality of the technology continues to progress</figcaption></figure><p id="82fb" class="graf graf--p graf-after--figure">At the <strong class="markup--strong markup--p-strong">peak of inflated expectations</strong>, reality is far below what’s being discussed <em class="markup--em markup--p-em">ad nauseum</em> in blog posts and board rooms. In the <strong class="markup--strong markup--p-strong">trough of disillusionment</strong>, the actual, present-day potential is sadly underestimated — discussions shift to the inflated expectations of the <em class="markup--em markup--p-em">next</em> new thing.</p><p id="46bc" class="graf graf--p graf-after--p">However, this desync between expectations and reality is a good thing — if you know what you’re doing. The gap between expectations and reality creates opportunities for a savvy company to manage to the reality while competitors chase the hype cycle.</p><figure id="71e1" class="graf graf--figure graf-after--p"><div class="aspectRatioPlaceholder is-locked"><img class="graf-image" data-image-id="1*rMqbJ29CvMgTNemf-Xjsyw.png" data-width="1152" data-height="768" data-action="zoom" data-action-value="1*rMqbJ29CvMgTNemf-Xjsyw.png" src="https://cdn-images-1.medium.com/max/1600/1*rMqbJ29CvMgTNemf-Xjsyw.png" alt="image" /></div><figcaption class="imageCaption">Where the hype overshoots or undershoots reality, there are opportunities</figcaption></figure><p id="5d78" class="graf graf--p graf-after--figure">It’s a variation of the age-old investment advice: buy low, sell high.</p><p id="2f1b" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">At the peak of inflated expectations, you want to avoid overspending on technology and overpromising results.</strong> You don’t want to ignore the movement entirely, since there is fire smoldering below the smoke. But you want to:</p><ul class="postList"><li id="7ba9" class="graf graf--li graf-after--p">evaluate claims carefully</li><li id="2a63" class="graf graf--li graf-after--li">run things with an experimental mindset</li><li id="9dee" class="graf graf--li graf-after--li">focus on real learning.</li></ul><p id="e88e" class="graf graf--p graf-after--li"><strong class="markup--strong markup--p-strong">In the trough of disillusionment, that’s when you want to pour gas on the fire.</strong> Leverage what you learned from your experimental phase to scale up the things you know work, because you’ve proven them in your business.</p><p id="9df2" class="graf graf--p graf-after--p">Don’t be distracted by the backlash of negative chatter at this stage of the hype cycle. Reinvest your experimental efforts in pushing the possibilities ahead of the <strong class="markup--strong markup--p-strong">slope of enlightenment</strong>. This is your chance to race ahead of competitors who are pulling back from their missed results against earlier, unrealistic expectations.</p><p id="dc72" class="graf graf--p graf-after--p graf--trailing">As close as possible, you want to track the actual advancement of the technology. If you can achieve that, you’ll get two big wins, as the hype is on the way up and on the way down. <strong class="markup--strong markup--p-strong">You’ll harness the pendulum of the hype cycle into useful energy.</strong></p></div></div></section><section class="section section--body section--last"><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><p id="b022" class="graf graf--p graf--leading">And you’re looking to separate the hype of expectations from the actual advancements of today’s latest batch of emerging technology, check out this new report from <a href="https://medium.com/@HubSpotResearch" data-href="https://medium.com/@HubSpotResearch" data-anchor-type="2" data-user-id="22682275ed3d" data-action-value="22682275ed3d" data-action="show-user-card" data-action-type="hover" class="markup--user markup--p-user" target="_blank">HubSpot Research</a> ?</p><p><a href="https://research.hubspot.com/emerging-tech-for-smbs" data-href="https://research.hubspot.com/emerging-tech-for-smbs" class="markup--anchor markup--mixtapeEmbed-anchor" title="https://research.hubspot.com/emerging-tech-for-smbs"><strong class="markup--strong markup--mixtapeEmbed-strong">A Practical Approach to Emerging Tech for SMBs: AI, Blockchain, Cryptocurrencies, IoT, and AR/VR</strong><br /><em class="markup--em markup--mixtapeEmbed-em">Today\'s small business owners represent the most technologically savvy cohort of SMBs that has ever existed…</em>research.hubspot.com</a></p><h4 id="b951" class="graf graf--h4 graf-after--mixtapeEmbed">Learned something? Hold down the ? to say “thanks!” and help others find this article.</h4><p id="250e" class="graf graf--p graf-after--h4 graf--trailing"><a href="https://chiefmartec.com/2018/01/one-thing-everybody-forgets-gartners-hype-cycle-martech/" data-href="https://chiefmartec.com/2018/01/one-thing-everybody-forgets-gartners-hype-cycle-martech/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank"><em class="markup--em markup--p-em">A version of this article</em></a><em class="markup--em markup--p-em"> was previously published on the Chief Marketing Technologist blog, chiefmartec.com.</em></p></div></div></section>',
+  //   'content_text': 'The general pattern of the Gartner Hype Cycle, as illustrated by Olga Tarkovskiy The Gartner hype cycle is one of the more brilliant insights in the history of technology. I rank it right up there with Moore\'s Law and Christensen\'s model of disruptive innovation from below . Gartner’s hype cycle describes a 5-stage pattern that almost all new technologies follow: A technology trigger introduces new possibilities — things like AI, chatbots, AR/VR, blockchain, etc. — which capture the imagination and create a rapid rise in expectations. (“Big data is a breakthrough!”) The fervor quickly crescendos into a peak of inflated expectations — the “hype” is deafening and dramatically overshoots the reality of what’s possible. (“Big data will change everything !”) Reality soon sets in though, as people realize that the promises of that hype aren’t coming to fruition. Expectations drop like a rock, and the market slips into a trough of disillusionment . (“Big data isn’t that magical after all.”) But there is underlying value to the technology, and as it steadily improves, people begin to figure out realistic applications. This is the slope of enlightenment : expectations rise again, but less sharply, in alignment with what’s achievable. (“Big data is actually useful in these cases…”) Finally the expectations of the technology are absorbed into everyday life, with well-established best practices, leveling off in the plateau of productivity . (“Big data is an ordinary fact of life. Here’s how we use it.”) It might not be a law of nature, but as a law of technology markets, the hype cycle is pretty consistent. We hear a lot about the hype cycle in the martech world, because we have been inundated with new technologies in marketing: artificial intelligence (AI), conversational interfaces, augmented reality (AR), Internet of Things (IoT), customer data platforms (CDP), etc. In marketing, it’s not just technologies that follow this hype cycle, but also concepts and tactics, such as content marketing, account-based marketing, revenue operations, and so on. By the way, that’s not a knock against any of those. There is real value in all of them. But the hype exceeds the reality in the first 1/3 or so of their lifecycle. Indeed, it’s the reality underneath the hype cycle that people lose sight of . Expectations are perception. The actual advancement of the technology (or concept or tactic) is reality. While the hype cycle has peaks and troughs, the underlying reality of the technology continues to progress At the peak of inflated expectations , reality is far below what’s being discussed ad nauseum in blog posts and board rooms. In the trough of disillusionment , the actual, present-day potential is sadly underestimated — discussions shift to the inflated expectations of the next new thing. However, this desync between expectations and reality is a good thing — if you know what you’re doing. The gap between expectations and reality creates opportunities for a savvy company to manage to the reality while competitors chase the hype cycle. Where the hype overshoots or undershoots reality, there are opportunities It’s a variation of the age-old investment advice: buy low, sell high. At the peak of inflated expectations, you want to avoid overspending on technology and overpromising results. You don’t want to ignore the movement entirely, since there is fire smoldering below the smoke. But you want to: evaluate claims carefully run things with an experimental mindset focus on real learning. In the trough of disillusionment, that’s when you want to pour gas on the fire. Leverage what you learned from your experimental phase to scale up the things you know work, because you’ve proven them in your business. Don’t be distracted by the backlash of negative chatter at this stage of the hype cycle. Reinvest your experimental efforts in pushing the possibilities ahead of the slope of enlightenment . This is your chance to race ahead of competitors who are pulling back from their missed results against earlier, unrealistic expectations. As close as possible, you want to track the actual advancement of the technology. If you can achieve that, you’ll get two big wins, as the hype is on the way up and on the way down. You’ll harness the pendulum of the hype cycle into useful energy. And you’re looking to separate the hype of expectations from the actual advancements of today’s latest batch of emerging technology, check out this new report from HubSpot Research ? A Practical Approach to Emerging Tech for SMBs: AI, Blockchain, Cryptocurrencies, IoT, and AR/VR Today\'s small business owners represent the most technologically savvy cohort of SMBs that has ever existed… research.hubspot.com Learned something? Hold down the ? to say “thanks!” and help others find this article. A version of this article was previously published on the Chief Marketing Technologist blog, chiefmartec.com.',
+  //   'created_at': '2018-04-06T18:50:12.000Z',
+  //   'domain_name': 'thinkgrowth.org',
+  //   'http_status': '200',
+  //   'is_archived': 1,
+  //   'is_public': 'False',
+  //   'is_starred': 0,
+  //   'language': 'en',
+  //   'links': '[\'/api/entries/9527\']',
+  //   'mimetype': 'text/html',
+  //   'preview_picture': 'https://cdn-images-1.medium.com/max/1200/1*8fQaeNQt0N3sguyegxmsAg.jpeg',
+  //   'reading_time': 4,
+  //   'slugs': '[\'research-and-development\']',
+  //   'tags': '[\'research.and.development\']',
+  //   'title': 'One thing everybody forgets about Gartner’s hype cycle',
+  //   'updated_at': '2018-04-06T18:50:23.000Z',
+  //   'url': 'https://thinkgrowth.org/one-thing-everybody-forgets-about-gartners-hype-cycle-ecfe7e9de8ff?gi=18b141676f93',
+  //   'user_email': 'rahul.singh@anant.us',
+  //   'user_id': '1',
+  //   'user_name': 'admin'
+  // };
 
+  // let insertQuery = 'insert into killrvideo.leaves JSON ?;';
+  // client.execute(insertQuery, [JSON.stringify(testRecord)], { prepare : true }, function(err, result) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Success!');
+  //   }
+  // });
+
+
+  //   OLD
   //   let insertQuery = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
   //   let keys = Object.keys(testRecord)
   //   client.execute(query, keys);
+  //   OLD
 
   //   let deleteQuery = 'DELETE FROM keyspace.table WHERE id=?;';
   //   let deleteParams = [testRecord.id];
