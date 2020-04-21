@@ -18,9 +18,9 @@ describe('Endpoints', () => {
       .get('/api/leaves')
       .expect(200)
       .expect(res => {
-        expect(res.body[0].id).to.eql(testRecord.id);
-        expect(res.body[0].domain_name).to.eql(testRecord.domain_name);
-        expect(res.body[0].title).to.eql(testRecord.title);
+        expect(res.body[0].id).to.eql(testRecord1.id);
+        expect(res.body[0].domain_name).to.eql(testRecord1.domain_name);
+        expect(res.body[0].title).to.eql(testRecord1.title);
       });
       
   });
