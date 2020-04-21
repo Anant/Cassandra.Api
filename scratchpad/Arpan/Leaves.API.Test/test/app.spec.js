@@ -25,7 +25,8 @@ describe('Endpoints', () => {
   it('Create a record, retrieve the record', () => {
 
     let testRecord = {
-      'id': 12323,
+      'id': 123456,
+      'all': "['1', '0', 'admin', 'rahul.singh@anant.us', '1', 'saas', 'blockchain', 'monitoring', 'saas', 'blockchain', 'monitoring', '0', '9495', 'BCT Token Sale – INSTITUTIONAL GRADE CRYPTO TRADING SOFTWARE', 'https://www.bct.io/', '<h3 class=\"t-entry-title h6\">David Israel</h3><p class=\"t-entry-meta\">CSO</p><p class=\"t-entry-excerpt\">David Israel is a problem solver, leader, and expert in state-of-the-art technology infrastructure for organizations of scale. He has 30+ years of experience engineering and implementing network and security tools to business innovators, and spearheaded help-desk and risk-reduction operations across the globe.</p>', 'David Israel CSO David Israel is a problem solver, leader, and expert in state-of-the-art technology infrastructure for organizations of scale. He has 30+ years of experience engineering and implementing network and security tools to business innovators, and spearheaded help-desk and risk-reduction operations across the globe.', 'Wed Apr 04 12:24:56 UTC 2018', 'Wed Apr 04 12:25:11 UTC 2018', 'text/html', 'en_US', '0', 'www.bct.io', '200', '/api/entries/9495', '1641694520728879104']",
       'content': '<div class="cover"><img class="img-responsive" src="https://www.tutorialspoint.com/chef/images/chef.jpg" alt="Chef Tutorial" /></div><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr /><p>Chef is a configuration management technology developed by Opscode to manage infrastructure on physical or virtual machines. It is an open source developed using Ruby, which helps in managing complex infrastructure on the fly. This tutorial provides a basic understanding of the infrastructure and fundamental concepts of managing an infrastructure using Chef.</p><p>This tutorial has been prepared for those who want to understand the features and functionality of Chef and how Chef can help in reducing the complexity of managing an infrastructure.</p><p>After completing this tutorial one would have moderate level understanding of Chef and its key building blocks. It will also give a fair idea on how to configure Chef in a preconfigured infrastructure and how to use it.</p><p>We assume anyone who wants to learn Chef should have an understanding of system administration, infrastructure and network protocol communication. To automate the infrastructure provisioning, one should have a command over basic Ruby script writing and the underlying system where one wants to use Chef.</p><hr /><p><a href="https://www.tutorialspoint.com/index.htm"><i class="icon icon-arrow-circle-o-left big-font"> Previous Page</i></a></p><p><a href="https://www.tutorialspoint.com/cgi-bin/printpage.cgi" target="_blank"> Print</a></p><p><a href="https://www.tutorialspoint.com/chef/chef_overview.htm">Next Page <i class="icon icon-arrow-circle-o-right big-font"> </i></a></p><hr />',
       'content_text': 'Previous Page Next Page  Chef is a configuration management technology developed by Opscode to manage infrastructure on physical or virtual machines. It is an open source developed using Ruby, which helps in managing complex infrastructure on the fly. This tutorial provides a basic understanding of the infrastructure and fundamental concepts of managing an infrastructure using Chef. This tutorial has been prepared for those who want to understand the features and functionality of Chef and how Chef can help in reducing the complexity of managing an infrastructure. After completing this tutorial one would have moderate level understanding of Chef and its key building blocks. It will also give a fair idea on how to configure Chef in a preconfigured infrastructure and how to use it. We assume anyone who wants to learn Chef should have an understanding of system administration, infrastructure and network protocol communication. To automate the infrastructure provisioning, one should have a command over basic Ruby script writing and the underlying system where one wants to use Chef. Previous Page Print Next Page ',
       'created_at': '2019-06-19T12:43:13.000Z',
@@ -35,9 +36,12 @@ describe('Endpoints', () => {
       'is_public': 'False',
       'is_starred': 0,
       'language': 'en',
+      'links': "['/api/entries/9495']",
       'mimetype': 'text/html',
       'preview_picture': 'https://dummyimage.com/170/000/ffffff&text=Chef%20Tutorial',
       'reading_time': 0,
+      'slugs': "['saas', 'blockchain', 'monitoring']",
+      'tags': "['saas', 'blockchain', 'monitoring']",
       'title': 'Chef Tutorial',
       'updated_at': '2019-06-19T12:43:16.000Z',
       'url': 'https://www.tutorialspoint.com/chef/index.htm',
@@ -47,13 +51,13 @@ describe('Endpoints', () => {
     };
 
     // OLD
-    // let query = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
-    // let keys = Object.keys(testRecord)
+    let query = 'INSERT INTO killrvideo.leaves(id, all, content, content_text, created_at, domain_name, http_status, is_archived, is_public, is_starred, language, links, mimetype, preview_picture, reading_time, slugs, tags, title, updated_at, url, user_email, user_id, user_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
+    let values = Object.values(testRecord)
     // OLD
 
-    let query = 'insert into killrvideo.leaves JSON ?;'; 
+    // let query = 'insert into killrvideo.leaves JSON ?;'; 
 
-    client.execute(query, [JSON.stringify(testRecord)], { prepare : true }, function(err, result) {
+    client.execute(query, values, { prepare : true }, function(err, result) {
       if (err) {
         console.log(err);
       } else {
