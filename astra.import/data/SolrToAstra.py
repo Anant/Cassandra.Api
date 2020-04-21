@@ -27,7 +27,7 @@ session.set_keyspace('killrvideo')
 f = open('../../astra.import/schema/AstraTableDef')
 session.execute('CREATE TABLE IF NOT EXISTS '+str(f.read()))
 
-rows = 1000
+rows = 100000
 
 #Request data from solr
 params = (
@@ -40,9 +40,10 @@ response = requests.get('https://ss346483-us-east-1-aws.searchstax.com/solr/leav
 response_json = response.json()
 num_docs = response_json['response']['numFound']
 docs = response_json['response']['docs']
+real_docs = len(docs)
 
 
-print(str(len(docs))+'/'+str(num_docs))
+print(str(real_docs)+'/'+str(num_docs))
 
 
 for i in range(len(docs)):
@@ -71,7 +72,7 @@ for i in range(len(docs)):
     try:
         content_text_check = tmp_doc['content_text']
     except KeyError:
-        tmp_doc['content_text'] = str(tmp_doc['content'])
+        tmp_doc['content_text'] = tmp_doc['content'].encode('utf-8')
 
     try:
         mimetype_check = tmp_doc['mimetype']
@@ -123,8 +124,14 @@ for i in range(len(docs)):
         #print("No published_at key to delete")
         pass
     
-    if i%(rows/10)==0:
-        print(str(i/(rows/100))+" % complete")
+    try:
+        del tmp_doc['uid']
+    except KeyError:
+        #print("No uid key to delete")
+        pass
+    
+    if i%(real_docs/10)==0:
+        print(str(i/(real_docs/100))+" % complete")
     
     json_doc = str(json.dumps(tmp_doc))
     insert_query = session.execute(
