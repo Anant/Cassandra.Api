@@ -6,9 +6,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Python 2.7.17
-Python cassandra-driver
-Python requests
+- Python 2.7.17
+- Python cassandra-driver
+- Python requests
 
 ```
 pip install cassandra-driver
@@ -52,7 +52,7 @@ cassandra.InvalidRequest: Error from server: code=2200 [Invalid query] message="
 Then you'll need to remove the str() methods around the tmp_doc values on lines 105-108
 
 ```
-tmp_doc['tags'] = str(tmp_doc['tags'])
+	tmp_doc['tags'] = str(tmp_doc['tags'])
     tmp_doc['slugs'] = str(tmp_doc['slugs'])
     tmp_doc['all'] = str(tmp_doc['all'])
     tmp_doc['links'] = str(tmp_doc['_links'])
