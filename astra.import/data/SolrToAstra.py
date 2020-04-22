@@ -95,7 +95,7 @@ for i in range(len(docs)):
         tmp_doc['slugs'] = []
 		
     try:
-		all_check = tmp_doc['all']
+        all_check = tmp_doc['all']
     except KeyError:
         tmp_doc['all'] = []
 

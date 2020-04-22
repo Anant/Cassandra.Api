@@ -42,19 +42,19 @@ def getAll():
 def getNumRows(num_rows):
     rows = session.execute("SELECT JSON * FROM killrvideo.leaves LIMIT "+str(num_rows))
     #print(type(rows))
-    result = []
+    result = ''
     for row in rows:
         #print(type(str(row)))
-        result.append(row.json.encode('utf-8'))
+        result = row.json.encode('utf-8')
     return jsonify(result)
 
 @app.route('/api/entries/<id>',methods=['GET'])
 def getById(id):
     rows = session.execute("SELECT JSON * FROM killrvideo.leaves WHERE id=%s",[int(id)])
-    result = []
+    result = ''
     for row in rows:
         #print(type(str(row)))
-        result.append(row.json.encode('utf-8'))
+        result = json.loads(row.json)
     return jsonify(result)
 
 
