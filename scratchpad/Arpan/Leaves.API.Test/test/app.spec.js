@@ -4,6 +4,12 @@ supertest = supertest('http://localhost:8000');
 
 describe('Endpoints', () => {
 
+  // before('truncate table', () => {
+
+  //   cleanTable();
+ 
+  // });
+
   // afterEach('truncate table', () => {
 
   //   cleanTable();
