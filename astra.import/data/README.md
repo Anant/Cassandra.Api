@@ -15,12 +15,12 @@ pip install cassandra-driver
 pip install requests
 ```
 
-### Setup
+### Setup (Locally)
 
 - Create your database on DataStax Astra (Be sure to remmeber your keyspace name, username and password as those will be useful later on)
 - Clone this repo
 - Download the connection-details zip file from your Astra dashboard and place it in the "astra.credentials" folder. 
-- Depending on the setup of your PATH env varible, you may need to edit lines 10, 13, 27 to inlcude the full paths for each file/folder the program is looking for.
+- Depending on the setup of your local machine's PATH, enviroment variable, you may need to edit lines 10, 13, 27 to inlcude the full paths for each file/folder the program is looking for.
 
 ```
 line 10: with open('../../astra.credentials/UserCred.json') as f:
@@ -29,7 +29,7 @@ line 27: f = open('../../astra.import/schema/AstraTableDef')
 ```
 
 
-## Running the Program Locally
+## Running the Program (Locally)
 
 Run the script with the following command:
 ```
