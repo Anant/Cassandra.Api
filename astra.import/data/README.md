@@ -33,7 +33,7 @@ line 27: f = open('../../astra.import/schema/AstraTableDef')
 
 Run the script with the following command:
 ```
-	python SolrToAstra.py
+python SolrToAstra.py
 ```
 
 If your program produces the following error:
@@ -52,10 +52,10 @@ cassandra.InvalidRequest: Error from server: code=2200 [Invalid query] message="
 Then you'll need to remove the str() methods around the tmp_doc values on lines 105-108
 
 ```
-	tmp_doc['tags'] = str(tmp_doc['tags'])
-    tmp_doc['slugs'] = str(tmp_doc['slugs'])
-    tmp_doc['all'] = str(tmp_doc['all'])
-    tmp_doc['links'] = str(tmp_doc['_links'])
+tmp_doc['tags'] = str(tmp_doc['tags'])
+tmp_doc['slugs'] = str(tmp_doc['slugs'])
+tmp_doc['all'] = str(tmp_doc['all'])
+tmp_doc['links'] = str(tmp_doc['_links'])
 ```
 
 Afterwards, re-run the script again.
