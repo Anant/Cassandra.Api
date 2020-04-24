@@ -1,2 +1,7 @@
 image:
   file: .gitpod.Dockerfile
+tasks:
+  - init: echo "Installing Python Modules"
+    command: pip3 install cassandra-driver
+    command: pip3 install requests
+    command: pip3 install flask
