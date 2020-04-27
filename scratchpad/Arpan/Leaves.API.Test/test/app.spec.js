@@ -4,21 +4,21 @@ supertest = supertest('http://localhost:8000');
 
 describe('Endpoints', () => {
 
-  // before('truncate table', () => {
+  beforeEach('truncate table', async() => {
 
-  //   cleanTable();
+    await cleanTable();
  
-  // });
+  });
 
-  // afterEach('truncate table', () => {
+  afterEach('truncate table', async() => {
 
-  //   cleanTable();
+    await cleanTable();
 
-  // });
+  });
 
-  it.only('Create a record via CQL, then retrieve the record', () => {
+  it('Create a record via CQL, then retrieve the record', async() => {
 
-    insertRecord(testRecord1);
+    await insertRecord(testRecord1);
 
     return supertest
       .get('/api/leaves')
@@ -31,11 +31,11 @@ describe('Endpoints', () => {
       
   });
 
-  it('Create a set of rows in one partition via CQL, then retrieve them and number of rows should be same', () => {
+  it('Create a set of rows in one partition via CQL, then retrieve them and number of rows should be same', async() => {
 
-    insertRecord(testRecord1);
-    insertRecord(testRecord2);
-    insertRecord(testRecord3);
+    await insertRecord(testRecord1);
+    await insertRecord(testRecord2);
+    await insertRecord(testRecord3);
 
     return supertest
       .get('/api/leaves')
@@ -47,11 +47,11 @@ describe('Endpoints', () => {
       });
   });
 
-  it('Insert a record via CQL, then delete the record and make sure its gone', () => {    
+  it('Insert a record via CQL, then delete the record and make sure its gone', async() => {    
     
-    insertRecord(testRecord1);
+    await insertRecord(testRecord1);
 
-    deleteRecord(testRecord1);
+    await deleteRecord(testRecord1);
 
     return supertest
       .delete(`/api/leaves/${testRecord1.id}`)

@@ -91,49 +91,31 @@ let testRecord3 = {
 };
 
 
-const insertRecord = (record) => {
+const insertRecord = async(record) => {
 
   let query = 'insert into killrvideo.leaves JSON ?;'; 
 
-  return client.execute(query, [JSON.stringify(record)], { prepare : true }, function(err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Successfully Added Record!');
-    }
-  });
+  return await client.execute(query, [JSON.stringify(record)], { prepare : true });
 
 };
 
 
-const cleanTable = () => {
+const cleanTable = async() => {
 
   let truncateQuery = 'TRUNCATE killrvideo.leaves';
 
-  return client.execute(truncateQuery, function(err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Successfully Cleaned Tabled!');
-    }
-  });
+  return await client.execute(truncateQuery);
 
 };
 
 
-const deleteRecord = (record) => {
+const deleteRecord = async(record) => {
     
   let deleteQuery = 'DELETE FROM killrvideo.leaves WHERE id=?;';
 
   let deleteParams = [record.id];
 
-  client.execute(deleteQuery, deleteParams, { prepare : true }, function(err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Record Successfully Deleted!');
-    } 
-  });
+  return await client.execute(deleteQuery, deleteParams, { prepare : true });
 }; 
 
 
