@@ -91,31 +91,31 @@ let testRecord3 = {
 };
 
 
-const insertRecord = async(record) => {
+const insertRecord = (record) => {
 
   let query = 'insert into killrvideo.leaves JSON ?;'; 
 
-  return await client.execute(query, [JSON.stringify(record)], { prepare : true });
+  return client.execute(query, [JSON.stringify(record)], { prepare : true });
 
 };
 
 
-const cleanTable = async() => {
+const cleanTable = () => {
 
   let truncateQuery = 'TRUNCATE killrvideo.leaves';
 
-  return await client.execute(truncateQuery);
+  return client.execute(truncateQuery);
 
 };
 
 
-const deleteRecord = async(record) => {
+const deleteRecord = (record) => {
     
   let deleteQuery = 'DELETE FROM killrvideo.leaves WHERE id=?;';
 
   let deleteParams = [record.id];
 
-  return await client.execute(deleteQuery, deleteParams, { prepare : true });
+  return client.execute(deleteQuery, deleteParams, { prepare : true });
 }; 
 
 
