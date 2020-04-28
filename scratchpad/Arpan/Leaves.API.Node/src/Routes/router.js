@@ -3,7 +3,6 @@ const leavesRouter = express.Router();
 const jsonParser = express.json();
 const cassandra = require('cassandra-driver');
 const config = require('../config');
-const {v4: uuidv4} = require('uuid');
 
 const client = new cassandra.Client({
   cloud: { secureConnectBundle: config.BUNDLE },
@@ -20,14 +19,17 @@ leavesRouter
     try{
 
       let query = 'SELECT * FROM killrvideo.leaves;';
-      client.execute(query, function(err, result){
-        // console.log(result)
-        return res.status(200).json(result.rows);
-      });
-      // below is according to the basic usage on driver docs
-      //.then(result => res.status(200).json(result.rows));
+
+      let result = await client.execute(query);
+
+      return res.status(200).json(result.rows);
+
     }
+
     catch(e){
+      res.status(400).json({
+        message: e.message
+      });
       next();
     }
   })
@@ -76,6 +78,9 @@ leavesRouter
       });
     }
     catch(e){
+      res.status(400).json({
+        message: e.message
+      });
       next();
     }
   });
@@ -103,6 +108,9 @@ leavesRouter
     }
 
     catch(e){
+      res.status(400).json({
+        message: e.message
+      });
       next();
     }
   })
@@ -155,6 +163,9 @@ leavesRouter
       });
     }
     catch(e){
+      res.status(400).json({
+        message: e.message
+      });
       next();
     }
   })
@@ -162,11 +173,22 @@ leavesRouter
   .delete( async (req, res, next) => {
     try{
       let id = req.params.id;
-      if(!!id){
-        let deleteQuery = 'DELETE FROM killrvideo.leaves WHERE id=?;';
-        let params = [id];
 
-        await 
+      let searchQuery = 'SELECT * FROM killrvideo.leaves where id=?;';
+      let params = [id];
+
+      let checkIfExists = await client.execute(searchQuery, params, {prepare : true});
+
+      if (checkIfExists.rows.length === 0){
+        return res.status(404).json({
+          message: 'This item does not exist'
+        });
+      }
+
+      else{
+
+        let deleteQuery = 'DELETE FROM killrvideo.leaves WHERE id=?;';
+ 
         client.execute(deleteQuery, params, { prepare : true }, function(err){
           if(!!err){
             return res.status(400).json({
@@ -180,14 +202,12 @@ leavesRouter
           }
         });
       }
-      else{
-        return res.status(400).json({
-          error: 'id required'
-        });
-      }
-
     }
+    
     catch(e){
+      res.status(400).json({
+        message: e.message
+      });
       next();
     }
   });  
