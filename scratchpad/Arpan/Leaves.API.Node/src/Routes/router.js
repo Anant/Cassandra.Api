@@ -89,18 +89,19 @@ leavesRouter
       // let number = Number(id);
       let query = 'SELECT * FROM killrvideo.leaves WHERE id=?;';
       let params = [id];
-      client.execute(query, params, { prepare : true }, function(err, result){
-        if(!!result){
-          return res.status(200).json(result.rows[0]);
-        }
-        else{
-          console.log(err);
-          return res.status(404).json({
-            error: 'Not Found'
-          });
-        }
-      });
+      let result = await client.execute(query, params, { prepare : true });
+      
+      if(result.rows.length === 0){
+        return res.status(404).json({
+          message: 'Not Found'
+        });
+      }
+
+      else {
+        return res.status(200).json(result.rows[0]);
+      }
     }
+
     catch(e){
       next();
     }
@@ -129,7 +130,7 @@ leavesRouter
             error: `Missing '${key}' in request body`
           });
 
-          //udpate query depending on what we allow for being updated
+      //udpate query depending on what we allow for being updated
       let query = 'UPDATE killrvideo.leaves SET email=?, firstname=?, lastname=? WHERE id=?;';
 
       //change out params depending on what we allow for being updated

@@ -54,9 +54,9 @@ describe('Endpoints', () => {
     await deleteRecord(testRecord1);
 
     return supertest
-      .delete(`/api/leaves/${testRecord1.id}`)
-      .expect(200, {
-        message: 'deleted'
+      .get(`/api/leaves/${testRecord1.id}`)
+      .expect(404, {
+        message: 'Not Found'
       });
   });
   
