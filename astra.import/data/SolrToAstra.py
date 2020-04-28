@@ -139,29 +139,3 @@ for i in range(len(docs)):
     insert_query = session.execute(
         "INSERT INTO killrvideo.leaves JSON %s" % "'"+json_doc.replace("'","''")+"'"
         )
-    """insert_query = session.execute(
-        "INSERT INTO killrvideo.leaves(is_archived, all, is_starred, user_name, user_email, user_id, tags, slugs, is_public, id, title, url, content_text, created_at, updated_at, mimetype, language, reading_time, domain_name, preview_picture, http_status, links, content) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",(
-            tmp_doc['is_archived'],
-            [tmp_doc['all']],
-            tmp_doc['is_starred'],
-            tmp_doc['user_name'],
-            tmp_doc['user_email'],
-            tmp_doc['user_id'],
-            tmp_doc['tags'],
-            tmp_doc['slugs'],
-            tmp_doc['is_public'],
-            tmp_doc['id'],
-            tmp_doc['title'],
-            tmp_doc['url'],
-            tmp_doc['content_text'],
-            datetime.strptime(tmp_doc['created_at'],'%Y-%m-%dT%H:%M:%SZ'),
-            datetime.strptime(tmp_doc['updated_at'],'%Y-%m-%dT%H:%M:%SZ'),
-            tmp_doc['mimetype'],
-            tmp_doc['language'],
-            tmp_doc['reading_time'],
-            tmp_doc['domain_name'],
-            tmp_doc['preview_picture'],
-            tmp_doc['http_status'],
-            tmp_doc['_links'],
-            tmp_doc['content'],
-        ))"""
