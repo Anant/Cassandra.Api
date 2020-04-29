@@ -22,7 +22,7 @@ Complete the following steps to start a new project (NEW-PROJECT-NAME):
 NODE_ENV=development
 PORT=8000
 EXAMPLE="example-environmental-variable"
-BUNDLE=secure-connect-example.zip
+BUNDLE=path/to/zip/in/Astra/Credentials
 USER="Example"
 PASS="Example"
 ```
