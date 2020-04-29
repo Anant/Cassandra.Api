@@ -47,7 +47,7 @@ describe('Endpoints', () => {
       });
   });
 
-  it('Insert a record via CQL, then delete the record and make sure its gone', async() => {    
+  it('Insert a record via CQL, then delete the record via CQL and make sure its gone', async() => {    
     
     await insertRecord(testRecord1);
 
@@ -55,9 +55,7 @@ describe('Endpoints', () => {
 
     return supertest
       .get(`/api/leaves/${testRecord1.id}`)
-      .expect(404, {
-        message: 'Not Found'
-      });
+      .expect(404);
   });
   
 });
