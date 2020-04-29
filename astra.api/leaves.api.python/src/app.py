@@ -28,7 +28,7 @@ session.set_keyspace('killrvideo')
 #Create Flask app
 app = Flask(__name__)
 
-@app.route('/api/leaves/all',methods=['GET'])
+@app.route('/api/leaves',methods=['GET'])
 def getAll():
     rows = session.execute("SELECT JSON * FROM killrvideo.leaves")
     #print(type(rows))
@@ -38,7 +38,7 @@ def getAll():
         result.append(json.loads(row.json))
     return jsonify(result)
     
-@app.route('/api/leaves/all&rows=<num_rows>',methods=['GET'])
+@app.route('/api/leaves&rows=<num_rows>',methods=['GET'])
 def getNumRows(num_rows):
     rows = session.execute("SELECT JSON * FROM killrvideo.leaves LIMIT "+str(num_rows))
     #print(type(rows))
