@@ -3,7 +3,7 @@ from cassandra.auth import PlainTextAuthProvider
 import json
 import requests
 from datetime import  datetime
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, abort
 
 #Connect to Astra Cluster
 #Redo this after git project restructuring
@@ -55,7 +55,10 @@ def getById(id):
     for row in rows:
         #print(type(str(row)))
         result = json.loads(row.json)
-    return jsonify(result)
+    if(result == ''):
+        abort(404)
+    else:
+        return jsonify(result)
 
 @app.route('/api/leaves/<id>',methods=['DELETE'])
 def delById(id):
@@ -65,7 +68,10 @@ def delById(id):
     for row in rows:
         #print(type(str(row)))
         result = json.loads(row.json)
-    return jsonify(result)
+    if(result == ''):
+        abort(404)
+    else:
+        return jsonify(result)
 
 
 app.run(port=8000,debug=True)
