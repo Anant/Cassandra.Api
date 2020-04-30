@@ -14,9 +14,9 @@ Complete the following steps to start a new project (NEW-PROJECT-NAME):
 
 **Before starting application**
 
-* Set BUNDLE in .env equal to Astra Secure Connect Bundle .zip file name 
+* Set BUNDLE in .env equal to the Astra Secure Connect Bundle .zip folder name from astra.credentials
 
-* Set USER and PASS equal to Astra Credentials
+* Set USER and PASS equal to the Astra Credentials associated with the Secure Connect Bundle
 
 ```
 NODE_ENV=development
