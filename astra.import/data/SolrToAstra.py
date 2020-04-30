@@ -26,7 +26,7 @@ else:
 session.set_keyspace('killrvideo')
 f = open('astra.import/schema/AstraTableDef')
 session.execute('CREATE TABLE IF NOT EXISTS '+str(f.read()))
-rows = 1
+rows = 100
 
 
 #Request data from solr
@@ -131,11 +131,11 @@ for i in range(len(docs)):
         #print("No uid key to delete")
         pass
     
-#    if i%(real_docs/10)==0:
-#        print(str(i/(real_docs/100))+" % complete")
+    if i%(real_docs/10.0)==0:
+        print(str(i/(real_docs/100.0))+" % complete")
     
     json_doc = str(json.dumps(tmp_doc))
-    print(json_doc)
+    #print(json_doc)
     insert_query = session.execute(
         "INSERT INTO killrvideo.leaves JSON %s" % "'"+json_doc.replace("'","''")+"'"
         )
