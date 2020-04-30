@@ -131,13 +131,18 @@ for i in range(len(docs)):
         #print("No uid key to delete")
         pass
     
-    if tmp_doc['content_text'] == b'':
-        tmp_doc['content_text'] = ''
+    try:
+       tmp_doc['content_text'] = tmp_doc['content_text'].decode()
+    except (UnicodeDecodeError, AttributeError):
+        pass 
     
     if i%(real_docs/10.0)==0:
         print(str(i/(real_docs/100.0))+" % complete")
     
-    json_doc = str(json.dumps(tmp_doc))
+    try:
+        json_doc = str(json.dumps(tmp_doc))
+    except TypeError:
+        print(tmp_doc)
     #print(json_doc)
     insert_query = session.execute(
         "INSERT INTO killrvideo.leaves JSON %s" % "'"+json_doc.replace("'","''")+"'"
