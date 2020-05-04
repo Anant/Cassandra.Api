@@ -3,13 +3,14 @@ from cassandra.auth import PlainTextAuthProvider
 import json
 import requests
 from datetime import  datetime
+import time
 
 #Connect to Astra Cluster
 #Redo this after git project restructuring
-with open('/workspace/leaves.astra/DataMigration/UserCred.json') as f:
+with open('astra.credentials/UserCred.json') as f:
     cred = json.load(f)
 cloud_config= {
-        'secure_connect_bundle': '/workspace/leaves.astra/DataMigration/secure-connect-'+cred['keyspace']+'.zip'
+        'secure_connect_bundle': 'astra.credentials/secure-connect-'+cred['cluster']+'.zip'
 }
 auth_provider = PlainTextAuthProvider(cred['username'], cred['password'])
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
@@ -23,23 +24,26 @@ else:
 
 #Create Table leaves if it does not exist
 session.set_keyspace('killrvideo')
-f = open('/workspace/leaves.astra/DataMigration/AstraTableDef')
+f = open('astra.import/schema/AstraTableDef')
 session.execute('CREATE TABLE IF NOT EXISTS '+str(f.read()))
+rows = 100
+
 
 #Request data from solr
 params = (
     ('fl', '*'),
     ('q', '*'),
-    ('rows', '10'),
+    ('rows', str(rows)),
 )
 
 response = requests.get('https://ss346483-us-east-1-aws.searchstax.com/solr/leaves_anant_stage/select', params=params)
 response_json = response.json()
 num_docs = response_json['response']['numFound']
 docs = response_json['response']['docs']
+real_docs = len(docs)
 
 
-print(str(len(docs))+'/'+str(num_docs))
+print(str(real_docs)+'/'+str(num_docs))
 
 
 for i in range(len(docs)):
@@ -68,7 +72,7 @@ for i in range(len(docs)):
     try:
         content_text_check = tmp_doc['content_text']
     except KeyError:
-        tmp_doc['content_text'] = str(tmp_doc['content'])
+        tmp_doc['content_text'] = tmp_doc['content'].encode('utf-8')
 
     try:
         mimetype_check = tmp_doc['mimetype']
@@ -89,57 +93,57 @@ for i in range(len(docs)):
         slugs_check = tmp_doc['slugs']
     except KeyError:
         tmp_doc['slugs'] = []
+		
+    try:
+        all_check = tmp_doc['all']
+    except KeyError:
+        tmp_doc['all'] = []
 
-    insert_query = session.prepare(
-        """
-        INSERT INTO killrvideo.leaves 
-        (is_archived, 
-        all, 
-        is_starred, 
-        user_name, 
-        user_email, 
-        user_id, 
-        tags, 
-        slugs, 
-        is_public, 
-        id, 
-        title, 
-        url, 
-        content_text, 
-        created_at, 
-        updated_at, 
-        mimetype, 
-        language, 
-        reading_time, 
-        domain_name, 
-        preview_picture, 
-        http_status, 
-        links, 
-        content)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""")
-    session.execute(insert_query, 
-        [
-            tmp_doc['is_archived'],
-            str(tmp_doc['all']),
-            tmp_doc['is_starred'],
-            str(tmp_doc['user_name']),
-            str(tmp_doc['user_email']),
-            str(tmp_doc['user_id']),
-            str(tmp_doc['tags']),
-            str(tmp_doc['slugs']),
-            str(tmp_doc['is_public']),
-            int(tmp_doc['id']),
-            str(tmp_doc['title']),
-            str(tmp_doc['url']),
-            str(tmp_doc['content_text']),
-            datetime.strptime(tmp_doc['created_at'],'%Y-%m-%dT%H:%M:%SZ'),
-            datetime.strptime(tmp_doc['updated_at'],'%Y-%m-%dT%H:%M:%SZ'),
-            str(tmp_doc['mimetype']),
-            str(tmp_doc['language']),
-            int(tmp_doc['reading_time']),
-            str(tmp_doc['domain_name']),
-            str(tmp_doc['preview_picture']),
-            str(tmp_doc['http_status']),
-            str(tmp_doc['_links']),
-            str(tmp_doc['content']),
-        ])
+    tmp_doc['is_public'] = str(tmp_doc['is_public'])
+    tmp_doc['user_id'] = str(tmp_doc['user_id'])
+    tmp_doc['http_status'] = str(tmp_doc['http_status'])
+    tmp_doc['tags'] = tmp_doc['tags']
+    tmp_doc['slugs'] = tmp_doc['slugs']
+    tmp_doc['all'] = tmp_doc['all']
+    tmp_doc['links'] = tmp_doc['_links']
+    #print(tmp_doc['links'])
+    
+    try:
+        del tmp_doc['_links']
+    except KeyError:
+        print("No _links key to delete")
+    
+    try:
+        del tmp_doc['published_by']
+    except KeyError:
+        #print("No published_by key to delete")
+        pass
+       
+    try:
+        del tmp_doc['published_at']
+    except KeyError:
+        #print("No published_at key to delete")
+        pass
+    
+    try:
+        del tmp_doc['uid']
+    except KeyError:
+        #print("No uid key to delete")
+        pass
+    
+    try:
+       tmp_doc['content_text'] = tmp_doc['content_text'].decode()
+    except (UnicodeDecodeError, AttributeError):
+        pass 
+    
+    if i%(real_docs/10.0)==0:
+        print(str(i/(real_docs/100.0))+" % complete")
+    
+    try:
+        json_doc = str(json.dumps(tmp_doc))
+    except TypeError:
+        print(tmp_doc)
+    #print(json_doc)
+    insert_query = session.execute(
+        "INSERT INTO killrvideo.leaves JSON %s" % "'"+json_doc.replace("'","''")+"'"
+        )
