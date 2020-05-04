@@ -18,7 +18,7 @@ leavesRouter
   .get( async (req, res, next) => {
     try{
 
-      let query = 'SELECT * FROM killrvideo.leaves;';
+      let query = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE};`;
 
       let result = await client.execute(query);
 
@@ -55,7 +55,7 @@ leavesRouter
             error: `Missing '${key}' in request body`
           });
 
-      let query = 'INSERT INTO killrvideo.leaves(is_archived, is_starred, user_name, user_email, user_id, tags, is_public, id, uid, title, url, content, created_at, updated_at, published_at, published_by, starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture, http_status, headers, origin_url, _links) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);'; 
+      let query = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE}(is_archived, is_starred, user_name, user_email, user_id, tags, is_public, id, uid, title, url, content, created_at, updated_at, published_at, published_by, starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture, http_status, headers, origin_url, _links) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);`; 
 
       let params = [is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
         id, uid, title, url, content, created_at, updated_at, published_at, published_by,
@@ -91,8 +91,7 @@ leavesRouter
   .get( async (req, res, next) => {
     try{
       let id = req.params.id;
-      // let number = Number(id);
-      let query = 'SELECT * FROM killrvideo.leaves WHERE id=?;';
+      let query = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
       let params = [id];
       let result = await client.execute(query, params, { prepare : true });
       
@@ -139,7 +138,7 @@ leavesRouter
           });
 
       //udpate query depending on what we allow for being updated
-      let query = 'UPDATE killrvideo.leaves SET email=?, firstname=?, lastname=? WHERE id=?;';
+      let query = `UPDATE ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} SET email=?, firstname=?, lastname=? WHERE id=?;`;
 
       //change out params depending on what we allow for being updated
       const params = [is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
@@ -174,7 +173,7 @@ leavesRouter
     try{
       let id = req.params.id;
 
-      let searchQuery = 'SELECT * FROM killrvideo.leaves where id=?;';
+      let searchQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} where id=?;`;
       let params = [id];
 
       let checkIfExists = await client.execute(searchQuery, params, {prepare : true});
@@ -187,7 +186,7 @@ leavesRouter
 
       else{
 
-        let deleteQuery = 'DELETE FROM killrvideo.leaves WHERE id=?;';
+        let deleteQuery = `DELETE FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
  
         client.execute(deleteQuery, params, { prepare : true }, function(err){
           if(!!err){

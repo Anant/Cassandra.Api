@@ -93,7 +93,7 @@ let testRecord3 = {
 
 const insertRecord = (record) => {
 
-  let query = 'insert into killrvideo.leaves JSON ?;'; 
+  let query = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ?;`; 
 
   return client.execute(query, [JSON.stringify(record)], { prepare : true });
 
@@ -102,7 +102,7 @@ const insertRecord = (record) => {
 
 const cleanTable = () => {
 
-  let truncateQuery = 'TRUNCATE killrvideo.leaves';
+  let truncateQuery = `TRUNCATE ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE}`;
 
   return client.execute(truncateQuery);
 
@@ -111,7 +111,7 @@ const cleanTable = () => {
 
 const deleteRecord = (record) => {
     
-  let deleteQuery = 'DELETE FROM killrvideo.leaves WHERE id=?;';
+  let deleteQuery = `DELETE FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
 
   let deleteParams = [record.id];
 
