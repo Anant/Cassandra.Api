@@ -2,4 +2,3 @@
 FROM appleseed/leaves.gitpod
 
 USER gitpod
-
