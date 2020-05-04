@@ -1,4 +1,5 @@
-const { username, password, cluster, keyspace, table } = require('../../../astra.credentials/UserCred.json')
+//import credentials from UserCred.json for configuration within the code
+const { username, password, cluster, keyspace, table } = require('../../../astra.credentials/UserCred.json');
 
 module.exports = {
   PORT: process.env.PORT || 8000,
