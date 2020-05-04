@@ -5,7 +5,7 @@ const cassandra = require('cassandra-driver');
 const config = require('../config');
 
 const client = new cassandra.Client({
-  cloud: { secureConnectBundle: config.ASTRA_BUNDLE },
+  cloud: { secureConnectBundle: `../../astra.credentials/secure-connect-${config.ASTRA_CLUSTER}.zip`},
   credentials: { username: config.ASTRA_USERNAME, password: config.ASTRA_PASSWORD }
 });
 

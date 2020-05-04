@@ -5,25 +5,8 @@ This is a demo project used for connecting a REST API to a DataStax Astra Databa
 ## Set up
 
 1. Install the node dependencies `npm install`
-2. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-
 
 ## Scripts
-
-**Before starting application**
-
-* Set ASTRA_BUNDLE in .env equal to the Astra Secure Connect Bundle .zip folder name from astra.credentials
-
-* Set ASTRA_USERNAME and ASTRA_PASSWORKD equal to the Astra Credentials associated with the Secure Connect Bundle
-
-```
-NODE_ENV=development
-PORT=8000
-EXAMPLE="example-environmental-variable"
-ASTRA_BUNDLE=path/to/zip/in/Astra/Credentials
-ASTRA_USERNAME="Example"
-ASTRA_PASSWORD="Example"
-```
 
 Start the application `npm start`
 
