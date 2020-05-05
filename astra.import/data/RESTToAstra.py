@@ -23,9 +23,9 @@ else:
     print("An error occurred.")
 
 #Create Table leaves if it does not exist
-session.set_keyspace('killrvideo')
+session.set_keyspace(cred['keyspace'])
 f = open('astra.import/schema/AstraTableDef')
-session.execute('CREATE TABLE IF NOT EXISTS '+str(f.read()))
+session.execute('CREATE TABLE IF NOT EXISTS '+cred['keyspace']+'.'+cred['table']+str(f.read()))
 rows = 100
 
 
@@ -139,11 +139,9 @@ for i in range(len(docs)):
     if i%(real_docs/10.0)==0:
         print(str(i/(real_docs/100.0))+" % complete")
     
-    try:
-        json_doc = str(json.dumps(tmp_doc))
-    except TypeError:
-        print(tmp_doc)
+
+    json_doc = str(json.dumps(tmp_doc))
     #print(json_doc)
     insert_query = session.execute(
-        "INSERT INTO killrvideo.leaves JSON %s" % "'"+json_doc.replace("'","''")+"'"
+        "INSERT INTO "+cred['keyspace']+'.'+cred['table']+" JSON %s" % "'"+json_doc.replace("'","''")+"'"
         )
