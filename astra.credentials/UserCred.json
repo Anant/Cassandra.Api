@@ -1,1 +1,7 @@
-{ "username":"KVUser", "password":"KVPassword", "cluster":"leavesnetwork", "keyspace":"killrvideo", "table":"leaves"}
+{ 
+    "username":"KVUser", 
+    "password":"KVPassword", 
+    "cluster":"leavesnetwork", 
+    "keyspace":"killrvideo", 
+    "table":"leaves"
+}
