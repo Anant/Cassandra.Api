@@ -24,8 +24,11 @@ else:
 
 #Create Table leaves if it does not exist
 session.set_keyspace(cred['keyspace'])
-f = open('astra.import/schema/AstraTableDef')
-session.execute('CREATE TABLE IF NOT EXISTS '+cred['keyspace']+'.'+cred['table']+str(f.read()))
+f = open('astra.import/schema/Leaves.Astra.cql')
+exec_command = str(f.read())
+exec_command = exec_command.replace('keyspace_name',cred['keyspace'],1)
+exec_command = exec_command.replace('table_name',cred['table'],1)
+session.execute(exec_command)
 rows = 100
 
 
