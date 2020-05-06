@@ -1,19 +1,28 @@
-# Leaves.API.Node
+# Leaves.Astra API (Node)
 
-This is a demo project used for connecting a REST API to a DataStax Astra Database
+Nodejs REST API using DataStax Astra with NoSQL, and Apache Cassandra™ in the cloud!
 
-## Set up
+## Getting Started
 
-1. Install the node dependencies `npm install`
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/xingh/leaves.astra.git)
 
-## Scripts
+leaves.astra/astra.api/leaves.api.node
 
-Start the application `npm start`
+* `npm install`
 
-Start nodemon for the application `npm run dev`
+* `npm start` or `npm run dev` (Start application in development using [nodemon](https://www.npmjs.com/package/nodemon))
 
+Navigate to:
 
-## Endpoints (thus far / subject to change)
+(Local) `localhost:8000/api/leaves`
+
+(Gitpod): Once started, an alert will apear. Click "Open Browser"
+
+![Alt Img](Assets/../../../Assets/Images/gitpodNode.png)
+
+Add `/api/leaves` to Gitpod url
+
+## Endpoints (Ongoing/Subject to change)
 
 * `/api/leaves`
     * `GET` -> (**WORKING + TESTED**) Returns items from the KEYSPACE.leaves table
