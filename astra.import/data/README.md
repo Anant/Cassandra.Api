@@ -25,21 +25,21 @@ pip3 install requests
 
 
 ```
-line 10: with open('../../astra.credentials/UserCred.json') as f:
-line 13: 'secure_connect_bundle': '../../astra.credentials/secure-connect-'+cred['cluster']+'.zip'
-line 27: f = open('../../astra.import/schema/AstraTableDef')
+line 10: with open('astra.credentials/UserCred.json') as f:
+line 13: 'secure_connect_bundle': 'astra.credentials/secure-connect-'+cred['cluster']+'.zip'
+line 27: f = open('astra.import/schema/AstraTableDef')
 ```
 
 
 ## Running the Program (Locally)
 
-Run the migrator using the following script:
+Run the migrator from the **leaves.astra/** folder
 
 ```
-python SolrToAstra.py
+python3 astra.import/data/RESTToAstra.py
 ```
 
-If your program produces the following error:
+* If you recieve the following, you're most likely using python 2, switch to python 3 and retry.
 
 ```
  File "c:/Users/adp8k/Desktop/migrator-test/astra.import/data/SolrToAstra.py", line 140, in <module>
@@ -51,17 +51,6 @@ If your program produces the following error:
 cassandra.InvalidRequest: Error from server: code=2200 [Invalid query] message="Error decoding JSON value for links: Error decoding JSON string: Unrecognized token 'u': was expecting ('true', 'false' or 'null')
  at [Source: (String)"[u'/api/entries/14012']"; line: 1, column: 3]"
 ```
-
-Then you'll need to remove the str() methods around the tmp_doc values on lines 105-108
-
-```
-tmp_doc['tags'] = str(tmp_doc['tags'])
-tmp_doc['slugs'] = str(tmp_doc['slugs'])
-tmp_doc['all'] = str(tmp_doc['all'])
-tmp_doc['links'] = str(tmp_doc['_links'])
-```
-
-Afterwards, re-run the script again.
 
 
 ## Running the program on Gitpod
