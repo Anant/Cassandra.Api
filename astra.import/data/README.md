@@ -1,8 +1,8 @@
-# Project Title
+# Data Migrator
 
-## Getting Started with the Data Migrator
+## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project Gitpod.
+These instructions will get you started migrating data from Leaves to your Astra cluster.
 
 ### Prerequisites
 
@@ -16,12 +16,13 @@ pip3 install cassandra-driver
 pip3 install requests
 ```
 
-### Setup (Locally)
+### Getting started (Locally)
 
-- Create your database on DataStax Astra (Be sure to remmeber your keyspace name, username and password as those will be useful later on)
+- Create your database on DataStax Astra (Be sure to remember your keyspace name, username, and password as those will be useful later on)
 - Clone this repo
-- Download the connection-details zip file from your Astra dashboard and place it in the "astra.credentials" folder. 
-- Depending on the setup of your local machine's PATH, enviroment variable, you may need to edit lines 10, 13, 27 to inlcude the full paths for each file/folder the program is looking for.
+- Download the 'secure connect bundle' zip from your Astra dashboard, and place it in the "leaves.astra/astra.credentials/" folder. 
+- Depending on the setup of your local machine's PATH, you may need to edit lines 10, 13, 27 to include the full paths for each file/folder the program is looking for.
+
 
 ```
 line 10: with open('../../astra.credentials/UserCred.json') as f:
@@ -32,7 +33,8 @@ line 27: f = open('../../astra.import/schema/AstraTableDef')
 
 ## Running the Program (Locally)
 
-Run the script with the following command:
+Run the migrator using the following script:
+
 ```
 python SolrToAstra.py
 ```
@@ -64,7 +66,7 @@ Afterwards, re-run the script again.
 
 ## Running the program on Gitpod
 
-TBD
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/xingh/leaves.astra.git)
 
 ## Built With
 
