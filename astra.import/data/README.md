@@ -11,9 +11,14 @@ These instructions will get you started migrating data from Leaves to your Astra
 - Python requests
 
 ```
-pip3 install flask
 pip3 install cassandra-driver
 pip3 install requests
+```
+
+OR 
+
+```sh
+pip install -r requirements.txt
 ```
 
 ### Getting started (Locally)

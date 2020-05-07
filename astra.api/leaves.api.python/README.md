@@ -20,6 +20,11 @@ pip install cassandra-driver
 pip install requests
 pip install flask
 ```
+OR 
+
+```sh
+pip install -r requirements.txt
+```
 
 ### Setup (Locally)
 
