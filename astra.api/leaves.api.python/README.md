@@ -6,7 +6,7 @@ Python REST API using DataStax Astra with NoSQL, and Apache Cassandra™ in the 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. For deployment to Gitpod: 
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://github.com/xingh/leaves.astra.git)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/xingh/leaves.astra.git)
 
 ### Prerequisites
 

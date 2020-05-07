@@ -2,16 +2,18 @@
 
 Leaves on DataStax Astra™ with NoSQL, and Apache Cassandra™ in the cloud!
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://github.com/xingh/leaves.astra.git)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/xingh/leaves.astra.git)
 
 ## Getting started
 
+---- 
+
 ```sh
-Git clone https://github.com/xingh/leaves.astra.git
+git clone https://github.com/xingh/leaves.astra.git
 cd leaves.astra/
 ```
 
-## Credentials
+## Authorization
 **IMPORTANT**
 
 1. 
@@ -26,12 +28,15 @@ cd leaves.astra/
 
 <img src="Assets/Images/UserCred.png" width="500" height="300">
 
+<br />
+
 ## RUN DATA MIGRATOR
 - - - 
 
 ```
 python3 astra.import/data/RESTToAstra.py
 ```
+<br />
 
 ### APIs
 ---
@@ -48,7 +53,7 @@ python3 astra.import/data/RESTToAstra.py
 ```
 [...] // # of articles
 ```
-
+<br />
 
 ### TESTING
 --- 
