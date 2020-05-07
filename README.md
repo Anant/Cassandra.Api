@@ -34,7 +34,7 @@ cd leaves.astra/
 - - - 
 
 ```
-python3 astra.import/data/RESTToAstra.py
+python3 astra.import/RESTToAstra.py
 ```
 <br />
 

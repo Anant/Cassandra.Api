@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ```sh
 line 10: with open('../../astra.credentials/UserCred.json') as f:
 line 13: 'secure_connect_bundle': '../../astra.credentials/secure-connect-'+cred['cluster']+'.zip'
-line 27: f = open('../../astra.import/schema/AstraTableDef')
+line 27: f = open('../../astra.import/AstraTableDef')
 ```
 - Make sure to run the importer first so that you have data in your database.
 
@@ -56,7 +56,7 @@ Navigate to `localhost:8000/api/leaves/(id)` to view a single row from your tabl
 
 Run the script with the following command:
 ```
-python astra.api/leaves.api.python/src/app.py
+python3 astra.api/leaves.api.python/app.py
 ```
 
 Gitpod will show a notice about port `8000` being open.

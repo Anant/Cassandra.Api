@@ -32,7 +32,7 @@ pip install -r requirements.txt
 ```
 line 10: with open('astra.credentials/UserCred.json') as f:
 line 13: 'secure_connect_bundle': 'astra.credentials/secure-connect-'+cred['cluster']+'.zip'
-line 27: f = open('astra.import/schema/AstraTableDef')
+line 27: f = open('astra.import/Leaves.Astra.cql')
 ```
 
 
@@ -41,13 +41,13 @@ line 27: f = open('astra.import/schema/AstraTableDef')
 Run the migrator from the **leaves.astra/** folder
 
 ```
-python3 astra.import/data/RESTToAstra.py
+python3 astra.import/RESTToAstra.py
 ```
 
 * If you recieve the following, you're most likely using python 2, switch to python 3 and retry.
 
 ```
- File "c:/Users/adp8k/Desktop/migrator-test/astra.import/data/SolrToAstra.py", line 140, in <module>
+ File "c:/Users/adp8k/Desktop/migrator-test/astra.import/SolrToAstra.py", line 140, in <module>
     "INSERT INTO killrvideo.leaves JSON %s" % "'"+json_doc.replace("'","''")+"'"
   File "C:\Python27\lib\site-packages\cassandra\cluster.py", line 2615, in execute
     return self.execute_async(query, parameters, trace, custom_payload, timeout, execution_profile, paging_state, host, execute_as).result()
