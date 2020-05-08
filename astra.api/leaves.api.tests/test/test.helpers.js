@@ -1,17 +1,22 @@
 /* eslint-disable quotes */
 
+//this file is used to help modularize the app.spec.js file which houses the test code
+
 const cassandra = require('cassandra-driver');
 const config = require('../src/config');
 
+//set up connection to Astra using cassandra-driver from DataStax
 const client = new cassandra.Client({
-  cloud: { secureConnectBundle: config.ASTRA_BUNDLE },
+  cloud: { secureConnectBundle: `../../astra.credentials/secure-connect-${config.ASTRA_CLUSTER}.zip`},
   credentials: { username: config.ASTRA_USERNAME, password: config.ASTRA_PASSWORD }
 });
-  
+
+//Connecting to Astra database with console.log confirming connection
 client.connect(function(err, result){
   console.log('astra connected');
 });
 
+//test record that will be utilized for testing the APIs
 const testRecord1 = {
   'id': 9495,
   'all': ['1', '0', 'admin', 'rahul.singh@anant.us', '1', 'saas', 'blockchain', 'monitoring', 'saas', 'blockchain', 'monitoring', '0', '9495', 'BCT Token Sale – INSTITUTIONAL GRADE CRYPTO TRADING SOFTWARE', 'https://www.bct.io/', '<h3 class="t-entry-title h6">David Israel</h3><p class="t-entry-meta">CSO</p><p class="t-entry-excerpt">David Israel is a problem solver, leader, and expert in state-of-the-art technology infrastructure for organizations of scale. He has 30+ years of experience engineering and implementing network and security tools to business innovators, and spearheaded help-desk and risk-reduction operations across the globe.</p>', 'David Israel CSO David Israel is a problem solver, leader, and expert in state-of-the-art technology infrastructure for organizations of scale. He has 30+ years of experience engineering and implementing network and security tools to business innovators, and spearheaded help-desk and risk-reduction operations across the globe.', 'Wed Apr 04 12:24:56 UTC 2018', 'Wed Apr 04 12:25:11 UTC 2018', 'text/html', 'en_US', '0', 'www.bct.io', '200', '/api/entries/9495', '1641694520728879104'],
@@ -38,6 +43,7 @@ const testRecord1 = {
   'user_name': 'admin'
 };
 
+//test record that will be utilized for testing the APIs
 let testRecord2 = {
   'id': 9521,
   'all': ['1', '0', 'admin', 'rahul.singh@anant.us', '1', 'saas', 'blockchain', 'monitoring', 'saas', 'blockchain', 'monitoring', '0', '9495', 'BCT Token Sale – INSTITUTIONAL GRADE CRYPTO TRADING SOFTWARE', 'https://www.bct.io/', '<h3 class="t-entry-title h6">David Israel</h3><p class="t-entry-meta">CSO</p><p class="t-entry-excerpt">David Israel is a problem solver, leader, and expert in state-of-the-art technology infrastructure for organizations of scale. He has 30+ years of experience engineering and implementing network and security tools to business innovators, and spearheaded help-desk and risk-reduction operations across the globe.</p>', 'David Israel CSO David Israel is a problem solver, leader, and expert in state-of-the-art technology infrastructure for organizations of scale. He has 30+ years of experience engineering and implementing network and security tools to business innovators, and spearheaded help-desk and risk-reduction operations across the globe.', 'Wed Apr 04 12:24:56 UTC 2018', 'Wed Apr 04 12:25:11 UTC 2018', 'text/html', 'en_US', '0', 'www.bct.io', '200', '/api/entries/9495', '1641694520728879104'],
@@ -64,6 +70,7 @@ let testRecord2 = {
   'user_name': 'admin'
 };
 
+//test record that will be utilized for testing the APIs
 let testRecord3 = {
   'id': 8946,
   'all': ['1', '0', 'admin', 'rahul.singh@anant.us', '1', 'javascript', 'interface', 'framework', 'javascript', 'interface', 'framework', '0', '8946', 'Metal.js', 'https://metaljs.com/', '<h4 class="highlight-title">Our Architecture</h4><img class="architecture-image-primary" src="https://metaljs.com/images/metal_architecture@2x.png" alt="Architecture" /><p class="highlight-description">Metal.js\' main classes are State and Component. Component actually extends from State, thus containing all its features. The main difference between the two is that Component\'s extra features are related to rendering. So you could just use State directly if your module doesn\'t do any rendering. But if your module does need rendering logic, then Component will work better for you.</p><p class="highlight-description">Many people have their own favorite way of dealing with rendering logic. Some prefer to use template languages that completely separate it from the business logic, while others like to keep both close together in the same file. Metal.js doesn\'t force developers to go with only one of those. By default it offers integration points with both closure templates from Google and JSX from Facebook, and it\'s possible to add more options, since the rendering layer is customizable.</p>', "Our Architecture Metal.js' main classes are State and Component. Component actually extends from State, thus containing all its features. The main difference between the two is that Component's extra features are related to rendering. So you could just use State directly if your module doesn't do any rendering. But if your module does need rendering logic, then Component will work better for you. Many people have their own favorite way of dealing with rendering logic. Some prefer to use template languages that completely separate it from the business logic, while others like to keep both close together in the same file. Metal.js doesn't force developers to go with only one of those. By default it offers integration points with both closure templates from Google and JSX from Facebook, and it's possible to add more options, since the rendering layer is customizable.", 'Sat Dec 30 11:18:48 UTC 2017', 'Sat Dec 30 11:30:33 UTC 2017', 'text/html', 'en', '0', 'metaljs.com', '200', '/api/entries/8946', '1641695047153876992'],
@@ -91,34 +98,43 @@ let testRecord3 = {
 };
 
 
+//function to use in app.spec.js for inserting a test record to the Astra database
 const insertRecord = (record) => {
 
-  let query = 'insert into killrvideo.leaves JSON ?;'; 
+  //query to send to Astra
+  let query = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ?;`; 
 
+  //execute the query to Astra
   return client.execute(query, [JSON.stringify(record)], { prepare : true });
 
 };
 
-
+//function to use in app.spec.js for truncating the table in the Astra database
 const cleanTable = () => {
 
-  let truncateQuery = 'TRUNCATE killrvideo.leaves';
+  //query to send to Astra
+  let truncateQuery = `TRUNCATE ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE}`;
 
+  //execute the query to Astra
   return client.execute(truncateQuery);
 
 };
 
-
+//function to use in app.spec.js for deleting a test record in the Astra database
 const deleteRecord = (record) => {
     
-  let deleteQuery = 'DELETE FROM killrvideo.leaves WHERE id=?;';
+  //query to send to Astra
+  let deleteQuery = `DELETE FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
 
+  //prepared params
   let deleteParams = [record.id];
 
+  //execute the query to Astra
   return client.execute(deleteQuery, deleteParams, { prepare : true });
 }; 
 
 
+//export the test records and functions to use in app.spec.js
 module.exports = {
 
   testRecord1,
