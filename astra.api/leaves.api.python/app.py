@@ -23,14 +23,14 @@ else:
     print("An error occurred.")
 
 #Go to killrvideo keyspace
-session.set_keyspace('killrvideo')
+session.set_keyspace(cred['keyspace'])
 
 #Create Flask app
 app = Flask(__name__)
 
 @app.route('/api/leaves',methods=['GET'])
 def getAll():
-    rows = session.execute("SELECT JSON * FROM killrvideo.leaves")
+    rows = session.execute("SELECT JSON * FROM "+cred['keyspace']+'.'+cred['table'])
     #print(type(rows))
     result = []
     for row in rows:
@@ -40,7 +40,7 @@ def getAll():
     
 @app.route('/api/leaves&rows=<num_rows>',methods=['GET'])
 def getNumRows(num_rows):
-    rows = session.execute("SELECT JSON * FROM killrvideo.leaves LIMIT "+str(num_rows))
+    rows = session.execute("SELECT JSON * FROM "+cred['keyspace']+'.'+cred['table']+" LIMIT "+str(num_rows))
     #print(type(rows))
     result = []
     for row in rows:
@@ -50,7 +50,7 @@ def getNumRows(num_rows):
 
 @app.route('/api/leaves/<id>',methods=['GET'])
 def getById(id):
-    rows = session.execute("SELECT JSON * FROM killrvideo.leaves WHERE id=%s",[int(id)])
+    rows = session.execute("SELECT JSON * FROM "+cred['keyspace']+'.'+cred['table']+" WHERE id=%s",[int(id)])
     result = ''
     for row in rows:
         #print(type(str(row)))
@@ -62,7 +62,7 @@ def getById(id):
 
 @app.route('/api/leaves/<id>',methods=['DELETE'])
 def delById(id):
-    rows = session.execute("DELETE FROM killrvideo.leaves WHERE id=%s",[int(id)])
+    rows = session.execute("DELETE FROM "+cred['keyspace']+'.'+cred['table']+" WHERE id=%s",[int(id)])
     print(rows)
     result = ''
     for row in rows:

@@ -1,4 +1,5 @@
-killrvideo.leaves(
+
+CREATE TABLE IF NOT EXISTS keyspace_name.table_name(
         is_archived int, 
         all list<text>, 
         is_starred int, 
@@ -23,4 +24,4 @@ killrvideo.leaves(
         links list<text>, 
         content text,
         PRIMARY KEY (id)
-    )
+    );
