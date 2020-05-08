@@ -48,7 +48,7 @@ Upon hitting send, then results will be returned in a JSON format. The response 
 
 ![ArpImg2](Assets/../../../Assets/Images/ArpImg2.png)
 
-To make a request to https://localhost:8000/api/leaves/:id, we can use the first returned response from the last GET request and insert that item’s `id` as a parameter:
+To make a request to `https://localhost:8000/api/leaves/:id`, we can use the first returned response from the last GET request and insert that item’s `id` as a parameter:
 
 ![ArpImg3](Assets/../../../Assets/Images/ArpImg3.png)
 
