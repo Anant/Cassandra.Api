@@ -4,8 +4,10 @@
 
 Leaves on DataStax Astra™ with NoSQL, and Apache Cassandra™ in the cloud!
 
+---
+
 ## Setup & Authorization
----- 
+
 
 Before you start using our tools, you'll need to create an account on DataStax Astra:
 ```
@@ -63,7 +65,6 @@ cd leaves.astra/
 ---
 
 ### APIs
----
 
 #### NODE.JS
 
@@ -86,7 +87,6 @@ cd leaves.astra/
 ---
 
 ### TESTING
---- 
 
 - Click on the link below to run test against your API and your Astra Database.
 
