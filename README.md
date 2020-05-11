@@ -2,7 +2,8 @@
 
 <a href="https://circleci.com/gh/badges/shields/tree/master">
         <img src="https://img.shields.io/circleci/project/github/badges/shields/master" alt="build status"></a>
-- stable release version: ![version](https://img.shields.io/badge/version-1.2.3-blue)
+        
+- stable release version: ![version](https://img.shields.io/badge/version-0.0.1-blue)
 
 Leaves on DataStax Astra™ with NoSQL, and Apache Cassandra™ in the cloud!
 
