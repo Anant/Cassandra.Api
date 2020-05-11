@@ -74,7 +74,7 @@ Change the rows variable on line 29 to reflect the number of rows you want copie
 
 Use the sidebar to navigate to astra.api/leaves.api.python/src and open app.py
 
-![ObiImg](Assets/../../../Assets/Images/ObiImg4.png)
+![ObiImg](Assets/../../Assets/Images/ObiImg4.png)
 
 Hit the run button in the upper left or type ‘python3 astra.api/leaves.api.python/src/app.py’ into the terminal and hit enter. A popup will open in the lower right, telling you about a service on port 80.
 
