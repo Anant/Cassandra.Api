@@ -1,5 +1,10 @@
 # Leaves.Astra 
 
+|status|  |release|
+
+.. |status| image:: https://img.shields.io/badge/Status-Beta-blue.svg
+.. |release| image:: https://img.shields.io/badge/Release-0.0.1-blue.svg
+
 Leaves on DataStax Astra™ with NoSQL, and Apache Cassandra™ in the cloud!
 
 ## Setup & Authorization
