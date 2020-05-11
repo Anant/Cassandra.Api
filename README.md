@@ -50,11 +50,12 @@ git clone https://github.com/xingh/leaves.astra.git
 cd leaves.astra/
 ```
 
-### For Online/Cloud Deployment
+### For Cloud Deployment
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/xingh/leaves.astra.git)
 
 ---
+
 
 ### Data Migrator
 
@@ -65,6 +66,11 @@ cd leaves.astra/
 ---
 
 ### APIs
+
+[Building REST API Blog Post](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+
+[Building REST API Webinar Recording](https://www.youtube.com/watch?v=O64pJa3eLqs)
+
 
 #### NODE.JS
 
@@ -87,6 +93,7 @@ cd leaves.astra/
 ---
 
 ### TESTING
+
 
 - Click on the link below to run test against your API and your Astra Database.
 
