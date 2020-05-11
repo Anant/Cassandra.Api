@@ -38,9 +38,9 @@ cd leaves.astra/
 ### APIs
 ---
 
-[Building REST API Blog PosT](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+[Building REST API Blog Post](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
 
-[Building REST API Webinar REcording](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+[Building REST API Webinar Recording](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
 
 #### NODE.JS
 
