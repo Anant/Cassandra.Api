@@ -29,11 +29,11 @@ password:KVPassword
 
 NOTE: Feel free to use your own naming conventions but keep in mind that you'll need to adjust the values in your credentials file later on.
 
-The last step you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection dEtails"
+The last step you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection Details"
 
 ![Astra](Assets/../Assets/Images/astra3.png)
 
-After, click on the link to download "secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
+After, click on the link to "Download secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
 
 * Modify each field value in **leaves.astra/astra.credentials/UserCred.json** 
 
@@ -66,10 +66,6 @@ cd leaves.astra/
 ---
 
 ### APIs
-
-[Building REST API Blog Post](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
-
-[Building REST API Webinar Recording](https://www.youtube.com/watch?v=O64pJa3eLqs)
 
 
 #### NODE.JS
