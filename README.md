@@ -33,27 +33,22 @@ cd leaves.astra/
 ## RUN DATA MIGRATOR
 - - - 
 
-```
-python3 astra.import/RESTToAstra.py
-```
-<br />
+[README](https://github.com/Anant/cassandra.api/blob/master/astra.import/README.md)
 
 ### APIs
 ---
 
+[Building REST API Blog PosT](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+
+[Building REST API Webinar REcording](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+
 #### NODE.JS
 
-[README](https://github.com/xingh/leaves.astra/blob/master/astra.api/leaves.api.node/README.md)
+[README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.node/README.md)
 
 #### PYTHON
 
-[README](https://github.com/xingh/leaves.astra/blob/master/astra.api/leaves.api.python/README.md)
-
-##### Response:
-```
-[...] // # of articles
-```
-<br />
+[README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.python/README.md)
 
 ### TESTING
 --- 
