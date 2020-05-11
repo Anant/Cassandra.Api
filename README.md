@@ -39,20 +39,22 @@ After, click on the link to download "secure connect bundle" and save the zip fi
 
 ## Getting started
 
-### Local Deployment
+### For Local Deployment
 
-```sh
+```
 git clone https://github.com/xingh/leaves.astra.git
 cd leaves.astra/
 ```
 
-### Cloud Deployment
+### For Online/Cloud Deployment
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/xingh/leaves.astra.git)
 
 ---
 
-### How to RUN DATA MIGRATOR (Get data from leaves API into your Astra Database)
+### Data Migrator
+
+- Click on the link below to run the "Data Migrator" which transfer data from our leaves API to your Astra Database.
 
 [README](https://github.com/Anant/cassandra.api/blob/master/astra.import/README.md)
 
@@ -63,12 +65,17 @@ cd leaves.astra/
 
 #### NODE.JS
 
+- Click on the link below if you wish to use our "NodeJS API" with with your Astra Database.
+
 [README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.node/README.md)
 
 #### PYTHON
 
+- Click on the link below if you wish to use our "Python API" with your Astra Database.
+
 [README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.python/README.md)
 
+### API Reference Material
 
 [Building REST API Blog PosT](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
 
@@ -78,5 +85,7 @@ cd leaves.astra/
 
 ### TESTING
 --- 
+
+- Click on the link below to run test against your API and your Astra Database.
 
 [README](https://github.com/xingh/leaves.astra/blob/master/astra.api/leaves.api.tests/README.md)
