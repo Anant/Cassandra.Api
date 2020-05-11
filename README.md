@@ -1,7 +1,10 @@
 # Leaves.Astra 
 
-<a href="https://circleci.com/gh/badges/shields/tree/master">
-        <img src="https://img.shields.io/circleci/project/github/badges/shields/master" alt="build status"></a>  ![version](https://img.shields.io/badge/version-0.0.1-blue)
+<p>
+        <a href="https://circleci.com/gh/badges/shields/tree/master">
+                <img src="https://img.shields.io/circleci/project/github/badges/shields/master" alt="build status"></a>
+        ![version](https://img.shields.io/badge/version-0.0.1-blue)
+</p>
 
 Leaves on DataStax Astra™ with NoSQL, and Apache Cassandra™ in the cloud!
 
