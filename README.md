@@ -13,9 +13,12 @@ Before you start using our tools, you'll need to create an account on DataStax A
 ```
 https://auth.cloud.datastax.com
 ```
-You'll then be directed to this screen where you fill in details to launch new Astra Database.
 
 ![Astra](Assets/../Assets/Images/astra1.png)
+
+You'll then be directed to this screen where you fill in details to launch new Astra Database.
+
+![Astra](Assets/../Assets/Images/astra4.png)
 
 You can use the following details to complete your database
 ```
@@ -25,15 +28,15 @@ username:KVUser
 password:KVPassword
 ```
 
+***NOTE: Feel free to use your own naming conventions but keep in mind that you'll need to adjust the values in your credentials file later on.***
+
+The last step you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection Details"
+
 ![Astra](Assets/../Assets/Images/astra2.png)
 
-NOTE: Feel free to use your own naming conventions but keep in mind that you'll need to adjust the values in your credentials file later on.
-
-The last step you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection dEtails"
+After, click on the link to "Download secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
 
 ![Astra](Assets/../Assets/Images/astra3.png)
-
-After, click on the link to download "secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
 
 * Modify each field value in **leaves.astra/astra.credentials/UserCred.json** 
 
