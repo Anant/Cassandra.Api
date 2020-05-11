@@ -38,6 +38,10 @@ cd leaves.astra/
 ### APIs
 ---
 
+[Building REST API Blog PosT](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+
+[Building REST API Webinar REcording](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+
 #### NODE.JS
 
 [README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.node/README.md)
@@ -45,12 +49,6 @@ cd leaves.astra/
 #### PYTHON
 
 [README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.python/README.md)
-
-##### Response:
-```
-[...] // # of articles
-```
-<br />
 
 ### TESTING
 --- 
