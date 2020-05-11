@@ -6,8 +6,6 @@ Python REST API using DataStax Astra with NoSQL, and Apache Cassandra™ in the 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. For deployment to Gitpod: 
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/xingh/leaves.astra.git)
-
 ### Prerequisites
 
 - Python 2.7.17 or Python 3
@@ -54,15 +52,32 @@ Navigate to `localhost:8000/api/leaves/(id)` to view a single row from your tabl
 
 ## Running the program on Gitpod
 
-Run the script with the following command:
-```
-python3 astra.api/leaves.api.python/app.py
-```
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
 
-Gitpod will show a notice about port `8000` being open.
-Open the port and also hit the "Browser" button, whcih will open a new tab which will likely point to a `404` page.
-Add `/api/leaves` to the end of that url to view all of the data in your astra database table.
-Add `/api/leaves/(id)` to view a single row from your table with the proper id.
+Use the sidebar to navigate to astra.api/leaves.api.python/src and open app.py
+
+![ObiImg](Assets/../../../Assets/Images/ObiImg4.png)
+
+Hit the run button in the upper left or type ‘python3 astra.api/leaves.api.python/src/app.py’ into the terminal and hit enter. A popup will open in the lower right, telling you about a service on port 80.
+
+![ObiImg](Assets/../../../Assets/Images/ObiImg5.png)
+
+Press the make public button
+
+![ObiImg](Assets/../../../Assets/Images/ObiImg6.png)
+
+Press the open browser button. This will open a new tab and navigate to a 404 page.
+
+![ObiImg](Assets/../../../Assets/Images/ObiImg7.png)
+
+Add /api/leaves to the end of that url and navigate to that page. It should contain a list of all of the rows put into your astra table via the data importer. During this step grab the id of at least one entry. (in this case the id is 13952)
+
+![ObiImg](Assets/../../../Assets/Images/ObiImg8.png)
+
+Add that id to then end of the url, so that it looks like this [gitpod generated url]/api/leaves/[chosen id] in this case /api/leaves/13952 and navigate to the new url. This will show an individual entry from your astra database.
+
+![ObiImg](Assets/../../../Assets/Images/ObiImg9.png)
+
 ## Built With
 
 * [Python](https://www.python.org/) - Language & Compiler Used
