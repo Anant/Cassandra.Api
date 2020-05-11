@@ -33,21 +33,18 @@ cd leaves.astra/
 ## RUN DATA MIGRATOR
 - - - 
 
-```
-python3 astra.import/RESTToAstra.py
-```
-<br />
+[README](https://github.com/Anant/cassandra.api/blob/master/astra.import/README.md)
 
 ### APIs
 ---
 
 #### NODE.JS
 
-[README](https://github.com/xingh/leaves.astra/blob/master/astra.api/leaves.api.node/README.md)
+[README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.node/README.md)
 
 #### PYTHON
 
-[README](https://github.com/xingh/leaves.astra/blob/master/astra.api/leaves.api.python/README.md)
+[README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.python/README.md)
 
 ##### Response:
 ```
