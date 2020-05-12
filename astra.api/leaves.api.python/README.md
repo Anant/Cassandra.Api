@@ -30,6 +30,8 @@ line 13: 'secure_connect_bundle': '../../astra.credentials/secure-connect-'+cred
 line 27: f = open('../../astra.import/AstraTableDef')
 ```
 
+---
+
 ## Running the API Locally
 
 Run the script with the following command:
@@ -40,6 +42,8 @@ python app.py
 Navigate to `localhost:8000/api/leaves` to view all of the data in your astra database table.
 
 Navigate to `localhost:8000/api/leaves/(id)` to view a single row from your table with the proper id.
+
+---
 
 ## Running the API on Gitpod
 
@@ -80,7 +84,7 @@ Add that id to then end of the url, so that it looks like this [gitpod generated
 0.1
 
 ## Authors
-* **Obi** - *Initial work*
+* **Obioma Anomnachi** - *Initial work*
 
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.

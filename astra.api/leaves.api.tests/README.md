@@ -28,11 +28,12 @@ npm run test
 * Point the API that is being tested to port `8000`, or change line 3 in *leaves.api.tests/test/app.spec.js* to match the running URL/PORT of the API.
 * **Ensure your Node/Python API is running before starting tests**
 
-----
 
 We will discuss how to run the tests for testing the node API and the python API from the same test suite. We can either do this on Gitpod or locally, whichever you prefer as the steps will be the same after setting it up. If doing this on Gitpod, go to `gitpod.io#the-repo-url` and wait for it to finish loading. If doing it locally, git clone the repo to whichever location. Once cloned, cd into the directory and open the directory in whichever code editor you are using. We will discuss the how-to for both. But before doing so, we will need to download the secure connect bundle from Astra and place that into the `/astra.credentials` directory, and then insert the appropriate credentials into `/astra.credentials/UserCred.json` as those will be needed to run the API’s and tests. 
 
-## Local
+---
+
+## Running Unit Tests Locally
 
 Start by cd-ing into the directory as seen below:
 
@@ -75,7 +76,9 @@ Now that we have the python API running in the left terminal, and now that we ar
 
 Now we have run both the node and python API’s locally and on Gitpod, and verified that they both work with passing tests, both locally and on Gitpod.
 
-## Gitpod
+---
+
+## Running Unit Tests on Gitpod
 
 ![ArpImg15](Assets/../../../Assets/Images/ArpImg15.png)
 
@@ -115,4 +118,18 @@ Once the python API is running, we can re-run `npm test` on the left terminal, a
 
 ![ArpImg22](Assets/../../../Assets/Images/ArpImg22.png)
 
-And there you have it, both the node and python API’s run and pass the tests with minimal setup on Gitpod.  
+And there you have it, both the node and python API’s run and pass the tests with minimal setup on Gitpod.
+
+## Built With
+
+* [NodeJS](https://nodejs.org/en/) - Framework Used
+* [CQLSH](https://docs.datastax.com/en/astra/aws/doc/dscloud/astra/dscloudConnectcqlshConsole.html) - Connecting to Astra databases using CQLSH
+
+## Contributing
+
+## Versioning
+
+## Authors
+* **Arpan Patel** - *Initial work*
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
