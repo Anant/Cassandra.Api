@@ -16,7 +16,11 @@ Before using this API, run the data importer first so that you have data in your
     * `PATCH` -> (**TBD AND UNTESTED TO LEAVES DB**) Updates an item in KEYSPACE.leaves table based on id parameter and request body
     * `Delete` -> (**WORKING + TESTED**) Deletes an item in KEYSPACE.leaves table based on id parameter
 
+---
+
 ### Running the API Locally 
+
+You need to insert the secure connect bundle and credentials from Astra in /astra.credentials and /astra.credentials/UserCred.json, respectively. You will also need to run the data migrator from /astra.import/RESTToAstra.py to seed the database before we begin making requests to the API.
 
 Run the following commands:
 
@@ -63,7 +67,9 @@ Going back to the code terminal, you can see a list of requests that were made a
 
 ![ArpImg8](Assets/../../../Assets/Images/ArpImg8.png)
 
-### Gitpod 
+---
+
+### Running the API on Gitpod 
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
 
@@ -120,6 +126,6 @@ And to replicate the 404 error and JSON message, we can run that request again:
 ## Versioning
 
 ## Authors
-* **Arpan** - *Initial work*
+* **Arpan Patel** - *Initial work*
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
