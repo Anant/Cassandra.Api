@@ -20,6 +20,8 @@ Before using this API, run the data importer first so that you have data in your
 
 ### Running the API Locally 
 
+You need to insert the secure connect bundle and credentials from Astra in /astra.credentials and /astra.credentials/UserCred.json, respectively. You will also need to run the data migrator from /astra.import/RESTToAstra.py to seed the database before we begin making requests to the API.
+
 Run the following commands:
 
 ```
