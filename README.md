@@ -70,26 +70,23 @@ cd leaves.astra/
 
 ### Data Migrator
 
-- Click on the link below to run the "Data Migrator" which transfer data from our leaves API to your Astra Database.
+- Transfer data from our leaves.api to your Astra Database.
 
-[README](https://github.com/Anant/cassandra.api/blob/master/astra.import/README.md)
+- [Use the Data Migrator](https://github.com/Anant/cassandra.api/blob/master/astra.import/README.md)
 
 ---
 
 ### APIs
 
+- We have 2 APIs you can use with Astra.
 
 #### NODE.JS
 
-- Click on the link below if you wish to use our "NodeJS API" with with your Astra Database.
-
-[README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.node/README.md)
+- [Use NODE API with your Astra Database](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.node/README.md)
 
 #### PYTHON
 
-- Click on the link below if you wish to use our "Python API" with your Astra Database.
-
-[README](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.python/README.md)
+- [Use Python API with your Astra Database](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.python/README.md)
 
 #### API Reference Material
 
@@ -101,7 +98,6 @@ cd leaves.astra/
 
 ### TESTING
 
+- We wrote some Unit Test to confirm that your APIs are working properly.
 
-- Click on the link below to run test against your API and your Astra Database.
-
-[README](https://github.com/xingh/leaves.astra/blob/master/astra.api/leaves.api.tests/README.md)
+- [Test your API against your Astra Database.](https://github.com/anant/cassandra.api/blob/master/astra.api/leaves.api.tests/README.md)
