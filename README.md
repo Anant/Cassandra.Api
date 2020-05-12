@@ -9,7 +9,8 @@ So far we have 3 parts to this project:
 2) Node or Python API Setup - astra.api
 3) API Testing -astra.api/leaves.api.tests
 
-It's best to go through this project in that order so you do not get confused.
+***It's best to go through this project in that order so you do not get confused.***
+
 ---
 
 ## Setup & Authorization
