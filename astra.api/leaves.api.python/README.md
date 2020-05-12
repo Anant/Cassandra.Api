@@ -1,10 +1,9 @@
-# Leaves.Astra Api (Python)
-
-Python REST API using DataStax Astra with NoSQL, and Apache Cassandra™ in the cloud!
+# Python REST API
 
 ## Getting Started 
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. For deployment to Gitpod: 
+These instructions will get your Python REST API using Astra up and running locally and on the cloud.
+Before using this API, run the data importer first so that you have data in your database.
 
 ### Prerequisites
 
@@ -13,23 +12,16 @@ These instructions will get you a copy of the project up and running on your loc
 - Python requests
 - Python flask
 
-```sh
-pip install cassandra-driver
-pip install requests
-pip install flask
-```
-OR 
+run the following command:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-### Setup (Locally)
+### Setup for Both Local and Cloud Deployment
 
-- Create your database on DataStax Astra (Be sure to remmeber your keyspace name, username and password as those will be useful later on)
-- Clone this repo
-- Download the connection-details zip file from your Astra dashboard and place it in the "astra.credentials" folder.
-- Add your credentials to the UserCred.json file in "leaves.astra/astra.credentials/" using the credentials you use to log in to the cql shell within astra as your username and password, and the name of your astra database under cluster
+- Before reaching this step you should have created your Astra account and you should have already added your connection details to the "astra.credentials" directory. If not, please go back to the root directory and follow the instructions detailed in the readme there.
+- You also need to add your credentials to the UserCred.json file in "cassandra.api/astra.credentials/" directory. Right now it has the example naming conventions that are stated in the main readme so if you used different conventions be sure to change those.
 - Depending on the setup of your local machine's PATH, enviroment variable, you may need to edit lines 10, 13, 27 to inlcude the full paths for each file/folder the program is looking for.
 
 ```sh
@@ -37,9 +29,8 @@ line 10: with open('../../astra.credentials/UserCred.json') as f:
 line 13: 'secure_connect_bundle': '../../astra.credentials/secure-connect-'+cred['cluster']+'.zip'
 line 27: f = open('../../astra.import/AstraTableDef')
 ```
-- Make sure to run the importer first so that you have data in your database.
 
-## Running the Program (Locally)
+## Running the API Locally
 
 Run the script with the following command:
 ```sh
@@ -50,7 +41,7 @@ Navigate to `localhost:8000/api/leaves` to view all of the data in your astra da
 
 Navigate to `localhost:8000/api/leaves/(id)` to view a single row from your table with the proper id.
 
-## Running the program on Gitpod
+## Running the API on Gitpod
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
 
@@ -86,6 +77,7 @@ Add that id to then end of the url, so that it looks like this [gitpod generated
 ## Contributing
 
 ## Versioning
+0.1
 
 ## Authors
 * **Obi** - *Initial work*

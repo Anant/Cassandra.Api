@@ -1,28 +1,11 @@
-# Leaves.Astra API (Node)
+# Node REST API
 
-Nodejs REST API using DataStax Astra with NoSQL, and Apache Cassandra™ in the cloud!
+These instructions will get your Node REST API using Astra up and running locally and on the cloud.
+Before using this API, run the data importer first so that you have data in your database.
 
 ## Getting Started
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/xingh/leaves.astra.git)
-
-leaves.astra/astra.api/leaves.api.node
-
-* `npm install`
-
-* `npm start` or `npm run dev` (Start application in development using [nodemon](https://www.npmjs.com/package/nodemon))
-
-Navigate to:
-
-(Local) `localhost:8000/api/leaves`
-
-(Gitpod): Once started, an alert will apear. Click "Open Browser"
-
-![Alt Img](Assets/../../../Assets/Images/gitpodNode.png)
-
-Add `/api/leaves` to Gitpod url
-
-## Endpoints (Ongoing/Subject to change)
+### NOTE: Endpoints (Ongoing/Subject to change)
 
 * `/api/leaves`
     * `GET` -> (**WORKING + TESTED**) Returns items from the KEYSPACE.leaves table
@@ -33,14 +16,22 @@ Add `/api/leaves` to Gitpod url
     * `PATCH` -> (**TBD AND UNTESTED TO LEAVES DB**) Updates an item in KEYSPACE.leaves table based on id parameter and request body
     * `Delete` -> (**WORKING + TESTED**) Deletes an item in KEYSPACE.leaves table based on id parameter
 
----- 
+### Running the API Locally 
 
-(Local) After cloning down leaves.astra, cd into it. Insert the secure connect bundle from Astra into `/astra.credentials` and then insert the appropriate credentials into `UserCred.json`. Then, cd into `/astra.api/leaves.api.node` and run `npm install`. After doing so, run `npm run dev` or `npm start` to run the server at localhost:8000. Npm run dev uses nodemon to restart the server automatically upon detecting saves. You should see this below after running `npm run dev` if the credentials were inserted correctly: 
+Run the following commands:
 
+```
+npm install
+npm run dev
+```
+
+You sould see the following screen if eveyrthing worked succesfully.
 
 ![ArpImg](Assets/../../../Assets/Images/ArpImg0.png)
 
-You will need to run the data migrator from `/astra.import/RESTToAstra.py` to seed the database before we begin making requests to the API. To make a request to `http://localhost:8000/api/leaves/` we will use Postman and cURL. First, using Postman, we will make a GET request to `http://localhost:8000//api/leaves/` to get an array of all items in the database.
+Then navigate to`localhost:8000/api/leaves`
+
+To make a request to `http://localhost:8000/api/leaves/` we will use Postman and cURL. First, using Postman, we will make a GET request to `http://localhost:8000//api/leaves/` to get an array of all items in the database.
 
 ![ArpImg1](Assets/../../../Assets/Images/ArpImg1.png)
 
@@ -72,9 +63,30 @@ Going back to the code terminal, you can see a list of requests that were made a
 
 ![ArpImg8](Assets/../../../Assets/Images/ArpImg8.png)
 
-(Gitpod) Now to do the same thing with cURL, we will use the repository on Gitpod to showcase that the code works there and the same information can be returned. To start a new workspace, go to `gitpod.io#<Insert url to github repo>`. After the Gitpod finishes setting up, we need to insert the secure connect bundle and credentials from Astra in `/astra.credentials` and `/astra.credentials/UserCred.json`, respectively. After doing so, cd into `/astra.api/leaves.api.node/` and run `npm install`. Once the node modules have been installed, run `npm run dev` or `npm start` and you will see this:
+### Gitpod 
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
+
+cassandra.api/astra.api/leaves.api.node
+
+Now to do the same thing with cURL, we will use the repository on Gitpod to showcase that the code works there and the same information can be returned. To start a new workspace, go to `gitpod.io#<Insert url to github repo>`. After the Gitpod finishes setting up, you need to insert the secure connect bundle and credentials from Astra in `/astra.credentials` and `/astra.credentials/UserCred.json`, respectively. 
+
+Once that is done, run the following commands:
+
+```
+npm install
+npm run dev
+```
+
+You sould see the following screen if eveyrthing worked succesfully.
 
 ![ArpImg9](Assets/../../../Assets/Images/ArpImg9.png)
+
+Once started, an alert will appear like the image below.
+
+![Alt Img](Assets/../../../Assets/Images/gitpodNode.png)
+
+Add `/api/leaves` to Gitpod url to view the API.
 
 You can click make public and we will get ready to make cURL requests. To do so, we will need to open a new terminal, while keeping the one running the server open. You will also need to run the data migrator from `/astra.import/RESTToAstra.py` to seed the database before we begin making requests to the API To make the cURL request to get all, we will run `curl http://localhost:8000/api/leaves/`.
 
@@ -97,3 +109,17 @@ To make a DELETE request, we can do use the same id, but add a “DELETE” to t
 And to replicate the 404 error and JSON message, we can run that request again:
 
 ![ArpImg14](Assets/../../../Assets/Images/ArpImg14.png)
+
+## Built With
+
+* [NodeJS](https://nodejs.org/en/) - Framework Used
+* [CQLSH](https://docs.datastax.com/en/astra/aws/doc/dscloud/astra/dscloudConnectcqlshConsole.html) - Connecting to Astra databases using CQLSH
+
+## Contributing
+
+## Versioning
+
+## Authors
+* **Arpan** - *Initial work*
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
