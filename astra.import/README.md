@@ -60,7 +60,7 @@ cassandra.InvalidRequest: Error from server: code=2200 [Invalid query] message="
 
 ## Running the program on Gitpod
 
-Open a fresh gitpod instance by going to gitpod.io/#https://github.com/xingh/leaves.astra/ 
+Open a fresh gitpod instance by going to gitpod.io/#https://github.com/anant/cassandra.api/ 
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg1.png)
 
