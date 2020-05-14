@@ -6,17 +6,36 @@ const leavesRouter = express.Router();
 // const jsonParser = express.json();
 const cassandra = require('cassandra-driver');
 const config = require('../config');
+const ExpressCassandra = require('express-cassandra');
+//leavesModel that contains the model for the table
+const leavesModel = require('../Models/leavesModel');
+
+const models = ExpressCassandra.createClient({
+  clientOptions: {
+    cloud: { secureConnectBundle: `../../astra.credentials/secure-connect-${config.ASTRA_CLUSTER}.zip`},
+    credentials: { username: config.ASTRA_USERNAME, password: config.ASTRA_PASSWORD },
+    keyspace: `${config.ASTRA_KEYSPACE}`
+  }
+});
+
+const MyModel = models.loadSchema('Leaves', leavesModel);
+
+// MyModel or models.instance.Leaves can now be used as the model instance
+console.log(models.instance.Leaves === MyModel);
+
+
 
 //set up connection to Astra using cassandra-driver from DataStax
-const client = new cassandra.Client({
-  cloud: { secureConnectBundle: `../../astra.credentials/secure-connect-${config.ASTRA_CLUSTER}.zip`},
-  credentials: { username: config.ASTRA_USERNAME, password: config.ASTRA_PASSWORD }
-});
+// const client = new cassandra.Client({
+//   cloud: { secureConnectBundle: `../../astra.credentials/secure-connect-${config.ASTRA_CLUSTER}.zip`},
+//   credentials: { username: config.ASTRA_USERNAME, password: config.ASTRA_PASSWORD }
+// });
 
+//dont actually need this to run the node api, but we can keep it for confirmation of connection
 //Connecting to Astra database with console.log confirming connection
-client.connect(function(err, result){
-  console.log('astra connected');
-});
+// client.connect(function(err, result){
+//   console.log('astra connected');
+// });
 
 //Using express router and the base route of /api/leaves/
 leavesRouter
@@ -25,14 +44,23 @@ leavesRouter
   .get( async (req, res, next) => {
     try{
 
-      //query to make to Astra 
-      let query = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE};`;
+      // //query to make to Astra 
+      // let query = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE};`;
 
-      //await client executing the query and set the results into a variable
-      let result = await client.execute(query);
+      // //await client executing the query and set the results into a variable
+      // let result = await client.execute(query);
 
-      //return the result of the query in JSON format
-      return res.status(200).json(result.rows);
+      // //return the result of the query in JSON format
+      // return res.status(200).json(result.rows);
+
+      models.instance.Leaves.findOne({id: 13952}, function(err, result){
+        if(err){
+          console.log(err);
+          return;
+        }
+
+        console.log(result);
+      })
 
     }
 
