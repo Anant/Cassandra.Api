@@ -3,7 +3,7 @@
 
 const express = require('express');
 const leavesRouter = express.Router();
-// const jsonParser = express.json();
+const jsonParser = express.json();
 const cassandra = require('cassandra-driver');
 const config = require('../config');
 // const ExpressCassandra = require('express-cassandra');
@@ -79,33 +79,75 @@ leavesRouter
     try{
 
       //object destructuring of request body  
-      const { is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
-        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-        http_status, headers, origin_url, _links } 
+      const { tags, url } 
         = req.body;
 
-      //creating new object to insert into Astra
-      newLeaf = { is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
-        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-        http_status, headers, origin_url, _links };
-
       //validate for missing keys in request body
-      for (const [key, value] of Object.entries(newLeaf))
+      for (const [key, value] of Object.entries(req.body))
         if (!value)
           return res.status(400).json({
             error: `Missing '${key}' in request body`
           });
 
+      //creating new object to insert into Astra
+      newLeaf = { tags, url };
+      newLeaf.id = 1234567;
+      newLeaf.is_archived = 1;
+      newLeaf.is_starred = 0;
+      newLeaf.user_name = 'admin';
+      newLeaf.user_email = 'rahul@example.com'
+      newLeaf.user_id = 1;
+      newLeaf.is_public = false;
+      newLeaf.domain_name = newLeaf.url.match(/^https?:\/\/[^#?\/]+/)[0];
+      newLeaf.created_at = Date.now();
+      newLeaf.updated_at = Date.now();
+      newLeaf.links = [`api/entries/${newLeaf.id}`];
+      newLeaf.slugs = newLeaf.tags;
+
+      newLeaf.title = '';
+      newLeaf.content = '';
+      newLeaf.content_text = '';
+      newLeaf.mimetype = '';
+      newLeaf.reading_time = 1;
+      newLeaf.preview_picture = '';
+      newLeaf.http_status = '';
+      newLeaf.language = '';
+      
+      let all = [];
+
+      //run for loop through newLeaf to get all values into newLeaf.all
+      for(let key in newLeaf){
+        //check if newLeaf[key] value is an array
+        if( Array.isArray(newLeaf[key]) ){
+          //if newLeaf[key] is an array, iterate through the array and push them individually
+          for(let i = 0; i < newLeaf[key].length; i++){
+            all.push(newLeaf[key][i]);
+          }
+        }
+
+        // //check if newLeaf[key] value is an integer
+        // else if(Number.isInteger(newLeaf[key])){
+        //   //if newLeaf[key] is a number, then convert to a string
+        //   all.push(newLeaf[key].toString());
+        // }
+        
+        //else push in newLeaf[key] into all array
+        else{
+          all.push(newLeaf[key].toString());
+        }
+
+      }
+
+      newLeaf.all = all;
+
       //query to insert into Astra
       let query = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ?;`; 
 
       //execute query to Astra and store result in variable
-      let result = await client.execute(query, [JSON.stringify(newLeaf)], { prepare : true });
+      await client.execute(query, [JSON.stringify(newLeaf)], { prepare : true });
 
       //send back the result to the client
-      return res.status(201).json(result);
+      return res.status(201).json(newLeaf);
 
     }
     catch(e){
