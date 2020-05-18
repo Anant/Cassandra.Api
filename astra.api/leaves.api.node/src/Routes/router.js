@@ -6,6 +6,7 @@ const leavesRouter = express.Router();
 const jsonParser = express.json();
 const cassandra = require('cassandra-driver');
 const config = require('../config');
+const { processor } = require('../processor');
 // const ExpressCassandra = require('express-cassandra');
 //leavesModel that contains the model for the table
 // const leavesModel = require('../Models/leavesModel');
@@ -91,28 +92,11 @@ leavesRouter
 
       //creating new object to insert into Astra
       newLeaf = { tags, url };
-      newLeaf.id = 1234567;
-      newLeaf.is_archived = 1;
-      newLeaf.is_starred = 0;
-      newLeaf.user_name = 'admin';
-      newLeaf.user_email = 'rahul@example.com'
-      newLeaf.user_id = 1;
-      newLeaf.is_public = false;
-      newLeaf.domain_name = newLeaf.url.match(/^https?:\/\/[^#?\/]+/)[0];
-      newLeaf.created_at = Date.now();
-      newLeaf.updated_at = Date.now();
-      newLeaf.links = [`api/entries/${newLeaf.id}`];
-      newLeaf.slugs = newLeaf.tags;
 
-      newLeaf.title = '';
-      newLeaf.content = '';
-      newLeaf.content_text = '';
-      newLeaf.mimetype = '';
-      newLeaf.reading_time = 1;
-      newLeaf.preview_picture = '';
-      newLeaf.http_status = '';
-      newLeaf.language = '';
+      //run processor on newLeaf to generate other key values
+      await processor(newLeaf);
       
+      //initialize an empty array for all key value pair in newLeaf
       let all = [];
 
       //run for loop through newLeaf to get all values into newLeaf.all
@@ -124,12 +108,6 @@ leavesRouter
             all.push(newLeaf[key][i]);
           }
         }
-
-        // //check if newLeaf[key] value is an integer
-        // else if(Number.isInteger(newLeaf[key])){
-        //   //if newLeaf[key] is a number, then convert to a string
-        //   all.push(newLeaf[key].toString());
-        // }
         
         //else push in newLeaf[key] into all array
         else{
@@ -138,6 +116,7 @@ leavesRouter
 
       }
 
+      //set newLeaf all key to equal the array all populated from the for loop
       newLeaf.all = all;
 
       //query to insert into Astra
