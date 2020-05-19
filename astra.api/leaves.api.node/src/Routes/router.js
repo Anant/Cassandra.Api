@@ -7,23 +7,6 @@ const jsonParser = express.json();
 const cassandra = require('cassandra-driver');
 const config = require('../config');
 const { processor } = require('../processor');
-// const ExpressCassandra = require('express-cassandra');
-//leavesModel that contains the model for the table
-// const leavesModel = require('../Models/leavesModel');
-
-// const models = ExpressCassandra.createClient({
-//   clientOptions: {
-//     cloud: { secureConnectBundle: `../../astra.credentials/secure-connect-${config.ASTRA_CLUSTER}.zip`},
-//     credentials: { username: config.ASTRA_USERNAME, password: config.ASTRA_PASSWORD },
-//     keyspace: `${config.ASTRA_KEYSPACE}`
-//   }
-// });
-
-// const MyModel = models.loadSchema('Leaves', leavesModel);
-
-// // MyModel or models.instance.Leaves can now be used as the model instance
-// console.log(models.instance.Leaves === MyModel);
-
 
 
 // set up connection to Astra using cassandra-driver from DataStax
@@ -54,17 +37,6 @@ leavesRouter
       //return the result of the query in JSON format
       return res.status(200).json(result.rows);
 
-
-      // express-cassandra find one
-      // models.instance.Leaves.findOne({id: 13952}, function(err, result){
-      //   if(err){
-      //     console.log(err);
-      //     return;
-      //   }
-
-      //   console.log(result);
-      // })
-
     }
 
     catch(e){
@@ -80,7 +52,7 @@ leavesRouter
     try{
 
       //object destructuring of request body  
-      const { tags, url } 
+      const { url } 
         = req.body;
 
       //validate for missing keys in request body
@@ -91,7 +63,7 @@ leavesRouter
           });
 
       //creating new object to insert into Astra
-      newLeaf = { tags, url };
+      newLeaf = { url };
 
       //run processor on newLeaf to generate other key values
       await processor(newLeaf);

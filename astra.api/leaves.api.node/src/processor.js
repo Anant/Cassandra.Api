@@ -1,10 +1,12 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const { extract } = require('article-parser');
+const md5 = require('md5');
 
 const processor = async(newLeaf) => {
 
-  newLeaf.id = 1234212;
+  newLeaf.id = 1234213;
+  // newLeaf.id = md5(newLeaf.url);
   newLeaf.is_archived = 1;
   newLeaf.is_starred = 0;
   newLeaf.user_name = 'admin';
@@ -15,6 +17,7 @@ const processor = async(newLeaf) => {
   newLeaf.created_at = Date.now();
   newLeaf.updated_at = Date.now();
   newLeaf.links = [`api/entries/${newLeaf.id}`];
+  newLeaf.tags = [];
   newLeaf.slugs = newLeaf.tags;
 
   //use axios to make a get request to the url

@@ -1,5 +1,5 @@
 //import test records and functions from ./test.helpers that were used to help modularize this file
-const { testRecord1, testRecord2, testRecord3, insertRecord, cleanTable, deleteRecord } = require('./test.helpers');
+const { testRecord1, testRecord2, testRecord3, testRecord4, insertRecord, cleanTable, deleteRecord } = require('./test.helpers');
 
 //set supertest to listen at 'http://localhost:8000'
 supertest = supertest('http://localhost:8000');
@@ -78,6 +78,35 @@ describe('Endpoints', () => {
       .get(`/api/leaves/${testRecord1.id}`)
       //expect status code of 404 as it will not be found
       .expect(404);
+  });
+
+  //Fourth Test
+  it('Insert a record via POST, then make sure it was added', () => {
+
+    const testRequest = {
+      url:  'https://github.com/Anant/cassandra.api'
+    };
+
+    return supertest
+      //make a post request
+      .post('api/leaves/')
+      //send the url
+      .send(testRequest)
+      //expect a 201
+      .expect(201)
+      .expect(res => {
+        //expect response url to match the url sent
+        expect(res.body.url).to.eql(testRequest.url);
+        //expect response url to match test record url
+        expect(res.body.url).to.eql(testRecord4.url);
+        //expect response id to match test record id
+        expect(res.body.id).to.eql(testRecord4.id);
+        //expect response title to match test record title
+        expect(res.body.title).to.eql(testRecord4.title);
+        //expect response domain_name to match test record domain_name
+        expect(res.body.domain_name).to.eql(testRecord4.domain_name);
+      });
+
   });
   
 });
