@@ -1,5 +1,5 @@
 //import test records and functions from ./test.helpers that were used to help modularize this file
-const { testRecord1, testRecord2, testRecord3, testRecord4, insertRecord, cleanTable, deleteRecord } = require('./test.helpers');
+const { testRecord1, testRecord2, testRecord3, testRecord4, testRecord5, insertRecord, cleanTable, deleteRecord } = require('./test.helpers');
 
 //set supertest to listen at 'http://localhost:8000'
 supertest = supertest('http://localhost:8000');
@@ -85,6 +85,7 @@ describe('Endpoints', () => {
     
     // this.timeout(15000);
 
+    //test request body
     const testRequest = {
       url:  'https://github.com/Anant/cassandra.api'
     };
@@ -108,7 +109,37 @@ describe('Endpoints', () => {
         //expect response domain_name to match test record domain_name
         expect(res.body.domain_name).to.eql(testRecord4.domain_name);
       });
-
   });
+
+  //Fifth Test
+  // it('Update a record, and make sure it was updated', () => {
+
+  //   //test request id
+  //   let id = 1234213;
+
+  //   //test request body
+  //   let testRequest = {
+
+  //   };
+
+  //   return supertest
+  //   //make a patch request
+  //     .patch(`/api/leaves/${id}`)
+  //   //send request body
+  //     .send(testRequest)
+  //     .expect(200)
+  //     .expect(res => {
+  //       //expect response id to match the id of the item being updated
+  //       expect(res.body.id).to.eql(id);
+  //       //expect response url to match test record url
+  //       expect(res.body.url).to.eql(testRecord5.url);
+  //       //expect response id to match test record id
+  //       expect(res.body.id).to.eql(testRecord5.id);
+  //       //expect response title to match test record title
+  //       expect(res.body.title).to.eql(testRecord5.title);
+  //       //expect response domain_name to match test record domain_name
+  //       expect(res.body.domain_name).to.eql(testRecord5.domain_name);
+  //     });
+  // });
   
 });
