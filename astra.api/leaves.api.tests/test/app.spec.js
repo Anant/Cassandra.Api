@@ -82,6 +82,8 @@ describe('Endpoints', () => {
 
   //Fourth Test
   it('Insert a record via POST, then make sure it was added', () => {
+    
+    // this.timeout(15000);
 
     const testRequest = {
       url:  'https://github.com/Anant/cassandra.api'
@@ -89,7 +91,7 @@ describe('Endpoints', () => {
 
     return supertest
       //make a post request
-      .post('api/leaves/')
+      .post('/api/leaves')
       //send the url
       .send(testRequest)
       //expect a 201
