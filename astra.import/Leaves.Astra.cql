@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS keyspace_name.table_name(
         tags list<text>, 
         slugs list<text>, 
         is_public boolean, 
-        id int, 
+        id text, 
         title text,
         url text, 
         content_text text, 
