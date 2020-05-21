@@ -147,41 +147,107 @@ leavesRouter
     }
   })
 
-  // Currently under construction and subject to change
+  //allow title, tags, is_archived, is_starred, content, language, preview_picture, is_public, and url to be updated
   .patch( jsonParser, async (req, res, next) => {
     try{
-      
       //extract id from params
-      let leafId = req.params.leafId;
+      let id = req.params.id;
+      //find query to check if the url is different
+      let findQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+      //prepare params
+      let params = [id];
+      //execute find query
+      let findResult = await client.execute(findQuery, params, { prepare: true });
 
-      //object destructuring request body
-      const { is_archived, is_starred, user_name, user_email, user_id, tags, is_public, 
-        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-        http_status, headers, origin_url, _links } 
-        = req.body;
+      //check if there is a new url in the params
+      if(!!req.body.url && findResult.rows[0].url !== req.body.url){
+        //if so, instantiate a newLeaf object
+        let newLeaf = {};
+        //set newLeaf.url to the url in the params
+        newLeaf.url = req.body.url;
+        //run processor to generate other key values
+        await processor(newLeaf);
+        //if req.body has tags
+        if(!!req.body.tags){
+          //parse tags to remove spaces and replace with periods
+          for(i = 0; i < req.body.tags.length; i++){
+            req.body.tags[i] = req.body.tags[i].replace(/\s/g, '.');
+          }
+          //newLeaf.tags = req.body.tags
+          newLeaf.tags = req.body.tags;
+          //newLeaf.slugs = newLeaf.tags
+          newLeaf.slugs = newLeaf.tags;
+          //initialize an empty array for all key value pair in newLeaf
+          let all = [];
+          //run for loop through newLeaf to get all values into newLeaf.all
+          for(let key in newLeaf){
+            //check if newLeaf[key] value is an array
+            if( Array.isArray(newLeaf[key]) ){
+              //if newLeaf[key] is an array, iterate through the array and push them individually
+              for(let i = 0; i < newLeaf[key].length; i++){
+                all.push(newLeaf[key][i]);
+              }
+            }
+            //else push in newLeaf[key] into all array
+            else{
+              all.push(newLeaf[key].toString());
+            }
+          }
+        }
+        //udpate query depending on what we allow for being updated
+        let updateQuery = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`; 
+        //execute query to Astra and store result in variable
+        await client.execute(updateQuery, [JSON.stringify(newLeaf)], { prepare : true });
 
-      //creating new object to insert into Astra
-      newLeaf = { is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
-        id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-        starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-        http_status, headers, origin_url, _links };
+        //send query to send back the updated row
+        let sendQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+        //prepare params
+        let sendParams = [newLeaf.id];
+        //execute find query
+        let updatedRow = await client.execute(sendQuery, sendParams, { prepare: true });
 
-      //validate for missing keys in request body
-      for (const [key, value] of Object.entries(newLeaf))
-        if (!value)
-          return res.status(400).json({
-            error: `Missing '${key}' in request body`
-          });
+        //send back the result to the client
+        return res.status(201).json(updatedRow.rows[0]);
+      }
+      else{
+        //parse tags to remove spaces and replace with periods
+        for(i = 0; i < req.body.tags.length; i++){
+          req.body.tags[i] = req.body.tags[i].replace(/\s/g, '.');
+        }
+        //set newLeaf equal to req.body object
+        let newLeaf = req.body;
+        //set newLeaf.id to id from params
+        newLeaf.id = id;
+        //set updated at time to now
+        newLeaf.updated_at = Date.now();
+        //set newLeaf.all equal to the initial found result.all
+        newLeaf.all = [...findResult.rows[0].all];
 
-      //udpate query depending on what we allow for being updated
-      let query = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`; 
+        //add tags and slugs arrays into newLeaf.all
+        for (let i = 0; i < req.body.tags.length; i++ ){
+          if (newLeaf.all.includes( req.body.tags[i]) === false){
+          //add once for newLeaf.tags
+            newLeaf.all.push(req.body.tags[i]);
+            //add again for newLeaf.slugs since newLeaf.slugs = newLeaf.tags
+            newLeaf.all.push(req.body.tags[i]);
+          }
+        }
 
-      //execute query to Astra and store result in variable
-      let result = await client.execute(query, [JSON.stringify(newLeaf)], { prepare : true });
+        //udpate query depending on what we allow for being updated
+        let updateQuery = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`; 
+        //execute query to Astra and store result in variable
+        await client.execute(updateQuery, [JSON.stringify(newLeaf)], { prepare : true });
 
-      //send back the result to the client
-      return res.status(201).json(result);
+        //send query to send back the updated row
+        let sendQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+        //prepare params
+        let sendParams = [newLeaf.id];
+        //execute find query
+        let updatedRow = await client.execute(sendQuery, sendParams, { prepare: true });
+
+        //send back the result to the client
+        return res.status(201).json(updatedRow.rows[0]);
+      }
     }
     catch(e){
       res.status(400).json({
