@@ -5,8 +5,7 @@ const md5 = require('md5');
 
 const processor = async(newLeaf) => {
 
-  newLeaf.id = 1234213;
-  // newLeaf.id = md5(newLeaf.url);
+  newLeaf.id = md5(newLeaf.url);
   newLeaf.is_archived = 1;
   newLeaf.is_starred = 0;
   newLeaf.user_name = 'admin';

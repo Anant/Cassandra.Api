@@ -9,12 +9,17 @@ Before using this API, run the data importer first so that you have data in your
 
 * `/api/leaves`
     * `GET` -> (**WORKING + TESTED**) Returns items from the KEYSPACE.leaves table
-    * `POST` -> (**TBD AND UNTESTED TO LEAVES DB**) Creates a new item in the KEYSPACE.leaves table
+    * `POST` -> (**WORKING + TESTED**) Creates a new item in the KEYSPACE.leaves table
 
 * `/api/leaves/:id`
     * `GET` -> (**WORKING + TESTED**) Returns single item based on id parameter from KEYSPACE.leaves table
     * `PATCH` -> (**TBD AND UNTESTED TO LEAVES DB**) Updates an item in KEYSPACE.leaves table based on id parameter and request body
     * `Delete` -> (**WORKING + TESTED**) Deletes an item in KEYSPACE.leaves table based on id parameter
+
+* `/api/leaves/:id/tags`
+    * `GET` -> (**WORKING + TESTED**) Returns all tags associated with item id from KEYSPACE.leaves table
+    * `POST` -> (**WORKING + TESTED**) Adds tags to item associated with id in KEYSPACE.leaves table
+    * `Delete` -> (**WORKING + TESTED**) Deletes tags and slugs and removes both from all in item associated with id in KEYSPACE.leaves table
 
 ---
 

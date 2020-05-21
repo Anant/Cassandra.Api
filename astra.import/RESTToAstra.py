@@ -106,10 +106,10 @@ for i in range(len(docs)):
     tmp_doc['is_public'] = str(tmp_doc['is_public'])
     tmp_doc['user_id'] = str(tmp_doc['user_id'])
     tmp_doc['http_status'] = str(tmp_doc['http_status'])
-    tmp_doc['tags'] = str(tmp_doc['tags'])
-    tmp_doc['slugs'] = str(tmp_doc['slugs'])
-    tmp_doc['all'] = str(tmp_doc['all'])
-    tmp_doc['links'] = str(tmp_doc['_links'])
+    tmp_doc['tags'] = tmp_doc['tags']
+    tmp_doc['slugs'] = tmp_doc['slugs']
+    tmp_doc['all'] = tmp_doc['all']
+    tmp_doc['links'] = tmp_doc['_links']
     #print(tmp_doc['links'])
     
     try:

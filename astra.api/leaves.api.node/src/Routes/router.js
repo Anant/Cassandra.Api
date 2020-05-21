@@ -148,7 +148,7 @@ leavesRouter
   })
 
   // Currently under construction and subject to change
-  .patch(jsonParser, async (req, res, next) => {
+  .patch( jsonParser, async (req, res, next) => {
     try{
       
       //extract id from params
@@ -239,6 +239,152 @@ leavesRouter
       next();
     }
   });  
+
+//using Express router and route of /api/leaves/:id/tags
+leavesRouter
+  .route('/:id/tags')
+  //get tags associated with item id
+  .get(async(req, res, next ) => {
+
+    try{
+      //extract id from params
+      let id = req.params.id;
+
+      //query to get tags from item
+      let query = `SELECT tags FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+  
+      //prepare params
+      let params = [id];
+  
+      //execute query on Astra and store result in variable
+      let result = await client.execute(query, params, {prepare: true});
+  
+      //send tags array back
+      return res.status(200).json(result.rows[0].tags);
+    }
+
+    catch(e){
+      res.status(400).json({
+        message: e.message
+      });
+      next();
+    }
+
+  })
+
+  //add tags to item with associated id
+  .post(jsonParser, async(req, res, next) => {
+    try{
+
+      //extract id from params
+      let id = req.params.id;
+
+      //destructure tags from request body
+      const { tags } = req.body;
+
+      //parse tags to remove spaces and replace with periods
+      for(i = 0; i < tags.length; i++){
+        tags[i] = tags[i].replace(/\s/g, '.');
+      }
+
+      //Get item associated with id because we have to add to key values of all and slugs
+      //query to make to Astra using the id obtained
+      let findQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+      //preparing the params
+      let params = [id];
+      //execute the query to Astra
+      let result = await client.execute(findQuery, params, { prepare : true });
+      //set newLeaf equal to item associated with id from params
+      let newLeaf = result.rows[0];
+      //set newLeaf.tags equal to tags from request body
+      if(newLeaf.tags === null){
+        newLeaf.tags = tags;
+      }
+      else{
+        newLeaf.tags = [...newLeaf.tags, ...tags];
+      }
+      //remove duplicates
+      let uniqueSet = new Set(newLeaf.tags);
+      //turn back into array
+      newLeaf.tags = [...uniqueSet];
+      //set newLeaf.slugs equal to tags
+      newLeaf.slugs = newLeaf.tags;
+      //add tags and slugs arrays into all array
+      for (let i = 0; i < tags.length; i++ ){
+        if (newLeaf.all.includes(tags[i]) === false){
+          //add once for newLeaf.tags
+          newLeaf.all.push(tags[i]);
+          //add again for newLeaf.slugs since newLeaf.slugs = newLeaf.tags
+          newLeaf.all.push(tags[i]);
+        }
+      };
+
+      //insert query for tags into existing item with associated id
+      let insertQuery = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`; 
+
+      //execute query to Astra to add tags, slugs, and update all
+      await client.execute(insertQuery, [JSON.stringify(newLeaf)], { prepare : true });
+
+      // send back the newLeaf to the client
+      return res.status(201).json(newLeaf);
+
+    }
+
+    catch(e){
+      res.status(400).json({
+        message: e.message
+      });
+      next();
+    }
+  })
+
+  .delete(async(req, res, next) => {
+    try{
+
+      //extract id from params
+      let id = req.params.id;
+
+      //Get item associated with id because we have to add to key values of all and slugs
+      //query to make to Astra using the id obtained
+      let findQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+      //preparing the params
+      let params = [id];
+      //execute the query to Astra
+      let result = await client.execute(findQuery, params, { prepare : true });
+      //set newLeaf equal to item associated with id from params
+      let newLeaf = result.rows[0];
+
+      //check if tags exist
+      if(newLeaf.tags === null){
+        return res.status(400).json({
+          'message': 'No tags available to be deleted'
+        });
+      }
+
+      //filter out tags and slugs from all
+      newLeaf.all = newLeaf.all.filter(item => !newLeaf.tags.includes(item));
+      //set tags and slugs to empty arrays
+      newLeaf.tags = [];
+      newLeaf.slugs = [];
+      newLeaf.id = id;
+
+      //query to delete tags
+      let deleteQuery = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`;
+
+      // execute query to Astra and delete tags
+      await client.execute(deleteQuery, [JSON.stringify(newLeaf)], { prepare : true });
+
+      return res.status(200).json(newLeaf);
+    }
+
+    catch(e){
+      res.status(400).json({
+        message: e.message
+      });
+      next();
+    }
+  });
+
 
 
 
