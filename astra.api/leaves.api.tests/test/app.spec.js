@@ -141,5 +141,61 @@ describe('Endpoints', () => {
   //       expect(res.body.domain_name).to.eql(testRecord5.domain_name);
   //     });
   // });
+
+  //Sixth Test
+  it('Gets tags of item associated with id', async() => {
+
+    await insertRecord(testRecord4);
+
+
+    return supertest
+      .get(`/api/leaves/${testRecord4.id}/tags`)
+      .expect(200)
+      .expect(res => {
+        expect(res.body).to.eql(testRecord4.tags);
+      });
+
+  });
+
+  //Seventh Test
+  it('Inserts tags to item associated with id', async() => {
+
+    await insertRecord(testRecord4);
+
+    let testRequest = {
+      tags: ['additional tag', 'test tag', 'let make sure this works']
+    };
+
+    let tagCheck = {
+      tags: [...testRecord4.tags, 'additional.tag', 'test.tag', 'let.make.sure.this.works']
+    };
+
+    return supertest
+      .post(`/api/leaves/${testRecord4.id}/tags`)
+      .send(testRequest)
+      .expect(201)
+      .expect(res => {
+        expect(res.body.id).to.eql(testRecord4.id);
+        expect(res.body.tags).to.eql(tagCheck.tags);
+        expect(res.body.slugs).to.eql(tagCheck.tags);
+      });
+  });
+
+  //Eigth Test
+  it('Deletes tags of item associated with id', async() => {
+
+    await insertRecord(testRecord4);
+
+    return supertest
+      .delete(`/api/leaves/${testRecord4.id}/tags`)
+      .expect(200)
+      .expect(res => {
+        expect(res.body.id).to.eql(testRecord4.id);
+        expect(res.body.tags).to.eql([]);
+        expect(res.body.slugs).to.eql([]);
+      });
+
+  });
+
   
 });
