@@ -111,42 +111,47 @@ describe('Endpoints', () => {
       });
   });
 
-  //Fifth Test
-  // it('Update a record, and make sure it was updated', () => {
+  // Fifth Test
+  it('Update a record, and make sure it was updated', async() => {
 
-  //   //test request id
-  //   let id = 1234213;
+    await insertRecord(testRecord4);
 
-  //   //test request body
-  //   let testRequest = {
+    //test request id
+    let id = testRecord4.id;
 
-  //   };
+    //test request body with tags, title, and is_starred
+    let testRequest = {
+      tags: ['did.this.update.correctly'],
+      title: 'I am the title now',
+      is_starred: 1
+    };
 
-  //   return supertest
-  //   //make a patch request
-  //     .patch(`/api/leaves/${id}`)
-  //   //send request body
-  //     .send(testRequest)
-  //     .expect(200)
-  //     .expect(res => {
-  //       //expect response id to match the id of the item being updated
-  //       expect(res.body.id).to.eql(id);
-  //       //expect response url to match test record url
-  //       expect(res.body.url).to.eql(testRecord5.url);
-  //       //expect response id to match test record id
-  //       expect(res.body.id).to.eql(testRecord5.id);
-  //       //expect response title to match test record title
-  //       expect(res.body.title).to.eql(testRecord5.title);
-  //       //expect response domain_name to match test record domain_name
-  //       expect(res.body.domain_name).to.eql(testRecord5.domain_name);
-  //     });
-  // });
+    return supertest
+    //make a patch request
+      .patch(`/api/leaves/${id}`)
+    //send request body
+      .send(testRequest)
+      .expect(201)
+      .expect(res => {
+        //expect unchanged response id to match the id of the item being updated
+        expect(res.body.id).to.eql(id);
+        //expect unchanged response url to match test record url
+        expect(res.body.url).to.eql(testRecord4.url);
+        //expect unchanged response content to match test record conent
+        expect(res.body.content).to.eql(testRecord4.content);
+        //expect updated response tags to match test request tags
+        expect(res.body.tags).to.eql(testRequest.tags);
+        //expect updated response title to match test request title
+        expect(res.body.title).to.eql(testRequest.title);
+        //expect updated response is_starred to match test request is_starred
+        expect(res.body.is_starred).to.eql(testRequest.is_starred);
+      });
+  });
 
   //Sixth Test
   it('Gets tags of item associated with id', async() => {
 
     await insertRecord(testRecord4);
-
 
     return supertest
       .get(`/api/leaves/${testRecord4.id}/tags`)
