@@ -19,19 +19,19 @@ def processURL(url):
     is_starred = 0
     user_name = 'admin'
     user_email = 'rahul@example.com'
-    user_id = 1
-    is_public = False
+    user_id = str(1)
+    is_public = str(False)
     domain_name = re.search('https?:\/\/[^#?\/]+/',url).group(0)
     domain_name = re.compile(r"https?://(www\.)?").sub('', domain_name).strip().strip('/')
-    created_at = datetime.now()
-    updated_at = datetime.now()
-    links = ['api/entries/%s',id]
-    tags = []
+    created_at = str(datetime.now())[:-3]
+    updated_at = str(datetime.now())[:-3]
+    links = ["api/entries/"+str(id)]
+    tags = str([])
     slugs = tags
 
     bs = BeautifulSoup(page.content, 'html.parser')
     images = bs.find_all('img', {'src':re.compile('.jpg')})
-    title = bs.title.string
+    title = str(bs.title.string)
     if images == []:
         preview_picture = 'https://dummyimage.com/170/000/ffffff&text='+(title.replace(' ','%20'))
     else:
@@ -41,7 +41,7 @@ def processURL(url):
         language = 'en'
     content = str(bs)
     content_text = bs.text
-    reading_time = readtime.of_html(str(bs))
+    reading_time = str(readtime.of_html(str(bs)).minutes)
     result = {'is_archived':is_archived, 'is_starred':is_starred, 'user_name':user_name,'user_email':user_email, 'user_id':user_id, 'tags':tags, 'slugs':slugs,
     'is_public':is_public, 'id':id, 'title':title, 'url':url, 'content_text':content_text, 'created_at':created_at, 'updated_at':updated_at, 'mimetype':mimetype,
     'language':language, 'reading_time':reading_time, 'domain_name':domain_name, 'preview_picture':preview_picture, 'http_status':http_status, 'links':links, 
@@ -49,6 +49,9 @@ def processURL(url):
     all = list(result.values())
     all = [str(i) for i in all]
     result['all'] = all
+    #print(result.keys())
+    #print([type(i) for i in result.values()])
+    print(id)
     return result
 
 
@@ -97,7 +100,7 @@ def getNumRows(num_rows):
 
 @app.route('/api/leaves/<id>',methods=['GET'])
 def getById(id):
-    rows = session.execute("SELECT JSON * FROM "+cred['keyspace']+'.'+cred['table']+" WHERE id=%s",[int(id)])
+    rows = session.execute("SELECT JSON * FROM "+cred['keyspace']+'.'+cred['table']+" WHERE id=%s",[str(id)])
     result = ''
     for row in rows:
         #print(type(str(row)))
@@ -109,7 +112,7 @@ def getById(id):
 
 @app.route('/api/leaves/<id>',methods=['DELETE'])
 def delById(id):
-    rows = session.execute("DELETE FROM "+cred['keyspace']+'.'+cred['table']+" WHERE id=%s",[int(id)])
+    rows = session.execute("DELETE FROM "+cred['keyspace']+'.'+cred['table']+" WHERE id=%s",[str(id)])
     print(rows)
     result = ''
     for row in rows:
@@ -124,6 +127,7 @@ def delById(id):
 def pushRow():
     req_data = request.get_json()
     doc = str(json.dumps(processURL(req_data['url'])))
+    #print(doc)
     rows = session.execute("INSERT INTO "+cred['keyspace']+'.'+cred['table']+" JSON %s" % "'"+doc.replace("'","''")+"'")
     #print(type(rows))
     result = []
@@ -132,5 +136,5 @@ def pushRow():
         result.append(json.loads(row.json))
     return jsonify(result)
 
-#print(processURL('https://github.com/Anant/cassandra.api'))
+#processURL('https://github.com/Anant/cassandra.api')
 app.run(port=8000,debug=True)
