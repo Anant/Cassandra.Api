@@ -429,8 +429,8 @@ leavesRouter
       //filter out tags and slugs from all
       newLeaf.all = newLeaf.all.filter(item => !newLeaf.tags.includes(item));
       //set tags and slugs to empty arrays
-      newLeaf.tags = [];
-      newLeaf.slugs = [];
+      newLeaf.tags = null;
+      newLeaf.slugs = null;
       newLeaf.id = id;
 
       //query to delete tags
