@@ -48,7 +48,7 @@ Upon hitting send, then results will be returned in a JSON format. The response 
 
 ![ArpImg2](Assets/../../../Assets/Images/ArpImg2.png)
 
-To make a POST request to http://localhost:8000/api/leaves/, we will need a request body with a key value of {"url" : ""}.
+To make a POST request to `http://localhost:8000/api/leaves/`, we will need a request body with a key value of {"url" : ""}.
 
 ![ArpImg31](Assets/../../../Assets/Images/ArpImg31.png)
 
@@ -76,7 +76,7 @@ To handle errors when trying to delete an item that doesn’t exist, re-run the 
 
 ![ArpImg7](Assets/../../../Assets/Images/ArpImg7.png)
 
-To make a PATCH request to via `https://localhost:8000/api/leaves/:id`, we will need a request body of any of the following key value pairs: title, tags, is_archived, is_starred, content, language, preview_picture, is_public, and url. We will send a request body of title and tags.
+To make a PATCH request via `https://localhost:8000/api/leaves/:id`, we will need a request body of any of the following key value pairs: title, tags, is_archived, is_starred, content, language, preview_picture, is_public, and url. We will send a request body of title and tags.
 
 ![ArpImg33](Assets/../../../Assets/Images/ArpImg33.png)
 
@@ -157,7 +157,7 @@ And to replicate the 404 error and JSON message, we can run that request again:
 
 ![ArpImg14](Assets/../../../Assets/Images/ArpImg14.png)
 
-To make a PATCH request using curl to `http://localhost:8000/api/leaves/:id` to update the title of the item we created with POST, we will run `curl -X PATCH -H 'Content-type: application/json' --data '{"title": "curl patch title","tags": ["tag1", "tag2", "tag3"]}' http://localhost:8000/api/leaves/2e1df12395d97d261efbe1d152fec7ac`
+To make a PATCH request using curl to `http://localhost:8000/api/leaves/:id` to update the title and tags of the item we created with POST, we will run `curl -X PATCH -H 'Content-type: application/json' --data '{"title": "curl patch title","tags": ["tag1", "tag2", "tag3"]}' http://localhost:8000/api/leaves/2e1df12395d97d261efbe1d152fec7ac`
 
 ![ArpImg41](Assets/../../../Assets/Images/ArpImg41.png)
 
