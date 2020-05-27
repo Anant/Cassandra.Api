@@ -55,7 +55,7 @@ Once the npm installs have been run for both, using the terminal on the right (l
 
 Once the server is running, use the terminal on the left (leaves.api.tests) and run `npm test` and the tests should pass as below:
 
-![ArpImg45](Assets/../../../Assets/Images/ArpImg45.png)
+![ArpImg47](Assets/../../../Assets/Images/ArpImg45.png)
 
 
 As you can see, the node API runs and the tests pass locally as they did on Gitpod. 
@@ -72,7 +72,7 @@ Now, since Gitpod already had the modules installed with the build, the API may 
 
 Now that we have the python API running in the left terminal, and now that we are back in the tests directory in the right terminal, we can run `npm test` in the right terminal. As long as the credentials did not change, the tests should pass as below:
 
-![ArpImg46](Assets/../../../Assets/Images/ArpImg46.png)
+![ArpImg48](Assets/../../../Assets/Images/ArpImg46.png)
 
 Now we have run both the node and python API’s locally, and verified that they both work with passing tests.
 
@@ -96,7 +96,7 @@ Then, on the right terminal (the leaves.api.node) run `npm start` or `npm run de
 
 Now that the node API is running, we can use the terminal on the left (leaves.api.tests) and run `npm test` to run the tests. You should see this:
 
-![ArpImg47](Assets/../../../Assets/Images/ArpImg47.png)
+![ArpImg45](Assets/../../../Assets/Images/ArpImg47.png)
 
 If you inserted your credentials correctly, the tests should pass as above.
 
@@ -116,7 +116,7 @@ The nice thing about Gitpod is that the modules are already installed, so we do 
 
 Once the python API is running, we can re-run `npm test` on the left terminal, and if your credentials haven’t changed, the tests should pass: 
 
-![ArpImg48](Assets/../../../Assets/Images/ArpImg48.png)
+![ArpImg46](Assets/../../../Assets/Images/ArpImg48.png)
 
 And there you have it, both the node and python API’s run and pass the tests with minimal setup on Gitpod.
 
