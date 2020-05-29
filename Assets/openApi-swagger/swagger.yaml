@@ -1,0 +1,191 @@
+swagger: "2.0"
+info:
+  description: "Leaves on DataStax Astra™ with NoSQL, and Apache Cassandra™ in the cloud!"
+  version: "0.1.2"
+  title: "Cassandra Api"
+  termsOfService: "https://github.com/Anant/cassandra.api/blob/master/README.md"
+  contact:
+    email: "solutions@anant.us"
+  license:
+    name: "Apache 2.0"
+    url: "https://www.apache.org/licenses/LICENSE-2.0.txt"
+host: "localhost:8000"
+basePath: "/api"
+tags:
+- name: "Leaves"
+  description: "Knowledge Base API"
+  externalDocs:
+    description: "GitHub"
+    url: "https://github.com/Anant/cassandra.api"
+schemes:
+- "https"
+- "http"
+paths:
+  /leaves:
+    get:
+      tags:
+      - "Leaves"
+      description: "Returns all from KEYSPACE.leaves table"
+      operationId: getAll
+      responses:
+        '200':
+          description: Array of leaves
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Leaf'
+      parameters:
+        - name: keyspace
+          in: query
+          description: keyspace name
+          required: true
+          type: string
+        - name: table
+          in: query
+          description: cassandra table
+          required: true
+          type: string
+    post:
+      tags:
+      - "Leaves"
+      description: "Creates a new leaf in the KEYSPACE.leaves table"
+      operationId: "updatePetWithForm"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of pet that needs to be updated"
+        required: true
+        type: "integer"
+      responses:
+        "405":
+          description: "Invalid input"
+      deprecated: true
+    delete:
+      tags:
+      - "Leaves"
+      description: "This can only be done by the administrative users."
+      operationId: "delete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: ""
+        required: true
+        type: "integer"
+      responses:
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+      # deprecated: true
+  /leaves/{id}:
+    get:
+      tags:
+      - "Leaves"
+      description: "Returns a single Leaf"
+      operationId: "getLeafById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of pet to return"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Leaf"
+        "400":
+          description: "Invalid ID supplied"
+        # "403":
+        #   description: "Credentials Missing"
+# securityDefinitions:
+#   secure_connect_bundle:
+#     type: "apiKey"
+#     name: "Secure Connect Bundle"
+#     in: "header"
+definitions:
+  Leaf:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      all:
+        type: "array"
+        items:
+          type: "string"
+      content:
+        type: "string"
+        example: "<div><img..."
+      content_text:
+        type: "string"
+        example: "<Our Architecture may...>"
+      created_at:
+        type: "string"
+        format: "yyyy-MM-dd'T'HH:mm:ss.SSSSZ"
+      domain_name:
+        type: "string"
+        example: "Anant.us"
+      http_status:
+        type: "string"
+        example: "200"
+      is_archived:
+        type: "integer"
+      is_public:
+        type: "string"
+        format: "boolean"
+      is_starred:
+        type: "integer"
+      language:
+        type: 'string'
+      links: 
+        type: "array"
+        items:
+          type: "string"
+      mimetype:
+        type: "string"
+      preview_picture: 
+        type: "string"
+      reading_time:
+        type: "string"
+      slugs: 
+        type: "array"
+        items:
+          type: "string"
+      tags: 
+        type: "array"
+        items:
+          type: "string"
+      title: 
+        type: "string"
+      updated_at:
+        type: "string"
+        format: "yyyy-MM-dd'T'HH:mm:ss.SSSSZ"
+      url:
+        type: "string"
+      user_email:
+        type: "string"
+      user_id: 
+        type: "integer"
+      user_name:
+        type: "string"
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+
+    
