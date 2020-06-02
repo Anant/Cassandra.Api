@@ -1,3 +1,5 @@
 cassandra-driver
 requests
 flask
+bs4
+readtime
