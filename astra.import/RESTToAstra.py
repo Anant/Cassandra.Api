@@ -29,7 +29,7 @@ exec_command = str(f.read())
 exec_command = exec_command.replace('keyspace_name',cred['keyspace'],1)
 exec_command = exec_command.replace('table_name',cred['table'],1)
 session.execute(exec_command)
-rows = 100
+rows = 0
 
 
 #Request data from solr
@@ -102,6 +102,7 @@ for i in range(len(docs)):
     except KeyError:
         tmp_doc['all'] = []
 
+    tmp_doc['id'] = str(tmp_doc['id'])
     tmp_doc['is_public'] = str(tmp_doc['is_public'])
     tmp_doc['user_id'] = str(tmp_doc['user_id'])
     tmp_doc['http_status'] = str(tmp_doc['http_status'])

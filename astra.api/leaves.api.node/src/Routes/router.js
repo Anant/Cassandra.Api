@@ -3,39 +3,23 @@
 
 const express = require('express');
 const leavesRouter = express.Router();
-// const jsonParser = express.json();
+const jsonParser = express.json();
 const cassandra = require('cassandra-driver');
 const config = require('../config');
-const ExpressCassandra = require('express-cassandra');
-//leavesModel that contains the model for the table
-const leavesModel = require('../Models/leavesModel');
+const { processor } = require('../processor');
 
-const models = ExpressCassandra.createClient({
-  clientOptions: {
-    cloud: { secureConnectBundle: `../../astra.credentials/secure-connect-${config.ASTRA_CLUSTER}.zip`},
-    credentials: { username: config.ASTRA_USERNAME, password: config.ASTRA_PASSWORD },
-    keyspace: `${config.ASTRA_KEYSPACE}`
-  }
+
+// set up connection to Astra using cassandra-driver from DataStax
+const client = new cassandra.Client({
+  cloud: { secureConnectBundle: `../../astra.credentials/secure-connect-${config.ASTRA_CLUSTER}.zip`},
+  credentials: { username: config.ASTRA_USERNAME, password: config.ASTRA_PASSWORD }
 });
 
-const MyModel = models.loadSchema('Leaves', leavesModel);
-
-// MyModel or models.instance.Leaves can now be used as the model instance
-console.log(models.instance.Leaves === MyModel);
-
-
-
-//set up connection to Astra using cassandra-driver from DataStax
-// const client = new cassandra.Client({
-//   cloud: { secureConnectBundle: `../../astra.credentials/secure-connect-${config.ASTRA_CLUSTER}.zip`},
-//   credentials: { username: config.ASTRA_USERNAME, password: config.ASTRA_PASSWORD }
-// });
-
-//dont actually need this to run the node api, but we can keep it for confirmation of connection
-//Connecting to Astra database with console.log confirming connection
-// client.connect(function(err, result){
-//   console.log('astra connected');
-// });
+// dont actually need this to run the node api, but we can keep it for confirmation of connection
+// Connecting to Astra database with console.log confirming connection
+client.connect(function(err, result){
+  console.log('astra connected');
+});
 
 //Using express router and the base route of /api/leaves/
 leavesRouter
@@ -44,23 +28,14 @@ leavesRouter
   .get( async (req, res, next) => {
     try{
 
-      // //query to make to Astra 
-      // let query = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE};`;
+      //query to make to Astra 
+      let query = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE};`;
 
-      // //await client executing the query and set the results into a variable
-      // let result = await client.execute(query);
+      //await client executing the query and set the results into a variable
+      let result = await client.execute(query);
 
-      // //return the result of the query in JSON format
-      // return res.status(200).json(result.rows);
-
-      models.instance.Leaves.findOne({id: 13952}, function(err, result){
-        if(err){
-          console.log(err);
-          return;
-        }
-
-        console.log(result);
-      })
+      //return the result of the query in JSON format
+      return res.status(200).json(result.rows);
 
     }
 
@@ -70,58 +45,69 @@ leavesRouter
       });
       next();
     }
-  });
+  })
 
   //Currently under construction and subject to change
-  // .post(jsonParser, async (req, res, next) => {
-  //   try{
+  .post(jsonParser, async (req, res, next) => {
+    try{
 
-  //     const {is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
-  //       id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-  //       starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-  //       http_status, headers, origin_url, _links } 
-  //       = req.body;
+      //object destructuring of request body  
+      const { url } 
+        = req.body;
 
-  //     newLeaf = {is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
-  //       id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-  //       starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-  //       http_status, headers, origin_url, _links };
+      //validate for missing keys in request body
+      for (const [key, value] of Object.entries(req.body))
+        if (!value)
+          return res.status(400).json({
+            error: `Missing '${key}' in request body`
+          });
 
-  //     for (const [key, value] of Object.entries(newLeaf))
-  //       if (!value)
-  //         return res.status(400).json({
-  //           error: `Missing '${key}' in request body`
-  //         });
+      //creating new object to insert into Astra
+      newLeaf = { url };
 
-  //     let query = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE}(is_archived, is_starred, user_name, user_email, user_id, tags, is_public, id, uid, title, url, content, created_at, updated_at, published_at, published_by, starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture, http_status, headers, origin_url, _links) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);`; 
+      //run processor on newLeaf to generate other key values
+      await processor(newLeaf);
+      
+      //initialize an empty array for all key value pair in newLeaf
+      let all = [];
 
-  //     let params = [is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
-  //       id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-  //       starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-  //       http_status, headers, origin_url, _links];
+      //run for loop through newLeaf to get all values into newLeaf.all
+      for(let key in newLeaf){
+        //check if newLeaf[key] value is an array
+        if( Array.isArray(newLeaf[key]) ){
+          //if newLeaf[key] is an array, iterate through the array and push them individually
+          for(let i = 0; i < newLeaf[key].length; i++){
+            all.push(newLeaf[key][i]);
+          }
+        }
+        
+        //else push in newLeaf[key] into all array
+        else{
+          all.push(newLeaf[key].toString());
+        }
 
-  //     client.execute(query, params, function(err, result){
-  //       if(err){
-  //       //   console.log(err);
-  //         return res.status(400).json({
-  //           error: 'error adding'
-  //         });
-  //       }
-  //       else{
-  //         console.log(result);
-  //         return res.status(201).json({
-  //           message: 'created'
-  //         });
-  //       }
-  //     });
-  //   }
-  //   catch(e){
-  //     res.status(400).json({
-  //       message: e.message
-  //     });
-  //     next();
-  //   }
-  // });
+      }
+
+      //set newLeaf all key to equal the array all populated from the for loop
+      newLeaf.all = all;
+
+      //query to insert into Astra
+      let query = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ?;`; 
+
+      //execute query to Astra and store result in variable
+      await client.execute(query, [JSON.stringify(newLeaf)], { prepare : true });
+
+      //send back the result to the client
+      return res.status(201).json(newLeaf);
+
+    }
+    catch(e){
+      res.status(400).json({
+        message: e.message
+      });
+      next();
+    }
+  });
 
 
 //Using express router and the route of /api/leaves/:id
@@ -161,60 +147,114 @@ leavesRouter
     }
   })
 
-  //Currently under construction and subject to change
-  // .patch(jsonParser, async (req, res, next) => {
-  //   try{
-      
-  //     let leafId = req.params.leafId;
+  //allow title, tags, is_archived, is_starred, content, language, preview_picture, is_public, and url to be updated
+  .patch( jsonParser, async (req, res, next) => {
+    try{
+      //extract id from params
+      let id = req.params.id;
+      //find query to check if the url is different
+      let findQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+      //prepare params
+      let params = [id];
+      //execute find query
+      let findResult = await client.execute(findQuery, params, { prepare: true });
+      //check if there is a new url in the params
+      if(!!req.body.url && findResult.rows[0].url !== req.body.url){
+        //if so, instantiate a newLeaf object
+        let newLeaf = {};
+        //set newLeaf.url to the url in the params
+        newLeaf.url = req.body.url;
+        //run processor to generate other key values
+        await processor(newLeaf);
+        //if req.body has tags
+        if(!!req.body.tags){
+          //parse tags to remove spaces and replace with periods
+          for(i = 0; i < req.body.tags.length; i++){
+            req.body.tags[i] = req.body.tags[i].replace(/\s/g, '.');
+          }
+        }
+        //newLeaf.tags = req.body.tags
+        newLeaf.tags = req.body.tags;
+        //newLeaf.slugs = newLeaf.tags
+        newLeaf.slugs = newLeaf.tags;
+        //initialize an empty array for all key value pair in newLeaf
+        let all = [];
+        //run for loop through newLeaf to get all values into newLeaf.all
+        for(let key in newLeaf){
+          //check if newLeaf[key] value is an array
+          if( Array.isArray(newLeaf[key]) ){
+            //if newLeaf[key] is an array, iterate through the array and push them individually
+            for(let i = 0; i < newLeaf[key].length; i++){
+              all.push(newLeaf[key][i]);
+            }
+          }
+          //else push in newLeaf[key] into all array
+          else{
+            all.push(newLeaf[key].toString());
+          }
+        }
+        //set newLeaf.all equal to all array
+        newLeaf.all = all;
+        //udpate query depending on what we allow for being updated
+        let updateQuery = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`; 
+        //execute query to Astra and store result in variable
+        await client.execute(updateQuery, [JSON.stringify(newLeaf)], { prepare : true });
+        //send query to send back the updated row
+        let sendQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+        //prepare params
+        let sendParams = [newLeaf.id];
+        //execute find query
+        let updatedRow = await client.execute(sendQuery, sendParams, { prepare: true });
 
-  //     const {is_archived, is_starred, user_name, user_email, user_id, tags, is_public, 
-  //       id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-  //       starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-  //       http_status, headers, origin_url, _links } 
-  //       = req.body;
-
-  //     newLeaf = {is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
-  //       id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-  //       starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-  //       http_status, headers, origin_url, _links };
-
-  //     for (const [key, value] of Object.entries(newLeaf))
-  //       if (!value)
-  //         return res.status(400).json({
-  //           error: `Missing '${key}' in request body`
-  //         });
-
-  //     //udpate query depending on what we allow for being updated
-  //     let query = `UPDATE ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} SET email=?, firstname=?, lastname=? WHERE id=?;`;
-
-  //     //change out params depending on what we allow for being updated
-  //     const params = [is_archived, is_starred, user_name, user_email, user_id, tags, is_public,
-  //       id, uid, title, url, content, created_at, updated_at, published_at, published_by,
-  //       starred_at, annotations, mimetype, language, reading_time, domain_name, preview_picture,
-  //       http_status, headers, origin_url, _links, leafId];
-
-  //     client.execute(query, params, function(err, result){
-  //       if(err){
-  //       //   console.log(err);
-  //         res.status(400).json({
-  //           error: 'error updating'
-  //         });
-  //       }
-  //       else{
-  //         console.log(result);
-  //         res.status(200).json({
-  //           message: 'updated',
-  //         });
-  //       }
-  //     });
-  //   }
-  //   catch(e){
-  //     res.status(400).json({
-  //       message: e.message
-  //     });
-  //     next();
-  //   }
-  // })
+        //send back the result to the client
+        return res.status(201).json(updatedRow.rows[0]);
+      }
+      else{
+        //check if tags in request body
+        if(!!req.body.tags){
+          //parse tags to remove spaces and replace with periods
+          for(i = 0; i < req.body.tags.length; i++){
+            req.body.tags[i] = req.body.tags[i].replace(/\s/g, '.');
+          }
+        }
+        //set newLeaf equal to req.body object
+        let newLeaf = req.body;
+        //set newLeaf.id to id from params
+        newLeaf.id = id;
+        //set updated at time to now
+        newLeaf.updated_at = Date.now();
+        //set newLeaf.all equal to the initial found result.all
+        newLeaf.all = [...findResult.rows[0].all];
+        //add tags and slugs arrays into newLeaf.all
+        for (let i = 0; i < req.body.tags.length; i++ ){
+          if (newLeaf.all.includes( req.body.tags[i]) === false){
+          //add once for newLeaf.tags
+            newLeaf.all.push(req.body.tags[i]);
+            //add again for newLeaf.slugs since newLeaf.slugs = newLeaf.tags
+            newLeaf.all.push(req.body.tags[i]);
+          }
+        }
+        //udpate query depending on what we allow for being updated
+        let updateQuery = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`; 
+        //execute query to Astra and store result in variable
+        await client.execute(updateQuery, [JSON.stringify(newLeaf)], { prepare : true });
+        //send query to send back the updated row
+        let sendQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+        //prepare params
+        let sendParams = [newLeaf.id];
+        //execute find query
+        let updatedRow = await client.execute(sendQuery, sendParams, { prepare: true });
+        //send back the result to the client
+        return res.status(201).json(updatedRow.rows[0]);
+      }
+    }
+    catch(e){
+      res.status(400).json({
+        message: e.message
+      });
+      next();
+    }
+  })
 
   //DELETE request to /api/leaves/:id
   .delete( async (req, res, next) => {
@@ -264,6 +304,152 @@ leavesRouter
       next();
     }
   });  
+
+//using Express router and route of /api/leaves/:id/tags
+leavesRouter
+  .route('/:id/tags')
+  //get tags associated with item id
+  .get(async(req, res, next ) => {
+
+    try{
+      //extract id from params
+      let id = req.params.id;
+
+      //query to get tags from item
+      let query = `SELECT tags FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+  
+      //prepare params
+      let params = [id];
+  
+      //execute query on Astra and store result in variable
+      let result = await client.execute(query, params, {prepare: true});
+  
+      //send tags array back
+      return res.status(200).json(result.rows[0].tags);
+    }
+
+    catch(e){
+      res.status(400).json({
+        message: e.message
+      });
+      next();
+    }
+
+  })
+
+  //add tags to item with associated id
+  .post(jsonParser, async(req, res, next) => {
+    try{
+
+      //extract id from params
+      let id = req.params.id;
+
+      //destructure tags from request body
+      const { tags } = req.body;
+
+      //parse tags to remove spaces and replace with periods
+      for(i = 0; i < tags.length; i++){
+        tags[i] = tags[i].replace(/\s/g, '.');
+      }
+
+      //Get item associated with id because we have to add to key values of all and slugs
+      //query to make to Astra using the id obtained
+      let findQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+      //preparing the params
+      let params = [id];
+      //execute the query to Astra
+      let result = await client.execute(findQuery, params, { prepare : true });
+      //set newLeaf equal to item associated with id from params
+      let newLeaf = result.rows[0];
+      //set newLeaf.tags equal to tags from request body
+      if(newLeaf.tags === null){
+        newLeaf.tags = tags;
+      }
+      else{
+        newLeaf.tags = [...newLeaf.tags, ...tags];
+      }
+      //remove duplicates
+      let uniqueSet = new Set(newLeaf.tags);
+      //turn back into array
+      newLeaf.tags = [...uniqueSet];
+      //set newLeaf.slugs equal to tags
+      newLeaf.slugs = newLeaf.tags;
+      //add tags and slugs arrays into all array
+      for (let i = 0; i < tags.length; i++ ){
+        if (newLeaf.all.includes(tags[i]) === false){
+          //add once for newLeaf.tags
+          newLeaf.all.push(tags[i]);
+          //add again for newLeaf.slugs since newLeaf.slugs = newLeaf.tags
+          newLeaf.all.push(tags[i]);
+        }
+      };
+
+      //insert query for tags into existing item with associated id
+      let insertQuery = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`; 
+
+      //execute query to Astra to add tags, slugs, and update all
+      await client.execute(insertQuery, [JSON.stringify(newLeaf)], { prepare : true });
+
+      // send back the newLeaf to the client
+      return res.status(201).json(newLeaf);
+
+    }
+
+    catch(e){
+      res.status(400).json({
+        message: e.message
+      });
+      next();
+    }
+  })
+
+  .delete(async(req, res, next) => {
+    try{
+
+      //extract id from params
+      let id = req.params.id;
+
+      //Get item associated with id because we have to add to key values of all and slugs
+      //query to make to Astra using the id obtained
+      let findQuery = `SELECT * FROM ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} WHERE id=?;`;
+      //preparing the params
+      let params = [id];
+      //execute the query to Astra
+      let result = await client.execute(findQuery, params, { prepare : true });
+      //set newLeaf equal to item associated with id from params
+      let newLeaf = result.rows[0];
+
+      //check if tags exist
+      if(newLeaf.tags === null){
+        return res.status(400).json({
+          'message': 'No tags available to be deleted'
+        });
+      }
+
+      //filter out tags and slugs from all
+      newLeaf.all = newLeaf.all.filter(item => !newLeaf.tags.includes(item));
+      //set tags and slugs to empty arrays
+      newLeaf.tags = null;
+      newLeaf.slugs = null;
+      newLeaf.id = id;
+
+      //query to delete tags
+      let deleteQuery = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`;
+
+      // execute query to Astra and delete tags
+      await client.execute(deleteQuery, [JSON.stringify(newLeaf)], { prepare : true });
+
+      return res.status(200).json(newLeaf);
+    }
+
+    catch(e){
+      res.status(400).json({
+        message: e.message
+      });
+      next();
+    }
+  });
+
 
 
 

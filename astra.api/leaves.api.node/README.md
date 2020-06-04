@@ -9,12 +9,17 @@ Before using this API, run the data importer first so that you have data in your
 
 * `/api/leaves`
     * `GET` -> (**WORKING + TESTED**) Returns items from the KEYSPACE.leaves table
-    * `POST` -> (**TBD AND UNTESTED TO LEAVES DB**) Creates a new item in the KEYSPACE.leaves table
+    * `POST` -> (**WORKING + TESTED**) Creates a new item in the KEYSPACE.leaves table
 
 * `/api/leaves/:id`
     * `GET` -> (**WORKING + TESTED**) Returns single item based on id parameter from KEYSPACE.leaves table
-    * `PATCH` -> (**TBD AND UNTESTED TO LEAVES DB**) Updates an item in KEYSPACE.leaves table based on id parameter and request body
+    * `PATCH` -> (**WORKING AND TESTED**) Updates an item in KEYSPACE.leaves table based on id parameter and request body
     * `Delete` -> (**WORKING + TESTED**) Deletes an item in KEYSPACE.leaves table based on id parameter
+
+* `/api/leaves/:id/tags`
+    * `GET` -> (**WORKING + TESTED**) Returns all tags associated with item id from KEYSPACE.leaves table
+    * `POST` -> (**WORKING + TESTED**) Adds tags to item associated with id in KEYSPACE.leaves table
+    * `Delete` -> (**WORKING + TESTED**) Deletes tags and slugs and removes both from all in item associated with id in KEYSPACE.leaves table
 
 ---
 
@@ -43,6 +48,14 @@ Upon hitting send, then results will be returned in a JSON format. The response 
 
 ![ArpImg2](Assets/../../../Assets/Images/ArpImg2.png)
 
+To make a POST request to `http://localhost:8000/api/leaves/`, we will need a request body with a key value of {"url" : ""}.
+
+![ArpImg31](Assets/../../../Assets/Images/ArpImg31.png)
+
+We will get a JSON response of the new item.
+
+![ArpImg32](Assets/../../../Assets/Images/ArpImg32.png)
+
 To make a request to `https://localhost:8000/api/leaves/:id`, we can use the first returned response from the last GET request and insert that item’s `id` as a parameter:
 
 ![ArpImg3](Assets/../../../Assets/Images/ArpImg3.png)
@@ -51,7 +64,7 @@ After hitting send, the response should return only one item, the one associated
 
 ![ArpImg4](Assets/../../../Assets/Images/ArpImg4.png)
 
-To make a delete request via `https://localhost:8000/api/leaves/:id`, the same steps are followed as before. Take a specific item’s `id`, and insert that into the URL, but change the GET to a DELETE:
+To make a DELETE request via `https://localhost:8000/api/leaves/:id`, the same steps are followed as before. Take a specific item’s `id`, and insert that into the URL, but change the GET to a DELETE:
 
 ![ArpImg5](Assets/../../../Assets/Images/ArpImg5.png)
 
@@ -63,9 +76,33 @@ To handle errors when trying to delete an item that doesn’t exist, re-run the 
 
 ![ArpImg7](Assets/../../../Assets/Images/ArpImg7.png)
 
+To make a PATCH request via `https://localhost:8000/api/leaves/:id`, we will need a request body of any of the following key value pairs: title, tags, is_archived, is_starred, content, language, preview_picture, is_public, and url. We will send a request body of title and tags.
+
+![ArpImg33](Assets/../../../Assets/Images/ArpImg33.png)
+
+The JSON response will be shown below.
+
+![ArpImg34](Assets/../../../Assets/Images/ArpImg34.png)
+
+To get all tags associated with an item, we will make a GET request to `http://localhost:8000/api/leaves/:id/tags`. These will be the tags that we updated from the PATCH request before.
+
+![ArpImg35](Assets/../../../Assets/Images/ArpImg35.png)
+
+To add tags to an associated item, we will need to make a POST request to `http://localhost:8000/api/leaves/:id/tags` and will require a request body as shown below. 
+
+![ArpImg36](Assets/../../../Assets/Images/ArpImg36.png)
+
+After hitting send, we will see the existing tags with the new tags we sent with the POST request.
+
+![ArpImg37](Assets/../../../Assets/Images/ArpImg37.png)
+
+To delete tags associated with an item, we will make a DELETE request to `http://localhost:8000/api/leaves/:id/tags` and the response will be shown below.
+
+![ArpImg38](Assets/../../../Assets/Images/ArpImg38.png)
+
 Going back to the code terminal, you can see a list of requests that were made and the response codes associated with those requests:
 
-![ArpImg8](Assets/../../../Assets/Images/ArpImg8.png)
+![ArpImg39](Assets/../../../Assets/Images/ArpImg39.png)
 
 ---
 
@@ -102,11 +139,15 @@ Running that will return the result in the terminal, so we will show the end of 
 
 ![ArpImg11](Assets/../../../Assets/Images/ArpImg11.png)
 
-To do the same with cURL and getting by `id`: run `curl http://localhost:8000/api/leaves/:id`. We will use the same `id` we did for Postman.
+To make a POST request to `http://localhost:8000/api/leaves/`. we will run `curl -X POST -H 'Content-type: application/json' --data '{"url": "https://github.com/Anant/cassandra.api"}' http://localhost:8000/api/leaves`
+
+![ArpImg40](Assets/../../../Assets/Images/ArpImg40.png)
+
+To get by `id`: run `curl http://localhost:8000/api/leaves/:id`. We will use the same `id` we did for Postman.
 
 ![ArpImg12](Assets/../../../Assets/Images/ArpImg12.png)
 
-As you can see, the returned result is associated with the item with the `id` of 13952, and the response code can be seen on the left terminal that is running the server. 
+As you can see, the returned result is associated with the item with the `id`, and the response code can be seen on the left terminal that is running the server. 
 
 To make a DELETE request, we can do use the same id, but add a “DELETE” to the curl: `curl -X “DELETE” http://localhost:8000/api/leaves/13952`
 
@@ -115,6 +156,22 @@ To make a DELETE request, we can do use the same id, but add a “DELETE” to t
 And to replicate the 404 error and JSON message, we can run that request again:
 
 ![ArpImg14](Assets/../../../Assets/Images/ArpImg14.png)
+
+To make a PATCH request using curl to `http://localhost:8000/api/leaves/:id` to update the title and tags of the item we created with POST, we will run `curl -X PATCH -H 'Content-type: application/json' --data '{"title": "curl patch title","tags": ["tag1", "tag2", "tag3"]}' http://localhost:8000/api/leaves/2e1df12395d97d261efbe1d152fec7ac`
+
+![ArpImg41](Assets/../../../Assets/Images/ArpImg41.png)
+
+To get all tags associated with an item, we will make a GET request to `http://localhost:8000/api/leaves/:id/tags` with the id used in the PATCH request. These will be the tags that we updated from the PATCH request before. Run `curl http://localhost:8000/api/leaves/2e1df12395d97d261efbe1d152fec7ac/tags`
+
+![ArpImg42](Assets/../../../Assets/Images/ArpImg42.png)
+
+To add tags to an associated item, we will need to make a POST request to `http://localhost:8000/api/leaves/:id/tags`. Run `curl -X POST -H 'Content-type: application/json' --data '{"tags": ["tag4", "tag5", "tag6"]}' http://localhost:8000/api/leaves/2e1df12395d97d261efbe1d152fec7ac/tags`. After hitting send, we will see the existing tags with the new tags we sent with the POST request. 
+
+![ArpImg43](Assets/../../../Assets/Images/ArpImg43.png)
+
+To delete tags associated with an item, we will make a DELETE request to `http://localhost:8000/api/leaves/:id/tags`. We will run `curl -X DELETE http://localhost:8000/api/leaves/2e1df12395d97d261efbe1d152fec7ac/tags`
+
+![ArpImg44](Assets/../../../Assets/Images/ArpImg44.png)
 
 ## Built With
 
