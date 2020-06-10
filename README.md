@@ -1,7 +1,5 @@
 # Cassandra.API 
 
-[version](https://img.shields.io/badge/version-0.2.0-blue)
-
 Leaves on DataStax Astra™ with NoSQL, and Apache Cassandra™ in the cloud!
 
 So far we have 3 parts to this project:
