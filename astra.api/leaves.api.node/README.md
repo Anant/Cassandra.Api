@@ -25,7 +25,7 @@ Before using this API, run the data importer first so that you have data in your
 
 ### Running the API Locally 
 
-You need to insert the secure connect bundle and credentials from Astra in /astra.credentials and /astra.credentials/UserCred.json, respectively. You will also need to run the data migrator from /astra.import/RESTToAstra.py to seed the database before we begin making requests to the API.
+You need to insert the secure connect bundle and credentials from Astra in `/astra.credentials` and `/astra.credentials/UserCred.json`, respectively. You will also need to run the data migrator from `/astra.import/RESTToAstra.py` to seed the database before we begin making requests to the API. Set the rows = 100 on line 32 and run the migrator.
 
 Run the following commands:
 
@@ -38,9 +38,45 @@ You sould see the following screen if eveyrthing worked succesfully.
 
 ![ArpImg](Assets/../../../Assets/Images/ArpImg0.png)
 
-Then navigate to`localhost:8000/api/leaves`
+We will begin by testing the endpoints with Postman.
 
-To make a request to `http://localhost:8000/api/leaves/` we will use Postman and cURL. First, using Postman, we will make a GET request to `http://localhost:8000//api/leaves/` to get an array of all items in the database.
+To get the collection of endpoints, copy this link: <https://www.getpostman.com/collections/fec7e958c0140321191a>
+
+To use the link above, we will need to open Postman and click the import button, which will open this modal as seen below.
+
+![ArpImg49](Assets/../../../Assets/Images/ArpImg49.png)
+
+Click on the "link" tab, insert the link you copied, and hit "continue".
+
+After confirming the import, you should see the collection named Cassandra.API with two folders: Tests and Templates.
+
+![ArpImg50](Assets/../../../Assets/Images/ArpImg50.png)
+
+The test folder contains the endpoints used in the walkthrough below, while the template folder contains templated endpoints with example paths and request bodies. Example responses can be seen by clicking on an endpoint and then clicking the example tab in the right hand corner.
+
+![ArpImg51](Assets/../../../Assets/Images/ArpImg50.png)
+
+If you would like to run the test endpoints in the test folder, click on the play button as seen below.
+
+![ArpImg52](Assets/../../../Assets/Images/ArpImg52.png)
+
+Then click on the run button and a new window should appear as seen below.
+
+![ArpImg53](Assets/../../../Assets/Images/ArpImg53.png)
+
+We want to deselect all items first by clicking the "Deselect All" option in the right hand corner because we do not want to run the template endpoints. Once we deselect all, re-select the endpoints with the "TEST" preface as seen below.
+
+![ArpImg54](Assets/../../../Assets/Images/ArpImg54.png)
+
+After doing so, we can now scroll down and run the tests by clicking on "Run Cassandra.API". The results should be as so.
+
+![ArpImg55](Assets/../../../Assets/Images/ArpImg55.png)
+
+At this point, you can either play around with the endpoints in the "Tests" folder as they match the endpoints used in the walkthrough below, or you can use the template endpoints in the "Templates" folder to follow along with the walkthrough. 
+
+#### Postman Walkthrough
+
+First, using Postman, we will make a GET request to `http://localhost:8000//api/leaves/` to get an array of all items in the database.
 
 ![ArpImg1](Assets/../../../Assets/Images/ArpImg1.png)
 
@@ -131,7 +167,7 @@ Once started, an alert will appear like the image below.
 
 Add `/api/leaves` to Gitpod url to view the API.
 
-You can click make public and we will get ready to make cURL requests. To do so, we will need to open a new terminal, while keeping the one running the server open. You will also need to run the data migrator from `/astra.import/RESTToAstra.py` to seed the database before we begin making requests to the API To make the cURL request to get all, we will run `curl http://localhost:8000/api/leaves/`.
+You can click make public and we will get ready to make cURL requests. To do so, we will need to open a new terminal, while keeping the one running the server open. You will also need to run the data migrator from `/astra.import/RESTToAstra.py` to seed the database before we begin making requests to the API. Set the rows = 100 on line 32 and run the migrator. To make the cURL request to get all, we will run `curl http://localhost:8000/api/leaves/`.
 
 ![ArpImg10](Assets/../../../Assets/Images/ArpImg10.png)
 
