@@ -54,7 +54,7 @@ After confirming the import, you should see the collection named Cassandra.API w
 
 The test folder contains the endpoints used in the walkthrough below, while the template folder contains templated endpoints with example paths and request bodies. Example responses can be seen by clicking on an endpoint and then clicking the example tab in the right hand corner.
 
-![ArpImg51](Assets/../../../Assets/Images/ArpImg50.png)
+![ArpImg51](Assets/../../../Assets/Images/ArpImg51.png)
 
 If you would like to run the test endpoints in the test folder, click on the play button as seen below.
 
