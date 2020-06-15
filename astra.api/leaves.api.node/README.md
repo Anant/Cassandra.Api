@@ -56,6 +56,16 @@ The test folder contains the endpoints used in the walkthrough below, while the 
 
 ![ArpImg51](Assets/../../../Assets/Images/ArpImg51.png)
 
+**NOTE: If using Gitpod rather than Local development, you will need to change the base URLs in the test endpoints, as well as, the template endpoints. Currently, the template and test endpoints are using `http://localhost:8000`. If you choose to use this Postman collection while running the API on Gitpod, you will need to run your API on Gitpod, hit "Make Public", and "Open Browser" as seen below. Then, take the Gitpod URL from the browser and replace the `http://localhost:8000` with your Gitpod URL e.g. `https://8000-e39a02a0-2021-4f47-80c5-02013a0be91c.ws-us02.gitpod.io/` in the Postman collection as seen below. Once all URLs have been replaced, you can continue with the instructions below.**
+
+![ArpImg56](Assets/../../../Assets/Images/ArpImg56.png)
+
+![ArpImg57](Assets/../../../Assets/Images/ArpImg57.png)
+
+![ArpImg58](Assets/../../../Assets/Images/ArpImg58.png)
+
+![ArpImg59](Assets/../../../Assets/Images/ArpImg59.png)
+
 If you would like to run the test endpoints in the test folder, click on the play button as seen below.
 
 ![ArpImg52](Assets/../../../Assets/Images/ArpImg52.png)
