@@ -82,7 +82,7 @@ After doing so, we can now scroll down and run the tests by clicking on "Run Cas
 
 ![ArpImg55](Assets/../../../Assets/Images/ArpImg55.png)
 
-At this point, you can either play around with the endpoints in the "Tests" folder as they match the endpoints used in the walkthrough below, or you can use the template endpoints in the "Templates" folder to follow along with the walkthrough. 
+At this point, you can either play around with the endpoints in the "Tests" folder, or you can use the template endpoints in the "Templates" folder to follow along with the walkthrough. 
 
 #### Postman Walkthrough
 
