@@ -68,7 +68,7 @@ Use the sidebar to navigate to and open RESTToAstra.py
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg2.png)
 
-Change the rows variable on line 29 to reflect the number of rows you want copied over. (max of 11211) Hit the run button in the upper left or type ``python3 astra.import/data/RESTToAstra.py`` into the terminal and hit enter
+Change the rows variable on line 32 to reflect the number of rows you want copied over. (max of 11211) Hit the run button in the upper left or type ``python3 astra.import/data/RESTToAstra.py`` into the terminal and hit enter
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg3.png)
 

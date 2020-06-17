@@ -38,7 +38,6 @@ https://auth.cloud.datastax.com
 
 ![Astra](Assets/../Assets/Images/astra3.png)
 
-<<<<<<< HEAD
 5. ***Fill in the naming conventions you declared earlier, when you setup your database, in your (cassandra.api/astra.credentials/UserCred.json) file***
 ```
 database name: 
@@ -46,10 +45,6 @@ keyspace name:
 username:
 password:
 ```
-=======
-***Fill in the naming conventions you declared earlier in your (cassandra.api/astra.credentials/UserCred.json) file***
-
->>>>>>> a13c5cda4a6626e49764f2e3bf09c448bc0fcd31
 
 ---
 
