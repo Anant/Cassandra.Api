@@ -56,13 +56,13 @@ password:
 
 ***It's best to go through this project in the following order so you do not get confused.***
 
----
+
 
 ### 1. First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
 
 #### [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
 
----
+
 
 ### 2. Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
 
@@ -79,7 +79,7 @@ password:
 
 [Building REST API Webinar Recording](https://www.youtube.com/watch?v=O64pJa3eLqs)
 
----
+
 
 ### 3. Third, run this set of unit tests against your API to confirm that it is working properly.
 
