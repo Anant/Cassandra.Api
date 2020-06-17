@@ -47,7 +47,7 @@ password:
 
 ![Astra](Assets/../Assets/Images/astra3.png)
 
-***Fill in naming conventions you declared earlier in your (cassandra.api/astra.credentials/UserCred.json) file***
+***Fill in the naming conventions you declared earlier in your (cassandra.api/astra.credentials/UserCred.json) file***
 
 
 ---
