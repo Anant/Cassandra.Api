@@ -7,10 +7,10 @@
 ## Table of Contents
 
 - [Astra Setup & Configuring Credentials](#setup) 
-- [Getting Started](#getting started)
-	- [Running Data Migrator](#data-migrator)
+- [Getting Started](#Getting-Started)
+	- [Running Data Migrator](#Data-Migrator)
 	- [Running APIs]
-		- [Node JS](#node js)
+		- [Node JS](#Node-js)
 		- [Python](#python)
 	- [Running Unit Tests](#testing)
   
