@@ -9,7 +9,7 @@
 - [Astra Setup & Configuring Credentials](#setup) 
 - [Getting Started](#Getting-Started)
 	- [Running Data Migrator](#Data-Migrator)
-	- [Running APIs]
+	- Running APIs
 		- [Node JS](#Node-js)
 		- [Python](#python)
 	- [Running Unit Tests](#testing)
