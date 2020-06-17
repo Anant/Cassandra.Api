@@ -7,9 +7,11 @@
 ## Table of Contents
 
 - [Astra Setup & Configuring Credentials](#setup) 
-- [Getting Started](#getting--started)
-	- [Running Data Migrator](#data--migrator)
-	- [Running APIs](#apis)
+- [Getting Started](#getting started)
+	- [Running Data Migrator](#data-migrator)
+	- [Running APIs]
+		- [Node JS](#node js)
+		- [Python](#python)
 	- [Running Unit Tests](#testing)
   
 ---
@@ -50,26 +52,25 @@ password:
 
 ---
 
-## Getting started
+## Getting Started
 
 ***It's best to go through this project in the following order so you do not get confused.***
 
 ---
 
-### 1. [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
+### 1. First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
 
-- First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
+- [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
 
 ---
 
-### 2. APIs
-
-- Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
-
-#### [NODE.JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
+### 2. Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
 
 
-#### [PYTHON](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
+#### [Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
+
+
+#### [Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
 
 
 #### API Reference Material
@@ -80,6 +81,6 @@ password:
 
 ---
 
-### 3. [TESTING](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
+### 3. Third, run this set of unit tests against your API to confirm that it is working properly.
 
-- Third, run this set of unit tests against your API to confirm that it is working properly.
+- [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
