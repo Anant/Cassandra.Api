@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## release/0.2
+
+### Added
+
+- Base.API Created
+- Create the data model on Astra for Leaves which includes items & tags
+- Implement Processor that Takes a new Item and Populates the Record w/ Content
+
 ## release/0.1
 
 ### Added
