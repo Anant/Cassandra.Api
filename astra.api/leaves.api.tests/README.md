@@ -80,6 +80,8 @@ Now we have run both the node and python API’s locally, and verified that they
 
 ## Running Unit Tests on Gitpod
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
+
 ![ArpImg15](Assets/../../../Assets/Images/ArpImg15.png)
 
 First, cd into `/astra.api/leaves.api.tests` and run `npm install`. Once npm install has run, you can either choose to run the node API or the python API first, but only one can be tested at a time because they both point to `localhost:8000`.
@@ -106,7 +108,7 @@ Now to move onto testing the python API, we need to stop the node server with `c
 
 ![ArpImg19](Assets/../../../Assets/Images/ArpImg19.png)
 
-Once done, we can navigate to `/workspace/leaves.astra/astra.api/leaves.api.python/app.py` on the left hand side and open the file. You should see this:
+Once done, we can navigate to `/workspace/cassandra.api/astra.api/leaves.api.python/app.py` on the left hand side and open the file. You should see this:
 
 ![ArpImg20](Assets/../../../Assets/Images/ArpImg20.png)
 

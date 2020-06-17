@@ -1,101 +1,86 @@
-# Cassandra.API 
+# Leaves on DataStax Astra™ with NoSQL, and Apache Cassandra™ in the cloud! 
 
-Leaves on DataStax Astra™ with NoSQL, and Apache Cassandra™ in the cloud!
+![version](https://img.shields.io/badge/version-0.0.2-blue)
 
-So far we have 3 parts to this project:
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
 
-1) Data Migrator - astra.import
-2) Node or Python API Setup - astra.api
-3) API Testing -astra.api/leaves.api.tests
+## Table of Contents
 
-***It's best to go through this project in that order so you do not get confused.***
-
+- [Astra Setup & Configuring Credentials](#setup) 
+- [Getting Started](#Getting-Started)
+	- [Running Data Migrator](#Data-Migrator)
+	- Running APIs
+		- [Node JS](#Node-js)
+		- [Python](#python)
+	- [Running Unit Tests](#testing)
+  
 ---
 
-## Setup & Authorization
+## Setup
 
 
-Before you start using our tools, you'll need to create an account on DataStax Astra:
+1. Before you start using our tools, you'll need to create an account on DataStax Astra:
 ```
 https://auth.cloud.datastax.com
 ```
 
 ![Astra](Assets/../Assets/Images/astra1.png)
 
-You'll then be directed to this screen where you fill in details to launch new Astra Database.
+2. You'll then be directed to this screen where you fill in details to launch new Astra Database.
 
 ![Astra](Assets/../Assets/Images/astra4.png)
 
-You can use the following details to complete your database
+***NOTE: Be sure to remember the following declarations because you will need those to setup your credentials for the project***
+
 ```
-database name: leavesnetwork
-keyspace name: killrvideo
-username:KVUser
-password:KVPassword
+database name: 
+keyspace name: 
+username:
+password:
 ```
 
-***NOTE: Feel free to use your own naming conventions but keep in mind that you'll need to adjust the values in your credentials file later on.***
-
-The last step you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection Details"
+3. Then, you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection Details"
 
 ![Astra](Assets/../Assets/Images/astra2.png)
 
-After, click on the link to "Download secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
+4. After, click on the link to "Download secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
 
 ![Astra](Assets/../Assets/Images/astra3.png)
 
-* Modify each field value in **leaves.astra/astra.credentials/UserCred.json** 
+***Fill in naming conventions you declared earlier in your (cassandra.api/astra.credentials/UserCred.json) file***
 
-<img src="Assets/Images/UserCred.png" width="500" height="300">
 
 ---
 
-## Getting started
+## Getting Started
 
-### For Local Deployment
-
-```
-git clone https://github.com/xingh/leaves.astra.git
-cd leaves.astra/
-```
-
-### For Cloud Deployment
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
-
----
+***It's best to go through this project in the following order so you do not get confused.***
 
 
-### Data Migrator
 
-- Transfer data from our leaves.api to your Astra Database.
+### 1. First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
 
-- [Use the Data Migrator](https://github.com/Anant/cassandra.api/blob/master/astra.import/README.md)
+#### [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
 
----
 
-### APIs
 
-- We have 2 APIs you can use with Astra.
+### 2. Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
 
-#### NODE.JS
 
-- [Use NODE API with your Astra Database](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.node/README.md)
+#### [Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
 
-#### PYTHON
 
-- [Use Python API with your Astra Database](https://github.com/Anant/cassandra.api/blob/master/astra.api/leaves.api.python/README.md)
+#### [Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
+
 
 #### API Reference Material
 
-[Building REST API Blog PosT](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+[Building REST API Blog Post](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
 
-[Building REST API Webinar REcording](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+[Building REST API Webinar Recording](https://www.youtube.com/watch?v=O64pJa3eLqs)
 
----
 
-### TESTING
 
-- We wrote some Unit Test to confirm that your APIs are working properly.
+### 3. Third, run this set of unit tests against your API to confirm that it is working properly.
 
-- [Test your API against your Astra Database.](https://github.com/anant/cassandra.api/blob/master/astra.api/leaves.api.tests/README.md)
+#### [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
