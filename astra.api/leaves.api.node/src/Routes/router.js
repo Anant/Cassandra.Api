@@ -172,11 +172,11 @@ leavesRouter
           for(i = 0; i < req.body.tags.length; i++){
             req.body.tags[i] = req.body.tags[i].replace(/\s/g, '.');
           }
+          //newLeaf.tags = req.body.tags
+          newLeaf.tags = req.body.tags;
+          //newLeaf.slugs = newLeaf.tags
+          newLeaf.slugs = newLeaf.tags;
         }
-        //newLeaf.tags = req.body.tags
-        newLeaf.tags = req.body.tags;
-        //newLeaf.slugs = newLeaf.tags
-        newLeaf.slugs = newLeaf.tags;
         //initialize an empty array for all key value pair in newLeaf
         let all = [];
         //run for loop through newLeaf to get all values into newLeaf.all
@@ -210,13 +210,6 @@ leavesRouter
         return res.status(201).json(updatedRow.rows[0]);
       }
       else{
-        //check if tags in request body
-        if(!!req.body.tags){
-          //parse tags to remove spaces and replace with periods
-          for(i = 0; i < req.body.tags.length; i++){
-            req.body.tags[i] = req.body.tags[i].replace(/\s/g, '.');
-          }
-        }
         //set newLeaf equal to req.body object
         let newLeaf = req.body;
         //set newLeaf.id to id from params
@@ -225,14 +218,22 @@ leavesRouter
         newLeaf.updated_at = Date.now();
         //set newLeaf.all equal to the initial found result.all
         newLeaf.all = [...findResult.rows[0].all];
-        //add tags and slugs arrays into newLeaf.all
-        for (let i = 0; i < req.body.tags.length; i++ ){
-          if (newLeaf.all.includes( req.body.tags[i]) === false){
-          //add once for newLeaf.tags
-            newLeaf.all.push(req.body.tags[i]);
-            //add again for newLeaf.slugs since newLeaf.slugs = newLeaf.tags
-            newLeaf.all.push(req.body.tags[i]);
+        //check if tags in request body
+        if(!!req.body.tags){
+          //parse tags to remove spaces and replace with periods
+          for(i = 0; i < req.body.tags.length; i++){
+            req.body.tags[i] = req.body.tags[i].replace(/\s/g, '.');
           }
+          //add tags and slugs arrays into newLeaf.all
+          for (let i = 0; i < req.body.tags.length; i++ ){
+            if (newLeaf.all.includes( req.body.tags[i]) === false){
+              //add once for newLeaf.tags
+              newLeaf.all.push(req.body.tags[i]);
+              //add again for newLeaf.slugs since newLeaf.slugs = newLeaf.tags
+              newLeaf.all.push(req.body.tags[i]);
+            }
+          }
+          newLeaf.slugs = req.body.tags;
         }
         //udpate query depending on what we allow for being updated
         let updateQuery = `INSERT INTO ${config.ASTRA_KEYSPACE}.${config.ASTRA_TABLE} JSON ? DEFAULT UNSET;`; 
