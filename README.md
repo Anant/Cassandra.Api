@@ -30,15 +30,6 @@ https://auth.cloud.datastax.com
 
 ![Astra](Assets/../Assets/Images/astra4.png)
 
-***NOTE: Be sure to remember the following declarations because you will need those to setup your credentials for the project***
-
-```
-database name: 
-keyspace name: 
-username:
-password:
-```
-
 3. Then, you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection Details"
 
 ![Astra](Assets/../Assets/Images/astra2.png)
@@ -47,8 +38,13 @@ password:
 
 ![Astra](Assets/../Assets/Images/astra3.png)
 
-***Fill in naming conventions you declared earlier in your (cassandra.api/astra.credentials/UserCred.json) file***
-
+5. ***Fill in the naming conventions you declared earlier, when you setup your database, in your (cassandra.api/astra.credentials/UserCred.json) file***
+```
+database name: 
+keyspace name: 
+username:
+password:
+```
 
 ---
 

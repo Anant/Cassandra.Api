@@ -60,7 +60,7 @@ cassandra.InvalidRequest: Error from server: code=2200 [Invalid query] message="
 
 ## Running the program on Gitpod
 
-Open a fresh gitpod instance by going to gitpod.io/#https://github.com/anant/cassandra.api/ 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg1.png)
 
@@ -68,7 +68,7 @@ Use the sidebar to navigate to and open RESTToAstra.py
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg2.png)
 
-Change the rows variable on line 29 to reflect the number of rows you want copied over. (max of 11211) Hit the run button in the upper left or type ‘python3 astra.import/data/RESTToAstra.py’ into the terminal and hit enter
+Change the rows variable on line 29 to reflect the number of rows you want copied over. (max of 11211) Hit the run button in the upper left or type ``python3 astra.import/data/RESTToAstra.py`` into the terminal and hit enter
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg3.png)
 
