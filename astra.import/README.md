@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 - Create your database on DataStax Astra (Be sure to remember your keyspace name, username, and password as those will be useful later on)
 - Clone this repo
-- Download the 'secure connect bundle' zip from your Astra dashboard, and place it in the "leaves.astra/astra.credentials/" folder. 
+- Download the 'secure connect bundle' zip from your Astra dashboard, and place it in the "cassandra.api/astra.credentials/" folder. 
 - Depending on the setup of your local machine's PATH, you may need to edit lines 10, 13, 27 to include the full paths for each file/folder the program is looking for.
 
 
@@ -38,7 +38,7 @@ line 27: f = open('astra.import/Leaves.Astra.cql')
 
 ## Running the Program (Locally)
 
-Run the migrator from the **leaves.astra/** folder
+Run the migrator from the **cassandra.api/** folder
 
 ```
 python3 astra.import/RESTToAstra.py

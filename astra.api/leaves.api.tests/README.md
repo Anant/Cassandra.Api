@@ -108,7 +108,7 @@ Now to move onto testing the python API, we need to stop the node server with `c
 
 ![ArpImg19](Assets/../../../Assets/Images/ArpImg19.png)
 
-Once done, we can navigate to `/workspace/leaves.astra/astra.api/leaves.api.python/app.py` on the left hand side and open the file. You should see this:
+Once done, we can navigate to `/workspace/cassandra.api/astra.api/leaves.api.python/app.py` on the left hand side and open the file. You should see this:
 
 ![ArpImg20](Assets/../../../Assets/Images/ArpImg20.png)
 
