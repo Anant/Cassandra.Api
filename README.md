@@ -39,12 +39,17 @@ https://auth.cloud.datastax.com
 ![Astra](Assets/../Assets/Images/astra3.png)
 
 5. ***Fill in the naming conventions you declared earlier, when you setup your database, in your (cassandra.api/astra.credentials/UserCred.json) file***
+- The following is an example of what the UserCred.json would look like following the example in the screenshots above.
+
 ```
-database name: 
-keyspace name: 
-username:
-password:
+database name: "KVUser",
+keyspace name: "KVPassword",
+username: "leavesnetwork",
+password: "killrvideo",
+table: "leaves"
 ```
+
+The last value ``table`` wasn't declared before so you can do that here for the first time.
 
 ---
 
