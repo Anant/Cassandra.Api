@@ -34,13 +34,13 @@ npm install
 npm run dev
 ```
 
-You sould see the following screen if eveyrthing worked succesfully.
+You should see the following screen if everything worked succesfully.
 
 ![ArpImg](Assets/../../../Assets/Images/ArpImg0.png)
 
 We will begin by testing the endpoints with Postman.
 
-To get the collection of endpoints, copy this link: <https://www.getpostman.com/collections/fec7e958c0140321191a>
+To get the Postman collection of endpoints, copy this link: <https://www.getpostman.com/collections/fec7e958c0140321191a>
 
 To use the link above, we will need to open Postman and click the import button, which will open this modal as seen below.
 
