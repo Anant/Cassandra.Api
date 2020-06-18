@@ -21,7 +21,7 @@
 
 1. Before you start using our tools, you'll need to create an account on DataStax Astra:
 ```
-https://auth.cloud.datastax.com
+https://auth.datastax.com/register
 ```
 
 ![Astra](Assets/../Assets/Images/astra1.png)
