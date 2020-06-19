@@ -36,6 +36,7 @@ To edit columns, edit `/Views/Leaves/components/LeavesTable/LeavesTable.js`
 
 
 #### Folder Structure
+```
 .
 ├── App.js
 ├── Routes.js
@@ -109,3 +110,4 @@ To edit columns, edit `/Views/Leaves/components/LeavesTable/LeavesTable.js`
     │   ├── NotFound.js
     │   └── index.js
     └── index.js
+```
