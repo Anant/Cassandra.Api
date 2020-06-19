@@ -148,16 +148,18 @@ def getById(id):
 #Returns a 404 page
 @app.route('/api/leaves/<id>',methods=['DELETE'])
 def delById(id):
+    exists = session.execute("SELECT JSON * FROM "+cred['keyspace']+'.'+cred['table']+" WHERE id=%s",[str(id)])
+    num_results = len(exists.all())
+    print(num_results)
+    if num_results == 0:
+        return jsonify("This item does not exist"), 404
     rows = session.execute("DELETE FROM "+cred['keyspace']+'.'+cred['table']+" WHERE id=%s",[str(id)])
     print(rows)
     result = ''
     for row in rows:
         #print(type(str(row)))
         result = json.loads(row.json)
-    if(result == ''):
-        abort(404)
-    else:
-        return jsonify(result)
+    return jsonify("Item Deleted"), 201
 
 #Update the passed fields for the cassandra row with the given id, can update any field al long as it is passed in the request body with they proper key
 #Returns json of the new row, retrieved from the cassandra table after the update
