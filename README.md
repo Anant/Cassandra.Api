@@ -42,11 +42,13 @@ https://astra.datastax.com/register
 - The following is an example of what the UserCred.json would look like following the example in the screenshots above.
 
 ```
-database name: "KVUser",
-keyspace name: "KVPassword",
-username: "leavesnetwork",
-password: "killrvideo",
-table: "leaves"
+{ 
+    "username":"kvuser", 
+    "password":"kvpassword", 
+    "cluster":"test", 
+    "keyspace":"demo", 
+    "table":"leaves"
+}
 ```
 
 The last value ``table`` wasn't declared before so you can do that here for the first time.
