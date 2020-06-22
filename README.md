@@ -21,22 +21,22 @@
 
 1. Before you start using our tools, you'll need to create an account on DataStax Astra:
 ```
-https://auth.datastax.com/register
+https://astra.datastax.com/register
 ```
 
-![Astra](Assets/../Assets/Images/astra1.png)
+![Astra](Assets/../Assets/Images/astra5.png)
 
 2. You'll then be directed to this screen where you fill in details to launch new Astra Database.
 
-![Astra](Assets/../Assets/Images/astra4.png)
+![Astra](Assets/../Assets/Images/astra6.png)
 
 3. Then, you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection Details"
 
-![Astra](Assets/../Assets/Images/astra2.png)
+![Astra](Assets/../Assets/Images/astra7.png)
 
 4. After, click on the link to "Download secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
 
-![Astra](Assets/../Assets/Images/astra3.png)
+![Astra](Assets/../Assets/Images/astra8.png)
 
 5. ***Fill in the naming conventions you declared earlier, when you setup your database, in your (cassandra.api/astra.credentials/UserCred.json) file***
 - The following is an example of what the UserCred.json would look like following the example in the screenshots above.
