@@ -6,17 +6,16 @@
 
 ## Table of Contents
 
-- [Astra Setup & Configuring Credentials](#setup) 
-- [Getting Started](#Getting-Started)
-	- [Running Data Migrator](#Data-Migrator)
-	- Running APIs
-		- [Node JS](#Node-js)
-		- [Python](#python)
-	- [Running Unit Tests](#testing)
+1. [Astra Setup & Configuring Credentials](#setup) 
+2. [Getting Started](#Getting-Started)
+	1. [Running Data Migrator](#Data-Migrator)
+	2. [Node JS](#Node-js)
+	3. [Python](#python)
+	4. [Running Unit Tests](#testing)
   
 ---
 
-## Setup
+## 1. Setup
 
 
 1. Before you start using our tools, you'll need to create an account on DataStax Astra:
@@ -55,25 +54,25 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 ---
 
-## Getting Started
+## 2. Getting Started
 
 ***It's best to go through this project in the following order so you do not get confused.***
 
 
 
-### 1. First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
+### First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
 
-#### [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
-
-
-
-### 2. Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
+#### 2.1 [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
 
 
-#### [Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
+
+### Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
 
 
-#### [Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
+#### 2.2 [Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
+
+
+#### 2.3 [Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
 
 
 #### API Reference Material
@@ -84,6 +83,6 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 
 
-### 3. Third, run this set of unit tests against your API to confirm that it is working properly.
+### Third, run this set of unit tests against your API to confirm that it is working properly.
 
-#### [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
+#### 2.4 [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
