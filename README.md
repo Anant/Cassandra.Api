@@ -29,6 +29,8 @@ https://astra.datastax.com/register
 
 ![Astra](Assets/../Assets/Images/astra6.png)
 
+***Avoid using "hyphens" or "underscores" in your database name***
+
 3. Then, you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection Details"
 
 ![Astra](Assets/../Assets/Images/astra7.png)
