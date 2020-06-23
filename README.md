@@ -12,6 +12,7 @@
 	2. [Node JS](#Node-js)
 	3. [Python](#python)
 	4. [Running Unit Tests](#testing)
+	5. [Running Admin UI](#admin-ui)
   
 ---
 
@@ -85,6 +86,11 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 
 
-### Third, run this set of unit tests against your API to confirm that it is working properly.
+### Next, run this set of unit tests against your API to confirm that it is working properly.
 
 #### 2.4 [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
+
+
+### Finally, we have Web Admin UI to visualize your Astra Database in Table Format
+
+#### 2.5 [Admin UI](https://github.com/Anant/cassandra.api/tree/master/astra.ui)
