@@ -10,6 +10,7 @@ These instructions will get you started migrating data from Leaves to your Astra
 - Python cassandra-driver
 - Python requests
 
+**2.4.1** Run the following commands:
 ```
 pip3 install cassandra-driver
 pip3 install requests
@@ -38,7 +39,7 @@ line 27: f = open('astra.import/Leaves.Astra.cql')
 
 ## Running the Program (Locally)
 
-Run the migrator from the **cassandra.api/** folder
+**2.4.2** Run the migrator from the **cassandra.api/** folder
 
 ```
 python3 astra.import/RESTToAstra.py
@@ -64,7 +65,7 @@ cassandra.InvalidRequest: Error from server: code=2200 [Invalid query] message="
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg1.png)
 
-Use the sidebar to navigate to and open RESTToAstra.py
+**2.4.3** Use the sidebar to navigate to and open RESTToAstra.py
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg2.png)
 

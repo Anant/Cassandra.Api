@@ -12,7 +12,7 @@ Before using this API, run the data importer first so that you have data in your
 - Python requests
 - Python flask
 
-run the following command:
+**2.3.1** Run the following command:
 
 ```sh
 pip install -r requirements.txt
@@ -33,7 +33,7 @@ line 74: 'secure_connect_bundle': '../../astra.credentials/secure-connect-'+cred
 
 ## Running the API Locally
 
-Run the script with the following command:
+**2.3.2** Run the script with the following command:
 ```sh
 python3 app.py
 ```
@@ -48,11 +48,11 @@ Navigate to `localhost:8000/api/leaves/(id)` to view a single row from your tabl
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
 
-Use the sidebar to navigate to `astra.api/leaves.api.python/src` and open app.py
+**2.3.3** Use the sidebar to navigate to `astra.api/leaves.api.python/src` and open app.py
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg4.png)
 
-Hit the run button in the upper left or type `python3 astra.api/leaves.api.python/src/app.py` into the terminal and hit enter. A popup will open in the lower right, telling you about a service on port 80.
+**2.3.4** Hit the run button in the upper left or type `python3 astra.api/leaves.api.python/src/app.py` into the terminal and hit enter. A popup will open in the lower right, telling you about a service on port 80.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg5.png)
 
@@ -64,24 +64,19 @@ Press the open browser button. This will open a new tab and navigate to a 404 pa
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg7.png)
 
-Add `/api/leaves` to the end of that url and navigate to that page. It should contain a list of all of the rows put into your astra table via the data importer. During this step grab the id of at least one entry. (in this case the id is 13952)
+**2.3.5** Add `/api/leaves` to the end of that url and navigate to that page. It should contain a list of all of the rows put into your astra table via the data importer. During this step grab the id of at least one entry. (in this case the id is 13952)
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg8.png)
 
-Add that id to then end of the url, so that it looks like this `[gitpod generated url]/api/leaves/[chosen id]` in this case `/api/leaves/13952` and navigate to the new url. This will show an individual entry from your astra database.
+**2.3.6** Add that id to then end of the url, so that it looks like this `[gitpod generated url]/api/leaves/[chosen id]` in this case `/api/leaves/13952` and navigate to the new url. This will show an individual entry from your astra database.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg9.png)
 
-## Built With
-
-* [Python](https://www.python.org/) - Language & Compiler Used
-* [CQLSH](https://docs.datastax.com/en/astra/aws/doc/dscloud/astra/dscloudConnectcqlshConsole.html) - Connecting to Astra databases using CQLSH
-
 ## Usage / Testing via Postman
 
-To get the Postman collection of endpoints, copy this link: <https://www.getpostman.com/collections/fec7e958c0140321191a>
+**2.3.7**To get the Postman collection of endpoints, copy this link: <https://www.getpostman.com/collections/fec7e958c0140321191a>
 
-To use the link above, we will need to open Postman and click the import button, which will open this modal as seen below.
+**2.3.8** To use the link above, we will need to open Postman and click the import button, which will open this modal as seen below.
 
 ![ArpImg49](Assets/../../../Assets/Images/ArpImg49.png)
 
@@ -105,7 +100,7 @@ The test folder contains the endpoints used in the walkthrough below, while the 
 
 ![ArpImg59](Assets/../../../Assets/Images/ArpImg59.png)
 
-If you would like to run the test endpoints in the test folder, click on the play button as seen below.
+**2.3.9** If you would like to run the test endpoints in the test folder, click on the play button as seen below.
 
 ![ArpImg52](Assets/../../../Assets/Images/ArpImg52.png)
 
@@ -125,7 +120,7 @@ At this point, you can either play around with the endpoints in the "Tests" fold
 
 ### Postman Walkthrough
 
-Grab your gitpod-given url add `/api/leaves` to the end and paste into the url space in postman. Hit the send button. Your response should be a list of all of the entries in your astra table. Grab an id value from one of the entries to use in later steps.
+**2.3.10** Grab your gitpod-given url add `/api/leaves` to the end and paste into the url space in postman. Hit the send button. Your response should be a list of all of the entries in your astra table. Grab an id value from one of the entries to use in later steps.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg10.png)
 
@@ -143,7 +138,7 @@ When run, you will get a 404 page returned.  The get for that id will also start
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg13.png)
 
-In order to post new entries, create a POST request with the header, Content-Type application/json and the body of a json entry with the key url and a string containing a url.
+**2.3.11** In order to post new entries, create a POST request with the header, Content-Type application/json and the body of a json entry with the key url and a string containing a url.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg15.png)
 
@@ -151,7 +146,7 @@ This request will return the entry created from the url in full. It may be a goo
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg16.png)
 
-To edit existing entries send a PATCH request to `[gitpod generated url]/api/leaves/[chosen id]` with the header, `Content-Type application/json` and the body of a json entry with the keys of fields you wish to change with the desired data as the value.
+**2.3.12** To edit existing entries send a PATCH request to `[gitpod generated url]/api/leaves/[chosen id]` with the header, `Content-Type application/json` and the body of a json entry with the keys of fields you wish to change with the desired data as the value.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg17.png)
 
@@ -161,13 +156,13 @@ This returns the edited entry in full. This changes the "all" field appropriatel
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg19.png)
 
-In order to retrieve the tags send a get request to `[gitpod generated url]/api/leaves/[chosen id]/tags`. This will return a list of tags.
+**2.3.13** In order to retrieve the tags send a get request to `[gitpod generated url]/api/leaves/[chosen id]/tags`. This will return a list of tags.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg20.png)
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg21.png)
 
-To add more tags to an entry, send a POST request to `[gitpod generated url]/api/leaves/[chosen id]/tags` with the header, `Content-Type application/json` and the body of a json entry with the key tags and the value of a list of desired tags. This also updates the slugs field.
+**2.3.14** To add more tags to an entry, send a POST request to `[gitpod generated url]/api/leaves/[chosen id]/tags` with the header, `Content-Type application/json` and the body of a json entry with the key tags and the value of a list of desired tags. This also updates the slugs field.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg22.png)
 
@@ -175,7 +170,7 @@ To add more tags to an entry, send a POST request to `[gitpod generated url]/api
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg24.png)
 
-To delete the tags of an entry, send a DELETE request to `[gitpod generated url]/api/leaves/[chosen id]/tags`. This deletes all of the tags attached to this entry. It returns the entire updated entry but the tags and slugs will both be null.
+**2.3.15** To delete the tags of an entry, send a DELETE request to `[gitpod generated url]/api/leaves/[chosen id]/tags`. This deletes all of the tags attached to this entry. It returns the entire updated entry but the tags and slugs will both be null.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg25.png)
 
@@ -183,17 +178,17 @@ To delete the tags of an entry, send a DELETE request to `[gitpod generated url]
 
 ## Usage / Testing via Curl
 
-Starting back in Gitpod, with the api running and start a seperate terminal.
+**2.3.16** Starting back in Gitpod, with the api running and start a seperate terminal.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg27.png)
 
-In order to get a single entry run the command `curl localhost:8000/api/leaves/[chosen id]` in this case the id is 13952. To get all entries, run the command `curl localhost:8000/api/leaves`
+**2.3.17** In order to get a single entry run the command `curl localhost:8000/api/leaves/[chosen id]` in this case the id is 13952. To get all entries, run the command `curl localhost:8000/api/leaves`
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg28.png)
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg29.png)
 
-To test delete functionality of the api, run command `curl -X DELETE localhost:8000/api/leaves/[chosen id]`. This will print out a simple 404 page to your console.
+**2.3.18** To test delete functionality of the api, run command `curl -X DELETE localhost:8000/api/leaves/[chosen id]`. This will print out a simple 404 page to your console.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg31.png)
 
@@ -201,7 +196,7 @@ To ensure that the delete went through, attempt to return to that entries page i
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg32.png)
 
-In order to post a new entry, you need to make a POST request to the /api/leaves endpoint with a properly formatted header and body. `curl -X POST http://localhost:8000/api/leaves -H "Content-Type: application/json" -d '{"url": "https://github.com/Anant/cassandra.api/tree/dev"}`
+**2.3.19** In order to post a new entry, you need to make a POST request to the /api/leaves endpoint with a properly formatted header and body. `curl -X POST http://localhost:8000/api/leaves -H "Content-Type: application/json" -d '{"url": "https://github.com/Anant/cassandra.api/tree/dev"}`
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg33.png)
 
@@ -209,7 +204,7 @@ This will return the generated entry in full. Grab the generated id for our next
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg34.png)
 
-To edit existing entries send a PATCH request to `/api/leaves/[chosen id]` with the header, `Content-Type application/json` and the body of a json entry with the keys of fields you wish to change with the desired data as the value. `curl -X PATCH http://localhost:8000/api/leaves/897ad25b3dc170fae9f72cd07a59517a -H "Content-Type: application/json" -d '{"tags":["github", "another one"], "is_starred":1}`
+**2.3.20** To edit existing entries send a PATCH request to `/api/leaves/[chosen id]` with the header, `Content-Type application/json` and the body of a json entry with the keys of fields you wish to change with the desired data as the value. `curl -X PATCH http://localhost:8000/api/leaves/897ad25b3dc170fae9f72cd07a59517a -H "Content-Type: application/json" -d '{"tags":["github", "another one"], "is_starred":1}`
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg35.png)
 
@@ -217,13 +212,13 @@ Returns the edited entry in full.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg36.png)
 
-To get the tags of an entry send a get request to `/api/leaves/[chosen id]/tags`. Returns a list of tags. `curl -X GET http://localhost:8000/api/leaves/897ad25b3dc170fae9f72cd07a59517a/tags`
+**2.3.21** To get the tags of an entry send a get request to `/api/leaves/[chosen id]/tags`. Returns a list of tags. `curl -X GET http://localhost:8000/api/leaves/897ad25b3dc170fae9f72cd07a59517a/tags`
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg37.png)
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg38.png)
 
-To add more tags to an entry, send a POST request to `[gitpod generated url]/api/leaves/[chosen id]/tags` with the header, Content-Type application/json and the body of a json entry with the key tags and the value of a list of desired tags. This also updates the slugs field. `curl -X POST http://localhost:8000/api/leaves/897ad25b3dc170fae9f72cd07a59517a/tags -H "Content-Type: application/json" -d '{"tags":["github 2", "another another one"]}`
+**2.3.22** To add more tags to an entry, send a POST request to `[gitpod generated url]/api/leaves/[chosen id]/tags` with the header, Content-Type application/json and the body of a json entry with the key tags and the value of a list of desired tags. This also updates the slugs field. `curl -X POST http://localhost:8000/api/leaves/897ad25b3dc170fae9f72cd07a59517a/tags -H "Content-Type: application/json" -d '{"tags":["github 2", "another another one"]}`
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg39.png)
 
@@ -231,7 +226,7 @@ Returns the updated version of the full entry associated with this id.
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg40.png)
 
-To delete the tags of an entry, send a DELETE request to `[gitpod generated url]/api/leaves/[chosen id]/tags`. This deletes all of the tags attached to this entry. It returns the entire updated entry but the tags and slugs will both be null. `curl -X DELETE http://localhost:8000/api/leaves/897ad25b3dc170fae9f72cd07a59517a/tags`
+**2.3.23** To delete the tags of an entry, send a DELETE request to `[gitpod generated url]/api/leaves/[chosen id]/tags`. This deletes all of the tags attached to this entry. It returns the entire updated entry but the tags and slugs will both be null. `curl -X DELETE http://localhost:8000/api/leaves/897ad25b3dc170fae9f72cd07a59517a/tags`
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg41.png)
 
@@ -247,3 +242,8 @@ To delete the tags of an entry, send a DELETE request to `[gitpod generated url]
 
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## Built With
+
+* [Python](https://www.python.org/) - Language & Compiler Used
+* [CQLSH](https://docs.datastax.com/en/astra/aws/doc/dscloud/astra/dscloudConnectcqlshConsole.html) - Connecting to Astra databases using CQLSH
