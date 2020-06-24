@@ -35,7 +35,7 @@ line 74: 'secure_connect_bundle': '../../astra.credentials/secure-connect-'+cred
 
 Run the script with the following command:
 ```sh
-python app.py
+python3 app.py
 ```
 
 Navigate to `localhost:8000/api/leaves` to view all of the data in your astra database table.

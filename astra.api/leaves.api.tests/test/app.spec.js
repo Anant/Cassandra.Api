@@ -82,8 +82,6 @@ describe('Endpoints', () => {
 
   //Fourth Test
   it('Insert a record via POST, then make sure it was added', () => {
-    
-    // this.timeout(15000);
 
     //test request body
     const testRequest = {
@@ -113,7 +111,7 @@ describe('Endpoints', () => {
   });
 
   // Fifth Test
-  it('Update a record, and make sure it was updated', async() => {
+  it('Update a record via PATCH, and make sure it was updated', async() => {
 
     await insertRecord(testRecord4);
 
@@ -150,7 +148,7 @@ describe('Endpoints', () => {
   });
 
   //Sixth Test
-  it('Gets tags of item associated with id', async() => {
+  it('Gets tags of item associated with id via GET', async() => {
 
     await insertRecord(testRecord4);
 
@@ -164,7 +162,7 @@ describe('Endpoints', () => {
   });
 
   //Seventh Test
-  it('Inserts tags to item associated with id', async() => {
+  it('Inserts tags to item associated with id via POST', async() => {
 
     await insertRecord(testRecord4);
 
@@ -188,7 +186,7 @@ describe('Endpoints', () => {
   });
 
   //Eigth Test
-  it('Deletes tags of item associated with id', async() => {
+  it('Deletes tags of item associated with id via DELETE', async() => {
 
     await insertRecord(testRecord4);
 

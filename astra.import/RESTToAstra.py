@@ -10,7 +10,7 @@ import time
 with open('astra.credentials/UserCred.json') as f:
     cred = json.load(f)
 cloud_config= {
-        'secure_connect_bundle': 'astra.credentials/secure-connect-'+cred['cluster']+'.zip'
+        'secure_connect_bundle': 'astra.credentials/secure-connect-'+cred['cluster'].replace("_","-")+'.zip'
 }
 auth_provider = PlainTextAuthProvider(cred['username'], cred['password'])
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
@@ -29,7 +29,9 @@ exec_command = str(f.read())
 exec_command = exec_command.replace('keyspace_name',cred['keyspace'],1)
 exec_command = exec_command.replace('table_name',cred['table'],1)
 session.execute(exec_command)
-rows = 0
+
+
+rows = 10
 
 
 #Request data from solr
@@ -39,10 +41,10 @@ params = (
     ('rows', str(rows)),
 )
 
-response = requests.get('https://ss346483-us-east-1-aws.searchstax.com/solr/leaves_anant_stage/select', params=params)
-response_json = response.json()
-num_docs = response_json['response']['numFound']
-docs = response_json['response']['docs']
+with open('Assets/data.json', 'r') as fp:
+    response_json = json.load(fp)
+num_docs = 1000
+docs = response_json['response']['docs'][0:rows]
 real_docs = len(docs)
 
 

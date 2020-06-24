@@ -6,72 +6,76 @@
 
 ## Table of Contents
 
-- [Astra Setup & Configuring Credentials](#setup) 
-- [Getting Started](#Getting-Started)
-	- [Running Data Migrator](#Data-Migrator)
-	- Running APIs
-		- [Node JS](#Node-js)
-		- [Python](#python)
-	- [Running Unit Tests](#testing)
+1. [Astra Setup & Configuring Credentials](#setup) 
+2. [Getting Started](#Getting-Started)  
+	2.1 [Running Data Migrator](#Data-Migrator)  
+	2.2 [Node JS](#Node-js)  
+	2.3 [Python](#python)  
+	2.4 [Running Unit Tests](#testing)  
+	2.5 [Running Admin UI](#admin-ui)  
   
 ---
 
-## Setup
+## 1. Setup
 
 
 1. Before you start using our tools, you'll need to create an account on DataStax Astra:
 ```
-https://auth.datastax.com/register
+https://astra.datastax.com/register
 ```
 
-![Astra](Assets/../Assets/Images/astra1.png)
+![Astra](Assets/../Assets/Images/astra5.png)
 
 2. You'll then be directed to this screen where you fill in details to launch new Astra Database.
 
-![Astra](Assets/../Assets/Images/astra4.png)
+![Astra](Assets/../Assets/Images/astra6.png)
+
+***Avoid using "hyphens" or "underscores" in your database name***
 
 3. Then, you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection Details"
 
-![Astra](Assets/../Assets/Images/astra2.png)
+![Astra](Assets/../Assets/Images/astra7.png)
 
 4. After, click on the link to "Download secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
 
-![Astra](Assets/../Assets/Images/astra3.png)
+![Astra](Assets/../Assets/Images/astra8.png)
 
 5. ***Fill in the naming conventions you declared earlier, when you setup your database, in your (cassandra.api/astra.credentials/UserCred.json) file***
 - The following is an example of what the UserCred.json would look like following the example in the screenshots above.
 
 ```
-database name: "KVUser",
-keyspace name: "KVPassword",
-username: "leavesnetwork",
-password: "killrvideo",
-table: "leaves"
+{ 
+    "username":"kvuser", 
+    "password":"kvpassword", 
+    "cluster":"test", 
+    "keyspace":"demo", 
+    "table":"leaves"
+}
 ```
 
 The last value ``table`` wasn't declared before so you can do that here for the first time.
 
 ---
 
-## Getting Started
+## 2. Getting Started
 
 ***It's best to go through this project in the following order so you do not get confused.***
 
 
 
-### 1. First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
+### First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
 
-#### [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
-
-
-
-### 2. Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
+#### 2.1 [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
 
 
-#### [Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
+
+### Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
 
 
-#### [Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
+#### 2.2 [Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
+
+
+#### 2.3 [Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
 
 
 #### API Reference Material
@@ -82,6 +86,11 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 
 
-### 3. Third, run this set of unit tests against your API to confirm that it is working properly.
+### Next, run this set of unit tests against your API to confirm that it is working properly.
 
-#### [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
+#### 2.4 [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
+
+
+### Finally, we have Web Admin UI to visualize your Astra Database in Table Format
+
+#### 2.5 [Admin UI](https://github.com/Anant/cassandra.api/tree/master/astra.ui)
