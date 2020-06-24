@@ -65,7 +65,7 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 ### First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
 
-#### [2.1 Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
+#### [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
 
 
 
