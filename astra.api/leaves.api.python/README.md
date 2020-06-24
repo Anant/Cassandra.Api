@@ -46,9 +46,9 @@ Navigate to `localhost:8000/api/leaves/(id)` to view a single row from your tabl
 
 ## Running the API on Gitpod
 
-**2.3.3** [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
 
-Use the sidebar to navigate to `astra.api/leaves.api.python/src` and open app.py
+**2.3.3** Use the sidebar to navigate to `astra.api/leaves.api.python/src` and open app.py
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg4.png)
 

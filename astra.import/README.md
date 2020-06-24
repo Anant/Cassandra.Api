@@ -61,11 +61,11 @@ cassandra.InvalidRequest: Error from server: code=2200 [Invalid query] message="
 
 ## Running the program on Gitpod
 
-**2.4.3** [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg1.png)
 
-Use the sidebar to navigate to and open RESTToAstra.py
+**2.4.3** Use the sidebar to navigate to and open RESTToAstra.py
 
 ![ObiImg](Assets/../../Assets/Images/ObiImg2.png)
 
