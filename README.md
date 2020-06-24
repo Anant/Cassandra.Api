@@ -6,13 +6,13 @@
 
 ## Table of Contents
 
-1. [Astra Setup & Configuring Credentials](#setup)
-2. [Getting Started](#Getting-Started)
-	1. [Running Data Migrator](#Data-Migrator)
-	2. [Node JS](#Node-js)
-	3. [Python](#python)
-	4. [Running Unit Tests](#testing)
-	5. [Running Admin UI](#admin-ui)
+1. [Astra Setup & Configuring Credentials](#1.-setup) 
+2. [Getting Started](#2.-Getting-Started)
+	2.1 [Running Data Migrator](#2.1-Data-Migrator)
+	2.2 [Node JS](#2.2-Node-js)
+	2.3 [Python](#2.3-python)
+	2.4 [Running Unit Tests](#2.4-testing)
+	2.5 [Running Admin UI](#2.5admin-ui)
   
 ---
 
@@ -65,17 +65,17 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 ### First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
 
-#### 2.1 [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
+#### [2.1 Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
 
 
 
 ### Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
 
 
-#### 2.2 [Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
+#### [2.2 Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
 
 
-#### 2.3 [Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
+#### [2.3 Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
 
 
 #### API Reference Material
@@ -88,9 +88,9 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 ### Next, run this set of unit tests against your API to confirm that it is working properly.
 
-#### 2.4 [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
+#### [2.4 Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
 
 
 ### Finally, we have Web Admin UI to visualize your Astra Database in Table Format
 
-#### 2.5 [Admin UI](https://github.com/Anant/cassandra.api/tree/master/astra.ui)
+#### [2.5 Admin UI](https://github.com/Anant/cassandra.api/tree/master/astra.ui)
