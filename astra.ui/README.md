@@ -49,7 +49,7 @@ To edit columns, edit `/Views/Leaves/components/LeavesTable/LeavesTable.js`
 ![Astra](src/assets/edit5.png)
 <br/>
 
-- Delete updated article
+- Delete
 ![Astra](src/assets/edit3.png)
 ![Astra](src/assets/edit4.png)
 <br/>
