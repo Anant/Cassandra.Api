@@ -47,7 +47,7 @@ const UrlTypeProvider = props => (
 
 // Pic column formatting
 const PicFormatter = ({ value }) => (
-    <img src={value} style={{height:'50px', width: "140px"}} alt="No Preview"/>
+    <img src={value} style={{ height: '50px', width: "140px" }} alt="No Preview" />
 );
 
 const PicTypeProvider = props => (
@@ -209,10 +209,10 @@ const LeavesTable = () => {
                 <SortingState />
                 <IntegratedPaging />
                 <IntegratedSorting />
-                <DateTypeProvider for={dateColumn}/>
-                <UrlTypeProvider for={urlColumn}/>
-                <PicTypeProvider for={picColumn}/>
-                <TagsTypeProvider for={tagsColumn}/>
+                <DateTypeProvider for={dateColumn} />
+                <UrlTypeProvider for={urlColumn} />
+                <PicTypeProvider for={picColumn} />
+                <TagsTypeProvider for={tagsColumn} />
                 <Table />
                 {/* <TableColumnResizing columnWidths={columnWidths} /> */}
                 <TableHeaderRow showSortingControls={true} />
