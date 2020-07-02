@@ -68,10 +68,10 @@ def processURL(url):
 
 
 #Connect to Astra Cluster
-with open('astra.credentials/UserCred.json') as f:
+with open('../../astra.credentials/UserCred.json') as f:
     cred = json.load(f)
 cloud_config= {
-        'secure_connect_bundle': 'astra.credentials/secure-connect-'+cred['cluster']+'.zip'
+        'secure_connect_bundle': '../../astra.credentials/secure-connect-'+cred['cluster']+'.zip'
 }
 auth_provider = PlainTextAuthProvider(cred['username'], cred['password'])
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
