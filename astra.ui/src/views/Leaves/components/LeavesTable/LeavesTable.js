@@ -47,9 +47,6 @@ const UrlTypeProvider = props => (
 
 // Pic column formatting
 const PicFormatter = ({ value }) => (
-    // <b style={{ color: 'darkblue' }}>
-    //     {<a href={value} target="_blank">{value}</a>}
-    // </b>
     <img src={value} style={{height:'50px', width: "140px"}} alt="No Preview"/>
 );
 
