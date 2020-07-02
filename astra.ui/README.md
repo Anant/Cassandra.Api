@@ -9,10 +9,10 @@ Administration panel for <a href="https://github.com/Anant/cassandra.api">Cassan
 --- 
 - [Setup](#setup)
   
-- [# Astra UI](#h1-idastra-ui-44astra-uih1)
-- [## Table of Contents](#h2-idtable-of-contents-44table-of-contentsh2)
+- [Astra UI](#h1-idastra-ui-44astra-uih1)
+- [Table of Contents](#h2-idtable-of-contents-44table-of-contentsh2)
 - [Setup](#setup)
-- [## Operations](#h2-idoperations-44operationsh2)
+- [Operations](#h2-idoperations-44operationsh2)
     - [Folder Structure](#folder-structure)
   
 
