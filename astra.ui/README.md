@@ -9,10 +9,10 @@ Administration panel for <a href="https://github.com/Anant/cassandra.api">Cassan
 --- 
 - [Setup](#setup)
   
-- [# Astra UI](#h1-idastra-ui-136astra-uih1)
-- [## Table of Contents](#h2-idtable-of-contents-136table-of-contentsh2)
+- [Astra UI](#h1-idastra-ui-136astra-uih1)
+- [Table of Contents](#h2-idtable-of-contents-136table-of-contentsh2)
 - [Setup](#setup)
-- [## Operations](#h2-idoperations-89operationsh2)
+- [Operations](#h2-idoperations-89operationsh2)
     - [Folder Structure](#folder-structure)
   
 
@@ -56,6 +56,7 @@ To edit columns, edit `/Views/Leaves/components/LeavesTable/LeavesTable.js`
 <br/>
 
 - Column sorting
+
 ![Astra](src/assets/edit2.png)
 
 #### Folder Structure
