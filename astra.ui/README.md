@@ -9,7 +9,11 @@ Administration panel for <a href="https://github.com/Anant/cassandra.api">Cassan
 --- 
 - [Setup](#setup)
   
-- [Folder Structure](#folder-structure)
+- [Astra UI](#h1-idastra-ui-44astra-uih1)
+- [Table of Contents](#h2-idtable-of-contents-44table-of-contentsh2)
+- [Setup](#setup)
+- [Operations](#h2-idoperations-44operationsh2)
+    - [Folder Structure](#folder-structure)
   
 
 ## Setup
@@ -28,12 +32,31 @@ SKIP_PREFLIGHT_CHECK=true
 
 ![Astra](src/assets/astra_ui.png)
 
+
+
 Each column allows sorting, editing, deletion and paginationm of our Cassandra table.
 
 To edit columns, edit `/Views/Leaves/components/LeavesTable/LeavesTable.js`
 
 ![Astra](src/assets/LeavesTableColumns.png)
 
+## Operations
+----
+
+<br/>
+
+- Edit
+![Astra](src/assets/edit5.png)
+<br/>
+
+- Delete
+![Astra](src/assets/edit3.png)
+![Astra](src/assets/edit4.png)
+<br/>
+
+- Column sorting
+
+![Astra](src/assets/edit2.png)
 
 #### Folder Structure
 ```

@@ -31,11 +31,9 @@ npm run test
   
 #### Troubleshooting
 
-* Point the API that is being tested to port `8000`, or change line 3 in *leaves.api.tests/test/app.spec.js* to match the running URL/PORT of the API.
 * **Ensure your Node/Python API is running before starting tests**
 
-
-**2.4.3** We will discuss how to run the tests for testing the node API and the python API from the same test suite. We can either do this on Gitpod or locally, whichever you prefer as the steps will be the same after setting it up. If doing this on Gitpod, go to `gitpod.io#the-repo-url` and wait for it to finish loading. If doing it locally, git clone the repo to whichever location. Once cloned, cd into the directory and open the directory in whichever code editor you are using. We will discuss the how-to for both. But before doing so, we will need to download the secure connect bundle from Astra and place that into the `/astra.credentials` directory, and then insert the appropriate credentials into `/astra.credentials/UserCred.json` as those will be needed to run the API’s and tests. 
+**2.4.3** We will discuss how to run the tests for testing the node API and the python API from the same test suite. We can either do this on Gitpod or locally, whichever you prefer as the steps will be the same after setting it up. If doing this on Gitpod, go to `gitpod.io#the-repo-url` and wait for it to finish loading. If doing it locally, git clone the repo to whichever location. Once cloned, cd into the directory and open the directory in whichever code editor you are using. We will discuss the how-to for both. But before doing so, we will need to download the secure connect bundle from Astra and place that into the `/astra.credentials` directory, and then insert the appropriate credentials into `/astra.credentials/UserCred.json` as those will be needed to run the API’s and tests. Also, we will need to run the importer to create the table in Astra if that has not been done already. Instructions for doing so are in `/astra.import/README.md`. 
 
 ---
 

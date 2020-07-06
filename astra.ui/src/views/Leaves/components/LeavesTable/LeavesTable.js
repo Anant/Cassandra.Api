@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
-import { EditingState } from '@devexpress/dx-react-grid';
+
 import {
     PagingState,
     IntegratedPaging,
     SortingState,
-    IntegratedSorting
+    IntegratedSorting,
+    DataTypeProvider,
+    EditingState
 } from '@devexpress/dx-react-grid';
 import {
     Grid, Table, TableHeaderRow, PagingPanel, TableEditRow,
@@ -15,6 +17,59 @@ import {
 //DevExpress Plugin for column resizing
 // import { TableColumnResizing } from '@devexpress/dx-react-grid-material-ui';
 
+//Date column formatting
+const DateFormatter = ({ value }) => (
+    <b style={{ color: 'darkblue' }}>
+        {new Date(value).toLocaleString('en-US')}
+    </b>
+);
+
+const DateTypeProvider = props => (
+    <DataTypeProvider
+        formatterComponent={DateFormatter}
+        {...props}
+    />
+);
+
+//URL column formatting
+const UrlFormatter = ({ value }) => (
+    <b style={{ color: 'darkblue' }}>
+        {<a href={value} target="_blank">{value}</a>}
+    </b>
+);
+
+const UrlTypeProvider = props => (
+    <DataTypeProvider
+        formatterComponent={UrlFormatter}
+        {...props}
+    />
+);
+
+// Pic column formatting
+const PicFormatter = ({ value }) => (
+    <img src={value} style={{ height: '50px', width: "140px" }} alt="No Preview" />
+);
+
+const PicTypeProvider = props => (
+    <DataTypeProvider
+        formatterComponent={PicFormatter}
+        {...props}
+    />
+);
+
+//Tags column formatting
+const TagsFormatter = ({ value }) => (
+    <div>
+        {value.map((tag) => <p>{tag}</p>)}
+    </div>
+);
+
+const TagsTypeProvider = props => (
+    <DataTypeProvider
+        formatterComponent={TagsFormatter}
+        {...props}
+    />
+);
 
 //Our columns require [name, title], name is used to align object keys with columns, title is the column heading
 const columns = [
@@ -29,7 +84,7 @@ const columns = [
 const LeavesTable = () => {
     //Our Table data
     const [rows, setRows] = useState([]);
-    
+
     //Runs similar to componentDidMount, set our table data
     useEffect(() => {
         getLeaves();
@@ -37,6 +92,13 @@ const LeavesTable = () => {
 
     //IDs of editing rows
     const [editingRowIds, setEditingRowIds] = useState([]);
+
+    //Columns for custom formatting
+    const [dateColumn] = useState(['created_at']);
+    const [urlColumn] = useState(['url']);
+    const [picColumn] = useState(['preview_picture']);
+    const [tagsColumn] = useState(['tags']);
+
 
     //Our Row changes as we edit
     const [rowChanges, setRowChanges] = useState({});
@@ -147,6 +209,10 @@ const LeavesTable = () => {
                 <SortingState />
                 <IntegratedPaging />
                 <IntegratedSorting />
+                <DateTypeProvider for={dateColumn} />
+                <UrlTypeProvider for={urlColumn} />
+                <PicTypeProvider for={picColumn} />
+                <TagsTypeProvider for={tagsColumn} />
                 <Table />
                 {/* <TableColumnResizing columnWidths={columnWidths} /> */}
                 <TableHeaderRow showSortingControls={true} />
