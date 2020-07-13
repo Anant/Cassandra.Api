@@ -1,6 +1,6 @@
 # Node REST API
 
-These instructions will get your Node REST API using Astra up and running locally and on the cloud.
+These instructions will get your Node REST API, using Astra, up and running locally and on the cloud.
 Before using this API, run the data importer first so that you have data in your database.
 
 ## Getting Started

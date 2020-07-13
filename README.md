@@ -19,10 +19,7 @@
 ## Setup
 
 
-1. Before you start using our tools, you'll need to create an account on DataStax Astra:
-```
-https://astra.datastax.com/register
-```
+1. Before you start using our tools, you'll need to create an account on [DataStax Astra](https://astra.datastax.com/register)
 
 ![Astra](Assets/../Assets/Images/astra5.png)
 
@@ -78,13 +75,6 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 #### [Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
 
 
-#### API Reference Material
-
-[Building REST API Blog Post](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
-
-[Building REST API Webinar Recording](https://www.youtube.com/watch?v=O64pJa3eLqs)
-
-
 
 ### Next, run this set of unit tests against your API to confirm that it is working properly.
 
@@ -94,3 +84,20 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 ### Finally, we have Web Admin UI to visualize your Astra Database in Table Format
 
 #### [Admin UI](https://github.com/Anant/cassandra.api/tree/master/astra.ui)
+
+
+## Reference Material
+
+[Cassandra.API Demo: Part 1](https://blog.anant.us/setting-up-your-datastax-astra-instance-with-cassandra-api/)
+
+[Cassandra.API Demo: Part 2](https://blog.anant.us/new-features-to-cassandra-api/)
+
+[Building a REST API with DataStax Astra using Node & Python: Part 1](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
+
+[Building a REST API with DataStax Astra using Node & Python: Part 2](https://blog.anant.us/developer-workshop-building-a-rest-api-with-cassandra-using-python-and-node/)
+
+[Cassandra.API Live Workshop w/DataStax](https://www.youtube.com/watch?v=kRYMwOl6Uo4&list=PL2g2h-wyI4SqcSXuShseNQnHMAWl0SF4q&index=2&t=0s)
+
+[Cassandra.API Video Demo: Part 1](https://www.youtube.com/watch?v=O64pJa3eLqs)
+
+[Cassandra.API Video demo: Part 2](https://www.youtube.com/watch?v=j2B_1_yv3CM&feature=youtu.be)
