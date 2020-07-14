@@ -31,7 +31,7 @@ line 74: 'secure_connect_bundle': '../../astra.credentials/secure-connect-'+cred
 
 ---
 
-## Running the API Locally
+### Running the API Locally
 
 **2.3.2** Run the script with the following command:
 ```sh
@@ -44,7 +44,7 @@ Navigate to `localhost:8000/api/leaves/(id)` to view a single row from your tabl
 
 ---
 
-## Running the API on Gitpod
+### Running the API on Gitpod
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/anant/cassandra.api.git)
 
@@ -72,7 +72,7 @@ Press the open browser button. This will open a new tab and navigate to a 404 pa
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg9.png)
 
-## Usage / Testing via Postman
+#### Usage
 
 **2.3.7**To get the Postman collection of endpoints, copy this link: <https://www.getpostman.com/collections/fec7e958c0140321191a>
 
@@ -118,7 +118,7 @@ After doing so, we can now scroll down and run the tests by clicking on "Run Cas
 
 At this point, you can either play around with the endpoints in the "Tests" folder, or you can use the template endpoints in the "Templates" folder to follow along with the walkthrough. 
 
-### Postman Walkthrough
+### R/W Postman Walkthrough
 
 **2.3.10** Grab your gitpod-given url add `/api/leaves` to the end and paste into the url space in postman. Hit the send button. Your response should be a list of all of the entries in your astra table. Grab an id value from one of the entries to use in later steps.
 

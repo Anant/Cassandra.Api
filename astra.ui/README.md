@@ -4,14 +4,7 @@ These instructions will get your CRUD UI, using Astra, up and running.
 Before you start the admin UI, you'll need to run the Cassandra.API code including the Data Migrator and the either of the provided APIs (node or python).
 
 ## Getting Started (Locally & on Gitpod)
---- 
-- [Setup](#setup)
-  
-- [Astra UI](#h1-idastra-ui-44astra-uih1)
-- [Table of Contents](#h2-idtable-of-contents-44table-of-contentsh2)
-- [Setup](#setup)
-- [Operations](#h2-idoperations-44operationsh2)
-  
+---
 
 ### Setup
 
