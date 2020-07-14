@@ -116,9 +116,11 @@ After doing so, we can now scroll down and run the tests by clicking on "Run Cas
 
 ![ArpImg55](Assets/../../../Assets/Images/ArpImg55.png)
 
-At this point, you can either play around with the endpoints in the "Tests" folder, or you can use the template endpoints in the "Templates" folder to follow along with the walkthrough. 
 
-### R/W Postman Walkthrough
+At this point, you can either play around with the endpoints in the "Tests" folder, or you can use the template endpoints in the "Templates" folder to follow along with the walkthrough. 
+---
+
+## R/W Postman Walkthrough
 
 **2.3.10** Grab your gitpod-given url add `/api/leaves` to the end and paste into the url space in postman. Hit the send button. Your response should be a list of all of the entries in your astra table. Grab an id value from one of the entries to use in later steps.
 
@@ -176,7 +178,7 @@ This returns the edited entry in full. This changes the "all" field appropriatel
 
 ![ObiImg](Assets/../../../Assets/Images/ObiImg26.png)
 
-## Usage / Testing via Curl
+### Usage / Testing R/W via Curl
 
 **2.3.16** Starting back in Gitpod, with the api running and start a seperate terminal.
 
