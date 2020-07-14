@@ -86,6 +86,7 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 #### [Admin UI](https://github.com/Anant/cassandra.api/tree/master/astra.ui)
 
 
+---
 ## Reference Material
 
 [Cassandra.API Demo: Part 1](https://blog.anant.us/setting-up-your-datastax-astra-instance-with-cassandra-api/)
