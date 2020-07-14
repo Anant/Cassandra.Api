@@ -4,14 +4,6 @@ These instructions will get your CRUD UI, using Astra, up and running.
 Before you start the admin UI, you'll need to run the Cassandra.API code including the Data Migrator and the either of the provided APIs (node or python).
 
 ## Getting Started (Locally & on Gitpod)
-<<<<<<< HEAD
----
-=======
---- 
-- [Setup](#setup)
-- [Operations](#operations)
-  
->>>>>>> 7387bb14f5de8d21315ff4d4deeb3b840b67f6c3
 
 ### Setup
 
