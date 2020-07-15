@@ -91,9 +91,9 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 [Cassandra.API Documentation Walkthrough](https://youtu.be/ZuIjoL60Ad4)
 
-[Cassandra.API Demo: Part 1](https://blog.anant.us/setting-up-your-datastax-astra-instance-with-cassandra-api/)
+[Cassandra.API Blog Post: Part 1](https://blog.anant.us/setting-up-your-datastax-astra-instance-with-cassandra-api/)
 
-[Cassandra.API Demo: Part 2](https://blog.anant.us/new-features-to-cassandra-api/)
+[Cassandra.API Blog Post: Part 2](https://blog.anant.us/new-features-to-cassandra-api/)
 
 [Building a REST API with DataStax Astra using Node & Python: Part 1](https://blog.anant.us/building-a-rest-api-with-cassandra-on-datastax-astra-using-python-and-node/)
 
