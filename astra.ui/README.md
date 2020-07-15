@@ -15,6 +15,7 @@ SKIP_PREFLIGHT_CHECK=true
 This will skip eslint pre-flight checks
 
 **2.5.2** Next, run `npm install` to install dependencies.
+
 **2.5.3** Finally, navigate to http://localhost:3000 to view your user interface.
 
 ![Astra](src/assets/astra_ui.png)
