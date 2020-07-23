@@ -8,6 +8,7 @@ import hashlib
 from bs4 import BeautifulSoup
 import re
 import readtime
+from flask_cors import CORS
 
 #Helper method for filling in other fields for a new row, given the url. Returns a python Dict/ json object containing the url as well as all other fields.
 def processURL(url):
@@ -88,6 +89,7 @@ session.set_keyspace(cred['keyspace'])
 
 #Create Flask app
 app = Flask(__name__)
+CORS(app)
 
 #Get all rows from cassandra table, returns json of a list of all results
 @app.route('/api/leaves',methods=['GET'])
