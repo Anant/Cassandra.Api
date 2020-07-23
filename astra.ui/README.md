@@ -11,12 +11,17 @@ Before you start the admin UI, you'll need to run the Cassandra.API code includi
 
 ```
 SKIP_PREFLIGHT_CHECK=true
+REACT_APP_API_URL=
 ```
+**PLEASE NOTE: You will need to add the value for "REACT_APP_API_URL" depending if you are working from Gitpod or local command line. If you're on Gitpod, copy the url you get after clicking "Open Browser" after running your API. IF you're working locally, copy the localhost url after running your API**
+
 This will skip eslint pre-flight checks
 
 **2.5.2** Next, run `npm install` to install dependencies.
 
-**2.5.3** Finally, navigate to http://localhost:3000 to view your user interface.
+**2.5.3** Then run `npm start` to run the code.
+
+**2.5.4** Finally, navigate to http://localhost:3000 to view your user interface.
 
 ![Astra](src/assets/astra_ui.png)
 
