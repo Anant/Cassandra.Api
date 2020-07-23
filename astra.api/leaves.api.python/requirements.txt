@@ -1,5 +1,6 @@
 cassandra-driver
 requests
 flask
+flask-cors
 bs4
 readtime

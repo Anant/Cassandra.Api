@@ -8,6 +8,7 @@ import hashlib
 from bs4 import BeautifulSoup
 import re
 import readtime
+from flask_cors import CORS
 
 #Helper method for filling in other fields for a new row, given the url. Returns a python Dict/ json object containing the url as well as all other fields.
 def processURL(url):
@@ -68,10 +69,10 @@ def processURL(url):
 
 
 #Connect to Astra Cluster
-with open('astra.credentials/UserCred.json') as f:
+with open('cassandra.api/astra.credentials/UserCred.json') as f:
     cred = json.load(f)
 cloud_config= {
-        'secure_connect_bundle': 'astra.credentials/secure-connect-'+cred['cluster']+'.zip'
+        'secure_connect_bundle': 'cassandra.api/astra.credentials/secure-connect-'+cred['cluster']+'.zip'
 }
 auth_provider = PlainTextAuthProvider(cred['username'], cred['password'])
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
@@ -88,6 +89,7 @@ session.set_keyspace(cred['keyspace'])
 
 #Create Flask app
 app = Flask(__name__)
+CORS(app)
 
 #Get all rows from cassandra table, returns json of a list of all results
 @app.route('/api/leaves',methods=['GET'])

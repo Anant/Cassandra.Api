@@ -11,11 +11,12 @@ Before using this API, run the data importer first so that you have data in your
 - Python cassandra-driver
 - Python requests
 - Python flask
+- Python flask-cors
 
 **2.3.1** Run the following command:
 
 ```sh
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### Setup for Both Local and Cloud Deployment
