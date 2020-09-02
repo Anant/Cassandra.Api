@@ -7,6 +7,7 @@ from flask import Flask, jsonify, request, abort, Response
 import hashlib
 from bs4 import BeautifulSoup
 import re
+import os
 import readtime
 from flask_cors import CORS
 
@@ -69,10 +70,13 @@ def processURL(url):
 
 
 #Connect to Astra Cluster
-with open('astra.credentials/UserCred.json') as f:
+path_to_this_file = os.path.abspath(os.path.dirname(__file__))
+creds_dir = os.path.join(path_to_this_file, '../../', 'astra.credentials')
+with open(os.path.join(creds_dir, 'UserCred.json')) as f:
     cred = json.load(f)
+
 cloud_config= {
-        'secure_connect_bundle': 'astra.credentials/secure-connect-'+cred['cluster']+'.zip'
+        'secure_connect_bundle': os.path.join(creds_dir, 'secure-connect-'+cred['cluster']+'.zip')
 }
 auth_provider = PlainTextAuthProvider(cred['username'], cred['password'])
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
