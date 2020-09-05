@@ -48,7 +48,7 @@ leavesRouter
   })
 
   //Currently under construction and subject to change
-  .post(jsonParser, async (req, res, next) => {
+  .post(async (req, res, next) => {
     try{
 
       //object destructuring of request body  
@@ -56,11 +56,11 @@ leavesRouter
         = req.body;
 
       //validate for missing keys in request body
-      for (const [key, value] of Object.entries(req.body))
-        if (!value)
-          return res.status(400).json({
-            error: `Missing '${key}' in request body`
-          });
+    //   for (const [key, value] of Object.entries(req.body))
+    //     if (!value)
+    //       return res.status(400).json({
+    //         error: `Missing '${key}' in request body`
+    //       });
 
       //creating new object to insert into Astra
       newLeaf = { url };
