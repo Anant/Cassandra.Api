@@ -37,7 +37,7 @@
     "metascraper-readability": "^5.11.10",
     "metascraper-title": "^5.11.10",
     "morgan": "^1.10.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4",
     "uuid": "^7.0.3"

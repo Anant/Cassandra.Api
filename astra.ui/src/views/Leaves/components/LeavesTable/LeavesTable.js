@@ -107,7 +107,7 @@ const LeavesTable = () => {
     async function getLeaves() {
         try {
             //Our Cassandra.Api endpoint
-            let response = await fetch('http://localhost:8000/api/leaves');
+            let response = await fetch(`${process.env.REACT_APP_API_URL}/api/leaves`);
             let data = await response.json();
             //Set state for table
             await setRows(data);
@@ -142,7 +142,7 @@ const LeavesTable = () => {
             };
 
             //Update req cassandra.api, Req.body = changes, Refresh table
-            await fetch(`http://localhost:8000/api/leaves/${leafID}`, {
+            await fetch(`${process.env.REACT_APP_API_URL}/api/leaves/${leafID}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ const LeavesTable = () => {
             // console.log("DELETE ID",deleteID)
 
             //DELETE request, refresh table after success
-            fetch(`http://localhost:8000/api/leaves/${deleteID}`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/leaves/${deleteID}`, {
                 method: 'DELETE',
             }).then(response => response.json())
                 .then(data => {
