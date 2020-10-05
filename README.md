@@ -66,6 +66,20 @@ Finally click the download secure bundle button to download the zip of right-cli
 
 4. After, click on the link to "Download secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
 
+5. ***Fill in the naming conventions you declared earlier, when you setup your database, in your (cassandra.api/astra.credentials/UserCred.json) file***
+- The following is an example of what the UserCred.json would look like following the example in the screenshots above.
+
+```
+{ 
+    "username":"kvuser", 
+    "password":"kvpassword", 
+    "cluster":"test", 
+    "keyspace":"demo", 
+    "table":"leaves"
+}
+```
+
+The last value ``table`` wasn't declared before so you can do that here for the first time.
 ---
 
 ## Getting Started
