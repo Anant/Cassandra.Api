@@ -80,6 +80,7 @@ Finally click the download secure bundle button to download the zip of right-cli
 ```
 
 The last value ``table`` wasn't declared before so you can do that here for the first time.
+
 ---
 
 ## Getting Started
