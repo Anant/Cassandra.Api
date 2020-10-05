@@ -20,7 +20,7 @@
 
 **✅ Sign up**
 
-1. Before you start using our tools, you'll need to create an account on [DataStax Astra](dtsx.io/workshop)
+1. Before you start using our tools, you'll need to create an account on [DataStax Astra](https://dtsx.io/workshop)
 
 ![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/login-1000.png?raw=true)
 
@@ -50,9 +50,8 @@ View your database. It may take 2-3 minutes for your database to spin up. You wi
 
 Database is ready, notice how the status changed from `pending` to `Active` and now you now have the **connect** button enabled.*
 
-- **✅ Get the secure cloud bundle**
 
-Display the summary screen and locate the `connect` button.
+3. Access your connections panel by clicking the `connect` button.
 
 ![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/summary-1000-connect.png?raw=true)
 
@@ -60,11 +59,9 @@ On the connect screen pick `drivers`
 
 ![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/connect-rest-driver.png?raw=true)
 
-Finally click the download secure bundle button to download the zip of right-click to the button to get the url 
+4. Finally click the download secure bundle button to download the zip of right-click to the button to get the url and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
 
 ![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/connect-driver-1000.png?raw=true)
-
-4. After, click on the link to "Download secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
 
 5. ***Fill in the naming conventions you declared earlier, when you setup your database, in your (cassandra.api/astra.credentials/UserCred.json) file***
 - The following is an example of what the UserCred.json would look like following the example in the screenshots above.
