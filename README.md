@@ -18,39 +18,53 @@
 
 ## Setup
 
+**✅ Sign up**
 
-1. Before you start using our tools, you'll need to create an account on [DataStax Astra](https://astra.datastax.com/register)
+1. Before you start using our tools, you'll need to create an account on [DataStax Astra](dtsx.io/workshop)
 
-![Astra](Assets/../Assets/Images/astra5.png)
+![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/login-1000.png?raw=true)
 
-2. You'll then be directed to this screen where you fill in details to launch new Astra Database.
+2. You'll then be directed to the home page. Locate the button `Add Database` 
 
-![Astra](Assets/../Assets/Images/astra6.png)
+![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-empty-1000.png?raw=true)
 
-***Avoid using "hyphens" or "underscores" in your database name***
+**✅ Use the form to create new database**
 
-3. Then, you'll need to do on Astra is to download your "secure-connection-details-zip". To do that, click on the actions button in the top left section of the screen then click on "Conection Details"
+- Define the free plan and and pick a region close to you 
 
-![Astra](Assets/../Assets/Images/astra7.png)
+![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/choose-a-plan-1000-annotated.png?raw=true)
+
+- Fill the databases parameters.
+
+![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/create-and-configure-annotated-1000.png?raw=true)
+
+**✅ View your Database and connect**
+
+View your database. It may take 2-3 minutes for your database to spin up. You will receive an email at that point.
+
+**👁️ Expected output**
+
+*Initializing*
+
+![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000.png?raw=true)
+
+Database is ready, notice how the status changed from `pending` to `Active` and now you now have the **connect** button enabled.*
+
+- **✅ Get the secure cloud bundle**
+
+Display the summary screen and locate the `connect` button.
+
+![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/summary-1000-connect.png?raw=true)
+
+On the connect screen pick `drivers`
+
+![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/connect-rest-driver.png?raw=true)
+
+Finally click the download secure bundle button to download the zip of right-click to the button to get the url 
+
+![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/connect-driver-1000.png?raw=true)
 
 4. After, click on the link to "Download secure connect bundle" and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
-
-![Astra](Assets/../Assets/Images/astra8.png)
-
-5. ***Fill in the naming conventions you declared earlier, when you setup your database, in your (cassandra.api/astra.credentials/UserCred.json) file***
-- The following is an example of what the UserCred.json would look like following the example in the screenshots above.
-
-```
-{ 
-    "username":"kvuser", 
-    "password":"kvpassword", 
-    "cluster":"test", 
-    "keyspace":"demo", 
-    "table":"leaves"
-}
-```
-
-The last value ``table`` wasn't declared before so you can do that here for the first time.
 
 ---
 
