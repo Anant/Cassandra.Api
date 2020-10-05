@@ -51,7 +51,8 @@ Database is ready, notice how the status changed from `pending` to `Active` and 
 
 ### 1.3 Go To Connections Panel
 
-- Access your connections panel by clicking the `connect` button.
+- Get your secure connect bundle.
+- To do so, access your connections panel by clicking the `connect` button.
 
 ![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/summary-1000-connect.png?raw=true)
 
@@ -61,14 +62,14 @@ Database is ready, notice how the status changed from `pending` to `Active` and 
 
 ### 1.4 Download Secure Connect Bundle
 
-- Finally click the download secure bundle button to download the zip of right-click to the button to get the url and save the zip file to the **cassandra.api/astra.credentials** directory of this project. 
+- Finally, click the Download Secure Connect Bundle button to download the zip. Once saved, move the zip into the `cassandra.api/astra.credentials` directory of this project.
 
 ![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/connect-driver-1000.png?raw=true)
 
 ### 1.5 Configure Cassandra.API Connection
 
 - Fill in the naming conventions you declared earlier, when you setup your database, in your ***(cassandra.api/astra.credentials/UserCred.json) file***
-- The following is an example of what the UserCred.json would look like following the example in the screenshots above.
+- The following is an example of that the UserCred.json file would look like using the credentials used for configuring the Astra instance.
 
 ```
 { 
@@ -90,13 +91,13 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 
 
-### First, run the data migrator to transfer data from our cassandra.api to your Astra Database.
+### 2.1 Run the data migrator to transfer data from our cassandra.api to your Astra Database.
 
 #### [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
 
 
 
-### Second, setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
+### 2.2 Setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
 
 
 #### [Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
@@ -106,12 +107,12 @@ The last value ``table`` wasn't declared before so you can do that here for the 
 
 
 
-### Next, run this set of unit tests against your API to confirm that it is working properly.
+### 2.3 Run this set of unit tests against your API to confirm that it is working properly.
 
 #### [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
 
 
-### Finally, we have Web Admin UI to visualize your Astra Database in Table Format
+### 2.4 Launch Web Admin UI to visualize your Astra Database in Table Format
 
 #### [Admin UI](https://github.com/Anant/cassandra.api/tree/master/astra.ui)
 
