@@ -17,12 +17,16 @@ namespace LeavesApi.Controllers
         // https://github.com/DataStax-Examples/getting-started-with-astra-csharp#managing-cassandra-session-within-a-net-web-application
         // "With each call to the CredentialsController the AstraService singleton we created at startup will be passed to the constructor. This mechanism of dependency injection allows us a simple mechanism to use a single Session object throughout the entirety of the application lifecycle."
         private IDataStaxService Service { get; set; }
-        private String keyspace = "";
-        // TODO Consider making this more compatible with the Python implementation, and just have users create a UserCred.json file instead
-        private String table = "";
+
+
+        private String Keyspace;
+        private String Table;
 
         public LeavesController(IDataStaxService service)
         {
+            Dictionary<String, String> credData = service.GetCredData(); 
+            Table = credData["table"];
+            Keyspace = credData["keyspace"];
             Service = service;
         }
 
@@ -36,7 +40,7 @@ namespace LeavesApi.Controllers
             //         #print(type(str(row)))
             //         result.append(json.loads(row.json))
             //     return jsonify(result)
-            return new string[] { "datacenter: ", "TODO"};
+            return new string[] { "datacenter: ", Keyspace};
 
         }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 // borrowed from Datastax example
 // based off of https://github.com/DataStax-Examples/getting-started-with-astra-csharp
@@ -20,44 +21,56 @@ namespace LeavesApi.Services
         private static readonly AstraService _AstraServiceInstance = new AstraService();
         private ISession _session;
 
+    
         public ISession Session
         {
+
             get
             {
                 //If the session is null then create a new one
                 if (_session == null)
                 {
-                    // read from User created creds file
-                    // using (StreamReader r = new StreamReader("../../../astra.credentials/UserCred.json"))
-                    // {
-                    //     string json = r.ReadToEnd();
-                    //     List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);
-                    var userCredsPath = Path.Combine(Directory.GetCurrentDirectory(), "../../astra.credentials/UserCred.json");
+                    Dictionary<String, String> credData = GetCredData();
 
-                    using (StreamReader reader = File.OpenText(userCredsPath))
-                    {
-                        JObject userCredsJson = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
-
-                        // var user = Environment.GetEnvironmentVariable("AstraUsername");
-                        // var password = Environment.GetEnvironmentVariable("AstraPassword");
-                        // var keyspace = Environment.GetEnvironmentVariable("AstraKeyspace");
-                        // var secureBundlePath = Environment.GetEnvironmentVariable("SecureConnectBundlePath");
-                        var user = (String)userCredsJson["username"];
-                        var password = (String)userCredsJson["password"];
-                        var keyspace = (String)userCredsJson["keyspace"];
-                        var cluster = (String)userCredsJson["cluster"];
-                        var table = (String)userCredsJson["table"];
-                        var secureBundlePath = Path.Combine(Directory.GetCurrentDirectory(), "../../astra.credentials/secure-connect-" + cluster + ".zip").ToString();
-
-                        Console.WriteLine(secureBundlePath);
-
-                        _session = ConnectToAstra(user, password, keyspace, secureBundlePath).Result;
-                    }
+                    _session = ConnectToAstra(credData["user"], credData["password"], credData["keyspace"], credData["secureBundlePath"]).Result;
 
                     //Create the new Astra session then save the parameters to Environment Variables for later use in the same session
                 }
                 return _session;
             }
+        }
+
+        // read UserCred.json file and return as Dictionary
+        public Dictionary<string, string> GetCredData()
+        {
+            var userCredsPath = Path.Combine(Directory.GetCurrentDirectory(), "../../astra.credentials/UserCred.json");
+
+            Dictionary<String, String> creds = new Dictionary<String, String>();
+
+            using (StreamReader reader = File.OpenText(userCredsPath))
+            {
+                JObject userCredsJson = (JObject)JToken.ReadFrom(new JsonTextReader(reader));
+
+                // var user = Environment.GetEnvironmentVariable("AstraUsername");
+                // var password = Environment.GetEnvironmentVariable("AstraPassword");
+                // var keyspace = Environment.GetEnvironmentVariable("AstraKeyspace");
+                // var secureBundlePath = Environment.GetEnvironmentVariable("SecureConnectBundlePath");
+                String cluster = (String)userCredsJson["cluster"];
+
+
+                creds.Add("user", (String)userCredsJson["username"]);
+                creds.Add("password", (String)userCredsJson["password"]);
+                creds.Add("keyspace", (String)userCredsJson["keyspace"]);
+                creds.Add("cluster", cluster);
+                creds.Add("table", (String)userCredsJson["table"]);
+
+                creds.Add("secureBundlePath", Path.Combine(Directory.GetCurrentDirectory(), "../../astra.credentials/secure-connect-" + cluster + ".zip").ToString());
+                // Console.WriteLine(secureBundlePath);
+
+
+            }
+
+            return creds;
         }
 
         /// <summary>
@@ -88,6 +101,7 @@ namespace LeavesApi.Services
         /// <param name="keyspace">The keyspace in Astra</param>
         /// <param name="secureConnectBundlePath">The local file path were the secure connect bundle was saved</param>
         /// <returns>A tuple containing the success of the operation and if it failed the error message</returns>
+        // TODO Re-implementing now that we are using a file instead of environment variables
         public async Task<Tuple<bool, string>> SaveConnection(string username, string password, string keyspace, string secureConnectBundlePath)
         {
             try
