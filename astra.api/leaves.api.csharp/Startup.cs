@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using LeavesApi.Interfaces;
 
 namespace LeavesApi
 {
@@ -49,6 +50,17 @@ namespace LeavesApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        // https://stackoverflow.com/a/35257670/6952495
+        // to access the session singleton: https://stackoverflow.com/a/57902925/6952495
+        // TODO test to make sure it works
+        private void OnShutdown(IDataStaxService service)
+        {       
+            Console.WriteLine("shutting down cluster");
+
+            // Do your cleanup here
+            service.Session.Cluster.Shutdown();
         }
     }
 }

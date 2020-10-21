@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using LeavesApi.Interfaces;
+using LeavesApi.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 using Cassandra;
 
@@ -30,39 +32,99 @@ namespace LeavesApi.Controllers
             Service = service;
         }
 
+        // GET api/leaves/test/urls
+        [HttpGet("field/{field}")]
+        public ActionResult<List<string>> GetField(String field)
+        {
+            // var rows = Service.Session.Execute("SELECT JSON * FROM " + Keyspace + "." + Table);
+            var statement = new SimpleStatement("SELECT url, content FROM " + Keyspace + "." + Table + " LIMIT 100;");
+            // statement.SetPageSize(500);
+
+            Console.WriteLine("executing statement: " + statement);
+            var rows = Service.Session.Execute(statement);
+            List<String> rowsList = new List<String>();  
+
+            // this works, but doesn't get all results, just one
+            // var content = rows.First().GetValue<String>("url"); //.ToString();
+            
+            // rowsList.Add(content);    
+
+            // this is parsing into list, but for some reason causes query to run twice
+            foreach (var row in rows)
+            {
+                var content = row.GetValue<String>(field); //.ToString();
+                if (content != null) {
+                    Console.WriteLine(content);
+                    rowsList.Add(content);             
+
+                } else {
+                    // if using VS Code run, will output to debug console
+                    Console.WriteLine("skipping null...");
+                }
+            }
+
+            Console.WriteLine("returning result!");
+            // return rows.First().GetValue<String>("content").ToString();
+            
+            return rowsList;
+
+        }
+
+
         // GET api/leaves
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<List<string>> Get()
         {
-            // var rows = session.execute("SELECT JSON * FROM " + keyspace + "." + table)
-            //     result = []
-            //     for row in rows:
-            //         #print(type(str(row)))
-            //         result.append(json.loads(row.json))
-            //     return jsonify(result)
-            return new string[] { "datacenter: ", Keyspace};
+            // TODO might need to not set a limit, if that's what is expected for these APIs
+            var statement = new SimpleStatement("SELECT JSON * FROM " + Keyspace + "." + Table + " LIMIT 1000;");
+            statement.SetPageSize(500);
+
+            var rows = Service.Session.Execute(statement);
+
+            Console.WriteLine("executing statement: " + statement);
+            List<String> rowsList = new List<String>();  
+
+            // this is parsing into list, but for some reason causes query to run twice
+            foreach (var row in rows)
+            {
+                rowsList.Add(row.GetValue<String>("[json]"));             
+            }
+
+            Console.WriteLine("returning result!");
+
+            return rowsList;
 
         }
 
+        // This works, but don't need it
         // GET api/leaves/test
-        [HttpGet("test/{test}")]
-        public ActionResult<string> Get(String test)
-        {
-            var res = Service.Session.Execute("SELECT * FROM system.local");
+        // [HttpGet("test/{test}")]
+        // public ActionResult<string> GetTestResults(String test)
+        // {
+        //     var res = Service.Session.Execute("SELECT * FROM system.local");
 
-            return "test" + test + "; datacenter: " + res.First().GetValue<String>("data_center").ToString();
-        }
+        //     return "test" + test + "; datacenter:all " + res.First().GetValue<String>("data_center").ToString();
+        // }
 
         // GET api/leaves/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+             // TODO might need to not set a limit, if that's what is expected for these APIs
+            var statement = new SimpleStatement("SELECT JSON * FROM " + Keyspace + "." + Table + " WHERE id = '" + id + "' LIMIT 1;");
+
+            var rows = Service.Session.Execute(statement);
+
+            Console.WriteLine("executing statement: " + statement);
+
+            Console.WriteLine("returning result!");
+
+            return rows.First().GetValue<String>("[json]");
         }
 
         // POST api/leaves
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Leaf leaf)
         {
         }
 
