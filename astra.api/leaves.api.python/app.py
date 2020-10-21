@@ -108,8 +108,9 @@ def getAll():
     
 #Gets a specified number of rows from the cassandra table
 @app.route('/api/leaves&rows=<num_rows>',methods=['GET'])
-def getNumRows(num_rows):
-    rows = session.execute("SELECT JSON * FROM "+cred['keyspace']+'.'+cred['table']+" LIMIT "+str(num_rows))
+def getNumRows(num_rows :int):
+    get_rows_statement = session.prepare("SELECT JSON * FROM "+cred['keyspace']+'.'+cred['table']+" LIMIT "+"?")
+    rows = session.execute(get_rows_statement, [int(num_rows)])
     #print(type(rows))
     result = []
     for row in rows:
