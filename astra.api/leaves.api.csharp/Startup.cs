@@ -10,7 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using LeavesApi.Interfaces;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace LeavesApi
 {
@@ -47,6 +50,19 @@ namespace LeavesApi
             {
                 app.UseHsts();
             }
+
+            // handle errors thrown on HTTP Requests, return error message in json object
+            // https://stackoverflow.com/a/55166404/6952495
+            // note that this makes it so we don't have the pretty Exception view that .net core returns by default in dev env
+            app.UseExceptionHandler(a => a.Run(async context =>
+            {
+                var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+                var exception = exceptionHandlerPathFeature.Error;
+                
+                var result = JsonConvert.SerializeObject(new { error = exception.Message });
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(result);
+            }));
 
             app.UseHttpsRedirection();
             app.UseMvc();
