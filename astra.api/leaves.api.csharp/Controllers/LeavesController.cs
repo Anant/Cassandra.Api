@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using Cassandra.Mapping;
+
 
 using Cassandra;
 
@@ -76,6 +78,8 @@ namespace LeavesApi.Controllers
         public ActionResult<List<string>> Get()
         {
             // TODO might need to not set a limit, if that's what is expected for these APIs
+            // Note that using SELECT JSON * has performance disadvantages compared to just doing SELECT * and converting to json in the server instead
+            // TODO use mapper and then convert to json using newton json instead, e.g., IEnumerable<Leaf> leaves = mapper.Fetch<Leaf>("SELECT JSON * FROM " + Keyspace + "." + Table + " LIMIT 1000;")
             var statement = new SimpleStatement("SELECT JSON * FROM " + Keyspace + "." + Table + " LIMIT 1000;");
             statement.SetPageSize(500);
 
@@ -111,7 +115,7 @@ namespace LeavesApi.Controllers
         public ActionResult<string> Get(int id)
         {
              // TODO might need to not set a limit, if that's what is expected for these APIs
-            var statement = new SimpleStatement("SELECT JSON * FROM " + Keyspace + "." + Table + " WHERE id = '" + id + "' LIMIT 1;");
+            var statement = new SimpleStatement("SELECT JSON * FROM " + Keyspace + "." + Table + " WHERE id = ? LIMIT 1;", id);
 
             var rows = Service.Session.Execute(statement);
 
@@ -124,8 +128,17 @@ namespace LeavesApi.Controllers
 
         // POST api/leaves
         [HttpPost]
-        public void Post([FromBody] Leaf leaf)
+        public string CreateLeaf([FromBody] Leaf leaf)
         {
+            leaf.id = Guid.NewGuid().ToString();
+            // write to db
+            IMapper mapper = new Mapper(Service.Session);
+            mapper.Insert(leaf);
+
+            Console.WriteLine("inserted to db!");
+
+            // return back what we got
+            return JsonConvert.SerializeObject(leaf);
         }
 
         // PUT api/leaves/5

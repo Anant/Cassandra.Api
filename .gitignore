@@ -1,1 +1,4 @@
 astra.credentials/secure-connect-leavesnetwork.zip
+# NOTE currently doesn't work, need to create example file instead
+astra.credentials/UserCred.json
+astra.credentials/secure-connect*

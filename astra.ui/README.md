@@ -1,7 +1,7 @@
 # Astra UI
 ---
 These instructions will get your CRUD UI, using Astra, up and running.
-Before you start the admin UI, you'll need to run the Cassandra.API code including the Data Migrator and the either of the provided APIs (node or python).
+Before you start the admin UI, you'll need to run the Cassandra.API code including the Data Migrator and the either of the provided APIs (node or python or C#).
 
 ## Getting Started (Locally & on Gitpod)
 
@@ -28,7 +28,7 @@ This will skip eslint pre-flight checks
 
 ### Operations
 
-Each column allows sorting, editing, deletion and paginationm of our Cassandra table.
+Each column allows sorting, editing, deletion and pagination of our Cassandra table.
 
 
 - Edit
@@ -61,4 +61,4 @@ If you wish to edit naming conventions of the columns, edit `/Views/Leaves/compo
 ## Authors
 * **Jordon Carter** - *Initial work*
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/anant/cassandra.api/contributors) who participated in this project.

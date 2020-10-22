@@ -1,6 +1,17 @@
+using System;
+using System.Collections.Generic;
+using Cassandra.Mapping;
+using Cassandra.Mapping.Attributes;
+
 namespace LeavesApi.Models
 {
+
     // TODO can add later if there's more business logic needed
+    // specify tablename, since our table is leaves not "leaf" as default assumes
+    // https://docs.datastax.com/en/latest-csharp-driver-api/api/Cassandra.Mapping.Attributes.TableAttribute.html
+    // https://stackoverflow.com/a/56734019/6952495
+    [Table("leaves")]
+    //public TableAttribute("leaves");
     public class Leaf
     {
         public string id { get; set; }
@@ -22,14 +33,14 @@ namespace LeavesApi.Models
         public bool is_public { get; set; }
 
         // TODO 
-        // all list<text>, 
+        public IEnumerable<string> all  { get; set; }
 
-        // tags list<text>, 
-        // slugs list<text>, 
+        public IEnumerable<string> tags { get; set; }
+        public IEnumerable<string> slugs { get; set; }
+        public IEnumerable<string> links { get; set; }
 
-
-        // created_at timestamp, 
-        // updated_at timestamp, 
-        // links list<text>
+        public DateTimeOffset created_at { get; set; }
+        public DateTimeOffset updated_at { get; set; }
+        
     }
 }
