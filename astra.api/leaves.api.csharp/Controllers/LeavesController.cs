@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using LeavesApi.Interfaces;
 using LeavesApi.Models;
 using System.Linq;
@@ -8,12 +9,17 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Cassandra.Mapping;
+using HtmlAgilityPack;
+using ScrapySharp.Extensions;
+using ScrapySharp.Network;
 
 
 using Cassandra;
 
+
 namespace LeavesApi.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class LeavesController : ControllerBase
@@ -88,15 +94,65 @@ namespace LeavesApi.Controllers
         // TODO Note that this will also perform update by means of upsert if record already exists, and an id is specified. 
         // Maybe want to return error if record exists (?)
         [HttpPost]
-        public string CreateLeaf([FromBody] Leaf leaf)
+        public string CreateLeaf(String url)
         {
-            if (leaf.id == null) {
-                leaf.id = Guid.NewGuid().ToString();
+            Leaf leaf = new Leaf();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(url);
+            byte[] hashBytes = System.Security.Cryptography.MD5.Create().ComputeHash(inputBytes);
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                sb.Append(hashBytes[i].ToString("X2"));
             }
+            leaf.id = sb.ToString();
+            leaf.is_archived = 1;
+            leaf.is_starred = 0;
+            leaf.user_name = "admin";
+            leaf.user_email = "rahul@example.com";
+            leaf.user_id = 1;
+            leaf.is_public = false;
+            leaf.created_at = new DateTimeOffset(DateTime.Now);
+            leaf.updated_at = new DateTimeOffset(DateTime.Now);
+            //leaf.links = leaf.links.Append("api/entires/"+leaf.id);
+            leaf.links = new String[] {"api/entires/"+leaf.id};
+            leaf.tags = new String[] {};
+            leaf.slugs = new String[] {};
 
-            // write to db
-            IMapper mapper = new Mapper(Service.Session);
-            mapper.Insert(leaf);
+            Regex rx = new Regex(@"https?:\/\/[^#?\/]+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            Match match = rx.Match(url);
+            leaf.domain_name = match.Value;
+
+            
+
+
+            ScrapingBrowser _browser = new ScrapingBrowser();
+            WebPage webpage = _browser.NavigateToPage(new Uri(url));
+
+            HtmlNode html = webpage.Html;
+            var links = html.CssSelect("a");
+
+            foreach (var link in links)
+            {
+                if (link.Attributes["href"].Value.Contains(".html"))
+                {
+                    leaf.links.Append(link.Attributes["href"].Value);
+                }
+            }
+            leaf.slugs = leaf.links;
+            leaf.title = html.OwnerDocument.DocumentNode.SelectSingleNode("//html/head/title").InnerText;
+
+            leaf.preview_picture = "https://dummyimage.com/170/000/ffffff&text="+(leaf.title.Replace(" ","%20"));
+
+            leaf.language = "en";
+
+            leaf.content = html.ToString();
+
+            leaf.content_text = html.InnerText;
+
+            char[] delimiters = new char[] {' ', '\r', '\n' };
+            leaf.reading_time = leaf.content_text.Split(delimiters,StringSplitOptions.RemoveEmptyEntries).Length/265;  
+            
+            
 
             // TODO update the all column using fields
             // TODO do other transformation on the record before persisting as well
@@ -174,16 +230,22 @@ namespace LeavesApi.Controllers
 
         // // DELETE api/leaves/5/tags
         // // TODO implement
-        // [HttpDelete("{id}")]
-        // public string DeleteTagsById(int id)
-        // {
-        //     IMapper mapper = new Mapper(Service.Session);
-        //     // get record by id
+        [HttpDelete("{id}")]
+        public ActionResult<string> DeleteTagsById(int id)
+        {
+            IMapper mapper = new Mapper(Service.Session);
+            // get record by id
         
 
-        //     // delete tags
+            // delete tags
+            Console.WriteLine("DELETE tags FROM " + Table + " WHERE id = " + id);
 
-        //     // update all, do other transformations
-        // }
+            // update all, do other transformations
+            Console.WriteLine("SELECT tags FROM " + Table + " WHERE id = " + id);
+            Leaf leaf = mapper.Single<Leaf>("WHERE id = ?", id);
+            IEnumerable<string> tags = leaf.tags;
+
+            return JsonConvert.SerializeObject(leaf);
+        }
     }
 }
