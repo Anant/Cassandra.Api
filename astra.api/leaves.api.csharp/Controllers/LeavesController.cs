@@ -94,9 +94,11 @@ namespace LeavesApi.Controllers
         // TODO Note that this will also perform update by means of upsert if record already exists, and an id is specified. 
         // Maybe want to return error if record exists (?)
         [HttpPost]
-        public string CreateLeaf(String url)
+        public string CreateLeaf([FromBody] String  url)
         {
+            //Console.WriteLine(url.ToString());
             Leaf leaf = new Leaf();
+            leaf.url = url;
             byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(url);
             byte[] hashBytes = System.Security.Cryptography.MD5.Create().ComputeHash(inputBytes);
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -104,7 +106,8 @@ namespace LeavesApi.Controllers
             {
                 sb.Append(hashBytes[i].ToString("X2"));
             }
-            leaf.id = sb.ToString();
+            leaf.id = sb.ToString().ToLower();
+            //Console.WriteLine(sb.ToString());
             leaf.is_archived = 1;
             leaf.is_starred = 0;
             leaf.user_name = "admin";
@@ -113,7 +116,9 @@ namespace LeavesApi.Controllers
             leaf.is_public = false;
             leaf.created_at = new DateTimeOffset(DateTime.Now);
             leaf.updated_at = new DateTimeOffset(DateTime.Now);
+
             //leaf.links = leaf.links.Append("api/entires/"+leaf.id);
+
             leaf.links = new String[] {"api/entires/"+leaf.id};
             leaf.tags = new String[] {};
             leaf.slugs = new String[] {};
@@ -131,39 +136,52 @@ namespace LeavesApi.Controllers
             HtmlNode html = webpage.Html;
             var links = html.CssSelect("a");
 
-            foreach (var link in links)
+            /*foreach (var link in links)
             {
-                if (link.Attributes["href"].Value.Contains(".html"))
+                //Console.WriteLine(link.Attributes["href"].Value);
+                if (link.Attributes["href"].Value.Contains("http"))
                 {
-                    leaf.links.Append(link.Attributes["href"].Value);
+                    leaf.links = leaf.links.Append(link.Attributes["href"].Value);
                 }
-            }
+            }*/
             leaf.slugs = leaf.links;
             leaf.title = html.OwnerDocument.DocumentNode.SelectSingleNode("//html/head/title").InnerText;
 
-            leaf.preview_picture = "https://dummyimage.com/170/000/ffffff&text="+(leaf.title.Replace(" ","%20"));
+            leaf.preview_picture = "https://dummyimage.com/300/000/ffffff&text="+(leaf.title.Replace(" ","%20"));
 
             leaf.language = "en";
 
-            leaf.content = html.ToString();
+            leaf.mimetype = "text/html";
+
+            leaf.http_status = "200";
+
+            leaf.content = html.OuterHtml;
 
             leaf.content_text = html.InnerText;
 
             char[] delimiters = new char[] {' ', '\r', '\n' };
             leaf.reading_time = leaf.content_text.Split(delimiters,StringSplitOptions.RemoveEmptyEntries).Length/265;  
+            //Console.WriteLine(leaf.reading_time.ToString());
             
             
 
             // TODO update the all column using fields
+            leaf.all = new String[] {leaf.id.ToString(), leaf.title.ToString(), leaf.mimetype.ToString(), leaf.language.ToString(), leaf.reading_time.ToString(),
+            leaf.is_archived.ToString(), leaf.user_id.ToString(), leaf.url.ToString(), leaf.user_email.ToString(), leaf.user_name.ToString(), leaf.content.ToString(),
+            leaf.content_text.ToString(), leaf.preview_picture.ToString(), leaf.domain_name.ToString(), leaf.http_status.ToString(), leaf.is_starred.ToString(),
+            leaf.is_public.ToString(), leaf.tags.ToString(), leaf.slugs.ToString(), leaf.links.ToString(), leaf.created_at.ToString(), leaf.updated_at.ToString()};
             // TODO do other transformation on the record before persisting as well
+            IMapper mapper = new Mapper(Service.Session);
+            mapper.Insert(leaf);
 
             // return back what we got
+            this.HttpContext.Response.StatusCode = 201;
             return JsonConvert.SerializeObject(leaf);
         }
 
         // PATCH api/leaves/5
         [HttpPatch("{id}")]
-        public string Patch(int id, [FromBody] Leaf leaf)
+        public string Patch(String id, [FromBody] Leaf leaf)
         {
             leaf.id = id.ToString();
             IMapper mapper = new Mapper(Service.Session);
@@ -172,10 +190,98 @@ namespace LeavesApi.Controllers
             var existingRecord = mapper.Single<Leaf>("WHERE id = ?", id.ToString());
 
             // write update to db
+            if (leaf.title == null){
+                //Console.WriteLine("Null Found");
+                leaf.title = existingRecord.title;
+            }
+            if (leaf.mimetype == null){
+                //Console.WriteLine("Null Found");
+                leaf.mimetype = existingRecord.mimetype;
+            }
+            if (leaf.language == null){
+                //Console.WriteLine("Null Found");
+                leaf.language = existingRecord.language;
+            }
+            if (leaf.reading_time == null){
+                //Console.WriteLine("Null Found");
+                leaf.reading_time = existingRecord.reading_time;
+            } 
+            if (leaf.is_archived == null){
+                //Console.WriteLine("Null Found");
+                leaf.is_archived = existingRecord.is_archived;
+            } 
+            if (leaf.user_id == null){
+                //Console.WriteLine("Null Found");
+                leaf.user_id = existingRecord.user_id;
+            } 
+            if (leaf.url == null){
+                //Console.WriteLine("Null Found");
+                leaf.url = existingRecord.url;
+            }
+            if (leaf.user_email == null){
+                //Console.WriteLine("Null Found");
+                leaf.user_email = existingRecord.user_email;
+            } 
+            if (leaf.user_name == null){
+                //Console.WriteLine("Null Found");
+                leaf.user_name = existingRecord.user_name;
+            } 
+            if (leaf.content == null){
+                //Console.WriteLine("Null Found");
+                leaf.content = existingRecord.content;
+            }
+            if (leaf.content_text == null){
+                //Console.WriteLine("Null Found");
+                leaf.content_text = existingRecord.content_text;
+            }
+            if (leaf.preview_picture == null){
+                //Console.WriteLine("Null Found");
+                leaf.preview_picture = existingRecord.preview_picture;
+            }
+            if (leaf.domain_name == null){
+                //Console.WriteLine("Null Found");
+                leaf.domain_name = existingRecord.domain_name;
+            }
+            if (leaf.http_status == null){
+                //Console.WriteLine("Null Found");
+                leaf.http_status = existingRecord.http_status;
+            }
+            if (leaf.is_starred == null){
+                //Console.WriteLine("Null Found");
+                leaf.is_starred = existingRecord.is_starred;
+            }
+            if (leaf.is_public == null){
+                //Console.WriteLine("Null Found");
+                leaf.is_public = existingRecord.is_public;
+            }
+            if (leaf.tags == null){
+                //Console.WriteLine("Null Found");
+                leaf.tags = existingRecord.tags;
+            }
+            if (leaf.slugs == null){
+                //Console.WriteLine("Null Found");
+                leaf.slugs = existingRecord.slugs;
+            }
+            if (leaf.links == null){
+                //Console.WriteLine("Null Found");
+                leaf.links = existingRecord.links;
+            }
+            if (leaf.created_at == null){
+                //Console.WriteLine("Null Found");
+                leaf.created_at = existingRecord.created_at;
+            }
+            if (leaf.updated_at == null){
+                //Console.WriteLine("Null Found");
+                leaf.updated_at = existingRecord.updated_at;
+            }
 
             // TODO if record does not exist, throw error
 
             // TODO update the all column using fields
+            leaf.all = new String[] {leaf.id.ToString(), leaf.title.ToString(), leaf.mimetype.ToString(), leaf.language.ToString(), leaf.reading_time.ToString(),
+            leaf.is_archived.ToString(), leaf.user_id.ToString(), leaf.url.ToString(), leaf.user_email.ToString(), leaf.user_name.ToString(), leaf.content.ToString(),
+            leaf.content_text.ToString(), leaf.preview_picture.ToString(), leaf.domain_name.ToString(), leaf.http_status.ToString(), leaf.is_starred.ToString(),
+            leaf.is_public.ToString(), leaf.tags.ToString(), leaf.slugs.ToString(), leaf.links.ToString(), leaf.created_at.ToString(), leaf.updated_at.ToString()};
             // TODO do other transformation on the record before persisting as well
 
             // perform upsert on record specified by id
@@ -187,7 +293,7 @@ namespace LeavesApi.Controllers
 
         // DELETE api/leaves/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(String id)
         {
             IMapper mapper = new Mapper(Service.Session);
             // if item does not exist, OR if there's multiple, return 404. That's all we need to do with this SELECT.
@@ -200,7 +306,7 @@ namespace LeavesApi.Controllers
         // // POST api/leaves/5/tags
         // // TODO implement
         // [HttpPost("{id}")]
-        // public string UpdateTagsById(int id)
+        // public string UpdateTagsById(String id)
         // {
         //     // get record
 
@@ -231,7 +337,7 @@ namespace LeavesApi.Controllers
         // // DELETE api/leaves/5/tags
         // // TODO implement
         [HttpDelete("{id}")]
-        public ActionResult<string> DeleteTagsById(int id)
+        public ActionResult<string> DeleteTagsById(String id)
         {
             IMapper mapper = new Mapper(Service.Session);
             // get record by id
