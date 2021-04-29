@@ -26,30 +26,26 @@
 
 ### 1.2 Create New Database
 
-- You'll then be directed to the home page. Locate the button `Add Database` 
+- You'll then be directed to the home page. Locate the `Create Database` button on the left side: 
 
-![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-empty-1000.png?raw=true)
+![NikitaPic](Assets/Images/NikitaPic1.PNG)
 
-- Define the free plan and and pick a region close to you 
+- On the following screen, press the `Get Started` button underneath "Pay as you go": 
 
-![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/choose-a-plan-1000-annotated.png?raw=true)
+![NikitaPic](Assets/Images/NikitaPic2.PNG)
 
-- Fill the databases parameters.
+- Enter a database name and keyspace name. Select any of the providers at the bottom and select the region closest to you. Then press `Create Database`
 
-![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/create-and-configure-annotated-1000.png?raw=true)
+![NikitaPic](Assets/Images/NikitaPic3.PNG)
 
-- View your database. It may take 2-3 minutes for your database to spin up. You will receive an email at that point.
+- Now wait a few minutes for the database to spin up, and click on the name of the database on the left side of the screen. Expected result: 
 
-**Expected output**
-
-*Initializing*
-
-![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000.png?raw=true)
+![NikitaPic](Assets/Images/NikitaPic4.png)
 
 Database is ready, notice how the status changed from `pending` to `Active` and now you now have the **connect** button enabled.*
 
 
-### 1.3 Go To Connections Panel
+### 1.3 Finding Secure Connect Bundle
 
 - Get your secure connect bundle.
 - To do so, access your connections panel by clicking the `connect` button.

@@ -1,6 +1,6 @@
 { 
-    "username":"username", 
-    "password":"password", 
+    "username":"your-client-id", 
+    "password":"your-client-secret", 
     "cluster":"cluster.name", 
     "keyspace":"keyspace.name", 
     "table":"table.name"
