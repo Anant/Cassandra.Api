@@ -48,31 +48,42 @@ Database is ready, notice how the status changed from `pending` to `Active` and 
 ### 1.3 Finding Secure Connect Bundle
 
 - Get your secure connect bundle.
-- To do so, access your connections panel by clicking the `connect` button.
+- Press the blue Connect button at the top right corner, and then select "Node.js" under the menu "Connect using a driver": 
 
-![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/summary-1000-connect.png?raw=true)
+![NikitaPic](Assets/Images/NikitaPic5.PNG)
 
-- On the connect screen pick `drivers`
-
-![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/connect-rest-driver.png?raw=true)
 
 ### 1.4 Download Secure Connect Bundle
 
-- Finally, click the Download Secure Connect Bundle button to download the zip. Once saved, move the zip into the `cassandra.api/astra.credentials` directory of this project.
+- Finally, click the Download Bundle button to download the zip. Once saved, move the zip into the `cassandra.api/astra.credentials` directory of this project.
 
-![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/connect-driver-1000.png?raw=true)
+![NikitaPic](Assets/Images/NikitaPic8.png)
 
-### 1.5 Configure Cassandra.API Connection
+### 1.5 Generate Tokens For Database
+
+- In the top left corner, press the arrow next to the "Current Organization" name and go to Organization Settings: 
+
+![NikitaPic](Assets/Images/NikitaPic6.PNG)
+
+- Navigate to Token Management, Select the role "Admin User" and press `Generate Token`. Expected result: 
+
+![NikitaPic](Assets/Images/NikitaPic7.PNG)
+
+- Before leaving this page, make sure to save these three values into a text document (or press the 'Download CSV' button)
+
+### 1.6 Configure Cassandra.API Connection
 
 - Fill in the naming conventions you declared earlier, when you setup your database, in your ***(cassandra.api/astra.credentials/UserCred.json) file***
+- For Username, input your generated Client ID (from Token Management)
+- For Password, input your generated Client Secret
 - The following is an example of that the UserCred.json file would look like using the credentials used for configuring the Astra instance.
 
 ```
 { 
-    "username":"kvuser", 
-    "password":"kvpassword", 
-    "cluster":"test", 
-    "keyspace":"demo", 
+    "username":"your-client-id", 
+    "password":"your-client-secret", 
+    "cluster":"testdb2", 
+    "keyspace":"testkeyspace", 
     "table":"leaves"
 }
 ```
