@@ -26,64 +26,57 @@
 
 ### 1.2 Create New Database
 
-- You'll then be directed to the home page. Locate the `Create Database` button on the left side: 
+- You'll then be directed to the home page. Locate the button `Add Database` 
 
-![NikitaPic](Assets/Images/NikitaPic1.PNG)
+![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-empty-1000.png?raw=true)
 
-- On the following screen, press the `Get Started` button underneath "Pay as you go": 
+- Define the free plan and and pick a region close to you 
 
-![NikitaPic](Assets/Images/NikitaPic2.PNG)
+![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/choose-a-plan-1000-annotated.png?raw=true)
 
-- Enter a database name and keyspace name. Select any of the providers at the bottom and select the region closest to you. Then press `Create Database`
+- Fill the databases parameters.
 
-![NikitaPic](Assets/Images/NikitaPic3.PNG)
+![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/create-and-configure-annotated-1000.png?raw=true)
 
-- Now wait a few minutes for the database to spin up, and click on the name of the database on the left side of the screen. Expected result: 
+- View your database. It may take 2-3 minutes for your database to spin up. You will receive an email at that point.
 
-![NikitaPic](Assets/Images/NikitaPic4.png)
+**Expected output**
+
+*Initializing*
+
+![my-pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/dashboard-pending-1000.png?raw=true)
 
 Database is ready, notice how the status changed from `pending` to `Active` and now you now have the **connect** button enabled.*
 
 
-### 1.3 Finding Secure Connect Bundle
+### 1.3 Go To Connections Panel
 
 - Get your secure connect bundle.
-- Press the blue Connect button at the top right corner, and then select "Node.js" under the menu "Connect using a driver": 
+- To do so, access your connections panel by clicking the `connect` button.
 
-![NikitaPic](Assets/Images/NikitaPic5.PNG)
+![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/summary-1000-connect.png?raw=true)
 
+- On the connect screen pick `drivers`
+
+![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/connect-rest-driver.png?raw=true)
 
 ### 1.4 Download Secure Connect Bundle
 
-- Finally, click the Download Bundle button to download the zip. Once saved, move the zip into the `cassandra.api/astra.credentials` directory of this project.
+- Finally, click the Download Secure Connect Bundle button to download the zip. Once saved, move the zip into the `cassandra.api/astra.credentials` directory of this project.
 
-![NikitaPic](Assets/Images/NikitaPic8.png)
+![pic](https://github.com/datastaxdevs/shared-assets/blob/master/astra/connect-driver-1000.png?raw=true)
 
-### 1.5 Generate Tokens For Database
-
-- In the top left corner, press the arrow next to the "Current Organization" name and go to Organization Settings: 
-
-![NikitaPic](Assets/Images/NikitaPic6.PNG)
-
-- Navigate to Token Management, Select the role "Admin User" and press `Generate Token`. Expected result: 
-
-![NikitaPic](Assets/Images/NikitaPic7.PNG)
-
-- Before leaving this page, make sure to save these three values into a text document (or press the 'Download CSV' button)
-
-### 1.6 Configure Cassandra.API Connection
+### 1.5 Configure Cassandra.API Connection
 
 - Fill in the naming conventions you declared earlier, when you setup your database, in your ***(cassandra.api/astra.credentials/UserCred.json) file***
-- For Username, input your generated Client ID (from Token Management)
-- For Password, input your generated Client Secret
 - The following is an example of that the UserCred.json file would look like using the credentials used for configuring the Astra instance.
 
 ```
 { 
-    "username":"your-client-id", 
-    "password":"your-client-secret", 
-    "cluster":"testdb2", 
-    "keyspace":"testkeyspace", 
+    "username":"kvuser", 
+    "password":"kvpassword", 
+    "cluster":"test", 
+    "keyspace":"demo", 
     "table":"leaves"
 }
 ```
