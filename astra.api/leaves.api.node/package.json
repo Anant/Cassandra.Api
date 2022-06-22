@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "express-cassandra": "^2.3.2",
     "extract-main-text": "^1.0.3",
-    "got": "^11.1.4",
+    "got": "^11.8.5",
     "helmet": "^3.22.0",
     "md5": "^2.2.1",
     "metascraper": "^5.11.10",
