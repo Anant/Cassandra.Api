@@ -43,7 +43,7 @@
     "react-dom": "^16.8.6",
     "react-perfect-scrollbar": "^1.5.3",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.4.3"
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "eslint": "5.16.0",
