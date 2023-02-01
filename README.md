@@ -9,121 +9,133 @@
 1. [Astra Setup & Configuring Credentials](#setup) 
 2. [Getting Started](#Getting-Started)
 	1. [Running Data Migrator](#Data-Migrator)
-	2. [Node JS](#Node-js)
-	3. [Python](#python)
-	4. [Running Unit Tests](#testing)
-	5. [Running Admin UI](#admin-ui)
-  
+	2. [Python](#python)
+
 ---
 
 ## Setup
 
-### 1.1 Create Account
+### 1.1 Create Astra Account
 
-- Before you start using our tools, you'll need to create an account on [DataStax Astra](https://dtsx.io/workshop)
-
-![Astra](https://github.com/datastaxdevs/shared-assets/blob/master/astra/login-1000.png?raw=true)
+- Before you start using our tools, you'll need to create an account on [DataStax Astra](https://astra.datastax.com/)
 
 ### 1.2 Create New Database
 
 - You'll then be directed to the home page. Locate the `Create Database` button on the left side: 
 
-![NikitaPic](Assets/Images/NikitaPic1.PNG)
+- On the following screen, enter the Database Name as "db1" and the Keyspace Name as "ks1". Select any of the providers at the bottom and select the region closest to you. Then press `Create Database`.
 
-- On the following screen, press the `Get Started` button underneath "Pay as you go": 
+- Now wait a few minutes for the database to spin up, and click on `Go to Database` on the right side of the screen.
 
-![NikitaPic](Assets/Images/NikitaPic2.PNG)
-
-- Enter a database name and keyspace name. Select any of the providers at the bottom and select the region closest to you. Then press `Create Database`
-
-![NikitaPic](Assets/Images/NikitaPic3.PNG)
-
-- Now wait a few minutes for the database to spin up, and click on the name of the database on the left side of the screen. Expected result: 
-
-![NikitaPic](Assets/Images/NikitaPic4.png)
-
-Database is ready, notice how the status changed from `pending` to `Active` and now you now have the **connect** button enabled.*
+- Database will now get ready, notice how the status changed from `pending` to `Active` and now you now have the `connect` button enabled.
 
 
 ### 1.3 Finding Secure Connect Bundle
 
-- Get your secure connect bundle.
-- Press the blue Connect button at the top right corner, and then select "Node.js" under the menu "Connect using a driver": 
-
-![NikitaPic](Assets/Images/NikitaPic5.PNG)
+- To get your secure connect bundle, press the blue `Connect` button at the top right corner, and then select "Python" under drivers and then`Download Bundle`.
 
 
 ### 1.4 Download Secure Connect Bundle
 
-- Finally, click the Download Bundle button to download the zip. Once saved, move the zip into the `cassandra.api/astra.credentials` directory of this project.
-
-![NikitaPic](Assets/Images/NikitaPic8.png)
+- Finally, click the `Download Secure Bundle` button to download the zip. Once saved, move the zip into the `cassandra.api/astra.credentials` directory of this project.
 
 ### 1.5 Generate Tokens For Database
 
-- In the top left corner, press the arrow next to the "Current Organization" name and go to Organization Settings: 
-
-![NikitaPic](Assets/Images/NikitaPic6.PNG)
-
-- Navigate to Token Management, Select the role "Admin User" and press `Generate Token`. Expected result: 
-
-![NikitaPic](Assets/Images/NikitaPic7.PNG)
-
+- In the top left corner, press the arrow next to the "Current Organization" name and go to `Organization Settings`.
+- Navigate to Token Management, Select the role "Administrator User" and press `Generate Token`. 
 - Before leaving this page, make sure to save these three values into a text document (or press the 'Download CSV' button)
 
 ### 1.6 Configure Cassandra.API Connection
 
 - Fill in the naming conventions you declared earlier, when you setup your database, in your ***(cassandra.api/astra.credentials/UserCred.json) file***
-- For Username, input your generated Client ID (from Token Management)
-- For Password, input your generated Client Secret
-- The following is an example of that the UserCred.json file would look like using the credentials used for configuring the Astra instance.
+-- For Username, input your generated Client ID (from Token Management)
+-- For Password, input your generated Client Secret
+-- For cluster, input "db1" or the name of the database that you created
+-- For keyspace, input "ks1" or the name of the keyspace that you created
+-- For table, inpit "leaves"
+-- The following is an example of that the UserCred.json file would look like using the credentials used for configuring the Astra instance.
 
 ```
 { 
     "username":"your-client-id", 
     "password":"your-client-secret", 
-    "cluster":"testdb2", 
-    "keyspace":"testkeyspace", 
+    "cluster":"db1", 
+    "keyspace":"ks1", 
     "table":"leaves"
 }
 ```
-
-The last value ``table`` wasn't declared before so you can do that here for the first time.
 
 ---
 
 ## Getting Started
 
-***It's best to go through this project in the following order so you do not get confused.***
-
 
 
 ### 2.1 Run the data migrator to transfer data from our cassandra.api to your Astra Database.
 
-#### [Data Migrator](https://github.com/Anant/cassandra.api/tree/master/astra.import)
+These instructions will get you started migrating data from Leaves to your Astra cluster.
 
+**2.1.1** Run the following commands:
+```
+pip3 install cassandra-driver
+pip3 install requests
+```
 
+OR 
 
-### 2.2 Setup an API so that you can communicate with your Astra database. We have 2 APIs for you to use:
+```
+cd astra.import/
+pip install -r requirements.txt
+```
 
+**2.1.2** Run the migrator from the **cassandra.api/** folder
 
-#### [Node JS](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.node)
+```
+python3 astra.import/RESTToAstra.py
+```
 
+* If you recieve the following error, you're most likely using python 2, switch to python 3 and retry.
 
-#### [Python](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.python)
+```
+ File "c:/Users/adp8k/Desktop/migrator-test/astra.import/SolrToAstra.py", line 140, in <module>
+    "INSERT INTO killrvideo.leaves JSON %s" % "'"+json_doc.replace("'","''")+"'"
+  File "C:\Python27\lib\site-packages\cassandra\cluster.py", line 2615, in execute
+    return self.execute_async(query, parameters, trace, custom_payload, timeout, execution_profile, paging_state, host, execute_as).result()
+  File "C:\Python27\lib\site-packages\cassandra\cluster.py", line 4871, in result
+    raise self._final_exception
+cassandra.InvalidRequest: Error from server: code=2200 [Invalid query] message="Error decoding JSON value for links: Error decoding JSON string: Unrecognized token 'u': was expecting ('true', 'false' or 'null')
+ at [Source: (String)"[u'/api/entries/14012']"; line: 1, column: 3]"
+```
 
+### 2.2 Setup the Python API so that you can communicate with your Astra database
 
+These instructions will get your Python REST API using Astra up and running locally and on the cloud.
 
-### 2.3 Run this set of unit tests against your API to confirm that it is working properly.
+### Prerequisites
 
-#### [Testing](https://github.com/Anant/cassandra.api/tree/master/astra.api/leaves.api.tests)
+- Python 2.7.17 or Python 3
+- Python cassandra-driver
+- Python requests
+- Python flask
+- Python flask-cors
 
+**2.3.1** Run the following command:
 
-### 2.4 Launch Web Admin UI to visualize your Astra Database in Table Format
+```sh
+cd astra.api/leaves.api.python/
+pip3 install -r requirements.txt
+```
 
-#### [Admin UI](https://github.com/Anant/cassandra.api/tree/master/astra.ui)
+**2.3.2** Run the script with the following command:
+```sh
+python3 app.py
+```
 
-
+- Now, navigate to the `PORTS` tab next to `TERMINAL` in your Gitpod screen.
+- Ensure that the link is publically available by checking that the "lock" icon is in an unlocked state.
+- Open the URL in a new tab by clicking on the link under the "Address" section.
+- You will have to append `/api/leaves` to the end of the URL else you will get a 404 error. For example, your URL should look like `https://8000-anant-cassandraapi-aj3adn7scfj.ws-us84.gitpod.io/api/leaves`
+- You can also navigate to `/api/leaves/(id)` to view a single row from your table with the proper id.
 ---
 ## Reference Material
 
